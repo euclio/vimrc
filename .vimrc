@@ -36,4 +36,4 @@ map <F9> :e $HOME/.vimrc<CR>
 set nocompatible ruler laststatus=2 showcmd showmode number
 
 " Set column width and change background color after width
-set tw=80 cc=+1
+set tw=79 cc=+1
