@@ -8,12 +8,17 @@ autocmd FileType * set expandtab ts=4 sw=4 sts=4
 set incsearch ignorecase smartcase hlsearch
 
 " Use 256 Colors if available
-set t_Co=256
+if has('gui_running')
+    set t_Co=256
+    set background=dark " Enables solarized 'dark'
+    colorscheme solarized
+else
+    " Use a colorscheme that is safe for 16 colors 
+    colorscheme slate
+endif
 
-" Set colorscheme
+" Enable syntax highlighting
 syntax enable
-set background=dark
-colorscheme solarized
 
 " Default encoding and file behavior
 set encoding=utf8
