@@ -5,7 +5,7 @@ filetype plugin indent on
 autocmd FileType * set expandtab ts=4 sw=4 sts=4
 
 " Searching behaves like a web browser
-" set incsearch ignorecase smartcase hlsearch
+set incsearch ignorecase smartcase hlsearch
 
 " Use 256 Colors if available
 set t_Co=256
