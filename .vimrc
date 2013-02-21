@@ -42,3 +42,6 @@ set nocompatible ruler laststatus=2 showcmd showmode number
 
 " Set column width and change background color after width
 set tw=79 cc=+1
+
+" Fix HTML indentation in filetype plugin
+autocmd FileType html setlocal indentkeys-=*<Return>
