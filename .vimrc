@@ -35,7 +35,7 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " F9 opens .vimrc
-map <F9> :e $HOME/.vimrc<CR>
+map <F9> :e $MYVIMRC<CR>
 
 " Show line numbers, ruler, last command, and mode
 set nocompatible ruler laststatus=2 showcmd showmode number
