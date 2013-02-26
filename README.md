@@ -6,7 +6,7 @@ their own directories, and thus easily syncable.
 #Set Up
 First, I initialized a git repository in the `~/.vim/` folder. Then, I moved my
  old `.vimrc into the `.vim` folder and created a symbolic link from the 
-dotfile in the home directory to the one in the repository. With the following
+dotfile in the home directory to the one in the repository with the following
 commands:
 
     cd
