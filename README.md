@@ -12,11 +12,10 @@ commands:
     cd
     ln -s .vim/.vimrc .vimrc
 
-On Windows, symbolic links are not as well supported. So, I made a hard link
-instead:
+On Windows, the command is:
 
     cd
-    mklink /H _vimrc vimfiles\.vimrc
+    mklink _vimrc vimfiles\.vimrc
 
 Keeping my vim settings the same across computers is now as easy as executing a 
 git clone.
