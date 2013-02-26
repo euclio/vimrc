@@ -1,3 +1,6 @@
+" Enable Pathogen
+execute pathogen#infect()
+
 " Set filetype specific indentation
 filetype plugin indent on
 
