@@ -45,3 +45,6 @@ set tw=79 cc=+1
 
 " Fix HTML indentation in filetype plugin
 autocmd FileType html setlocal indentkeys-=*<Return>
+
+" Make backspace work as expected
+set backspace=2
