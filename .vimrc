@@ -58,3 +58,6 @@ set noerrorbells visualbell t_vb=
 if has('autocmd')
     autocmd GUIEnter * set visualbell t_vb=
 endif
+
+" Ensure that the cursor is at least 5 lines above bottom
+set scrolloff=5
