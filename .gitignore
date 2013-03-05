@@ -1,1 +1,5 @@
+# Ignore vundle bundles
+bundle/
+
+# Ignore netrw history
 .netrwhist

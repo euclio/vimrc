@@ -1,6 +1,8 @@
-" Enable Pathogen
-execute pathogen#infect()
-execute pathogen#helptags()
+" Using viM
+set nocompatible
+
+" Enable vundle
+source bundles.vim
 
 " Set filetype specific indentation
 filetype plugin indent on
