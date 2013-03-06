@@ -15,20 +15,13 @@ source $VIMHOME/bundles.vim
 filetype plugin indent on
 
 " Space indentation
-autocmd FileType * set expandtab ts=4 sw=4 sts=4
+autocmd FileType * set expandtab ts=4 sw=4 sts=4d
 
 " Searching behaves like a web browser
 set incsearch ignorecase smartcase hlsearch
 
-" Use 256 Colors if available
-if has('gui_running')
-    set t_Co=256
-    set background=dark " Enables solarized 'dark'
-    colorscheme solarized
-else
-    " Use a colorscheme that is safe for 16 colors 
-    colorscheme slate
-endif
+" Use a colorscheme that is safe for 16 colors 
+colorscheme slate
 
 " Enable syntax highlighting
 syntax enable

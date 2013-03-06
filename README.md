@@ -17,5 +17,9 @@ On Windows, the command is:
     cd
     mklink _vimrc vimfiles\.vimrc
 
-Keeping my vim settings the same across computers is now as easy as executing a 
-git clone.
+The same process must be followed for the .gvimrc for GUI settings.
+
+Keeping my vim settings the same across computers is now as easy as executing
+`:BundleInstall!` while inside vim. I have included a vimscript that will set
+up Vundle on first installation, and update all plugins to simplify the 
+process of cloning vim settings into new computers.
