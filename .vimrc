@@ -1,8 +1,15 @@
 " Using viM
 set nocompatible
 
+" VIMHOME fix for different OSes
+if has('win32') || has('win64')
+    let $VIMHOME=$HOME.'/vimfiles'
+else
+    let $VIMHOME=$HOME.'/.vim'
+endif
+
 " Enable vundle
-source bundles.vim
+source $VIMHOME/bundles.vim
 
 " Set filetype specific indentation
 filetype plugin indent on

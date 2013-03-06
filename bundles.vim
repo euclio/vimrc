@@ -1,12 +1,14 @@
 " Required for vundle
 filetype off
 
+let $VIMHOME=$HOME.'/.vim'
+
 " VIMHOME fix for Windows
 if has('win32') || has('win64')
-    let $VIMHOME = $HOME.'/vimfiles'
-else
-    let $VIMHOME = $HOME.'/.vim'
+    let $VIMHOME=$HOME.'\vimfiles'
 endif
+
+let $VUNDLE=$VIMHOME.'/bundle/vundle'
 
 " Install vundle if it doesn't exist
 let new_vundle_install=0
@@ -15,11 +17,11 @@ if !filereadable(vundle_readme)
     echom 'Vundle not found. Installing...'
     echom ''
     if has('win32') || has('win64')
-        call mkdir($VIMHOME.'/bundle'), 'p')
+        silent exe '!mkdir' $VIMHOME.'\bundle'
     else
-        silent !mkdir -p $VIMHOME/bundle
+        silent exe '!mkdir -p ' $VIMHOME.'/bundle'
     endif
-    silent !git clone https://github.com/gmarik/vundle bundle/vundle
+    exe '!git clone https://github.com/gmarik/vundle' $VUNDLE
     let new_vundle_install=1
 endif
 
