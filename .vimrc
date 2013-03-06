@@ -15,7 +15,7 @@ source $VIMHOME/bundles.vim
 filetype plugin indent on
 
 " Space indentation
-autocmd FileType * set expandtab ts=4 sw=4 sts=4d
+autocmd FileType * set expandtab ts=4 sw=4 sts=4
 
 " Searching behaves like a web browser
 set incsearch ignorecase smartcase hlsearch
