@@ -5,7 +5,7 @@ their own directories, and thus easily syncable.
 
 #Set Up
 First, I initialized a git repository in the `~/.vim/` folder. Then, I moved my
- old `.vimrc into the `.vim` folder and created a symbolic link from the 
+ old `.vimrc` into the `.vim` folder and created a symbolic link from the 
 dotfile in the home directory to the one in the repository with the following
 commands:
 
@@ -17,7 +17,7 @@ On Windows, the command is:
     cd
     mklink _vimrc vimfiles\.vimrc
 
-The same process must be followed for the .gvimrc for GUI settings.
+The same process must be followed for the `.gvimrc` for GUI settings.
 
 Keeping my vim settings the same across computers is now as easy as executing
 `:BundleInstall!` while inside vim. I have included a vimscript that will set
