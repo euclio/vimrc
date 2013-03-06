@@ -12,8 +12,13 @@ endif
 let new_vundle_install=0
 let vundle_readme=expand('$VIMHOME/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
-    echom 'vundle not found. Installing...'
-    call mkdir('bundle')
+    echom 'Vundle not found. Installing...'
+    echom ''
+    if has('win32') || has('win64')
+        call mkdir($VIMHOME.'/bundle'), 'p')
+    else
+        silent !mkdir -p $VIMHOME/bundle
+    endif
     silent !git clone https://github.com/gmarik/vundle bundle/vundle
     let new_vundle_install=1
 endif
@@ -46,5 +51,5 @@ Bundle 'derekwyatt/vim-scala'
 if new_vundle_install
     echom 'Installing all bundles...'
     BundleInstall!
-    echom 'Please restart viM to ensure correct installation.'
+    echom 'If there are errors, they can be safely ignored.'
 endif
