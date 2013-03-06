@@ -39,6 +39,10 @@ Bundle 'tpope/vim-fugitive'
 " Statusline improvements
 Bundle 'Lokaltog/vim-powerline'
 
+" Filetype plugin for Scala
+
+Bundle 'derekwyatt/vim-scala'
+
 if new_vundle_install
     echom 'Installing all bundles...'
     BundleInstall!
