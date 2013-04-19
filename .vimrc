@@ -16,6 +16,8 @@ filetype plugin indent on
 
 " Space indentation
 autocmd FileType * set expandtab ts=4 sw=4 sts=4
+" But not for Makefiles
+autocmd FileType make setlocal noexpandtab
 
 " Searching behaves like a web browser
 set incsearch ignorecase smartcase hlsearch
