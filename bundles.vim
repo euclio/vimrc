@@ -33,7 +33,7 @@ call vundle#rc('$VIMHOME/bundle/')
 Bundle 'gmarik/vundle'
 
 " My bundles
-" 
+
 " Solarized Color Scheme (the best!)
 Bundle 'altercation/vim-colors-solarized'
 
@@ -48,6 +48,9 @@ Bundle 'Lokaltog/vim-powerline'
 
 " Filetype plugin for Scala
 Bundle 'derekwyatt/vim-scala'
+
+" Relative line numbers in command mode, absolute in insert mode
+Bundle 'myusuf3/numbers.vim'
 
 if new_vundle_install
     echom 'Installing all bundles...'
