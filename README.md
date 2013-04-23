@@ -15,9 +15,11 @@ commands:
 On Windows, the command is:
 
     cd
-    mklink _vimrc vimfiles\.vimrc
+    mklink /H _vimrc vimfiles\.vimrc
 
-The same process must be followed for the `.gvimrc` for GUI settings.
+The same process must be followed for the `.gvimrc` for GUI settings. For
+Windows, the user must create a hard link for edits in the link to carry over
+to the actual file.
 
 Keeping my vim settings the same across computers is now as easy as executing
 `:BundleInstall!` while inside vim. I have included a vimscript that will set
