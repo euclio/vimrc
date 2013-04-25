@@ -5,6 +5,8 @@ filetype off
 let new_vundle_install=0
 let vundle_readme=expand('$VIMHOME/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
+    let $VUNDLE=$VIMHOME.'/bundle/vundle' 
+
     echom 'Vundle not found. Installing...'
     echom ''
     if has('win32') || has('win64')
