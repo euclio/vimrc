@@ -83,9 +83,8 @@ map <F9> :e $MYVIMRC<CR>
 " " "
 " Fix Annoyances
 "
-" Disable bell (visual and normal)
+" Disable visual and audio bell
 set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
 
 
 " " "
