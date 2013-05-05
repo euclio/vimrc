@@ -53,8 +53,8 @@ set tw=79 cc=+1
 " Ensure that the cursor is at least 5 lines above bottom
 set scrolloff=5
 
-" Show arrows when there are long lines
-set list listchars=tab:\ \ ,precedes:⇐,extends:⇒
+" Show arrows when there are long lines, and show ∘ on trailing space
+set list listchars=tab:\ \ ,trail:∘,precedes:⇐,extends:⇒
 
 
 " " "
