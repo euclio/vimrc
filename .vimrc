@@ -12,7 +12,7 @@ else
 endif
 
 
-" " " 
+" " "
 " Plugins
 "
 " Enable vundle
@@ -31,6 +31,7 @@ syntax enable
 
 " Set filetype specific indentation
 filetype plugin indent on
+
 " Fix quirkiness in HTML-specific indentation
 autocmd FileType html setlocal indentkeys-=*<Return>
 
@@ -51,6 +52,9 @@ set tw=79 cc=+1
 
 " Ensure that the cursor is at least 5 lines above bottom
 set scrolloff=5
+
+" Show arrows when there are long lines
+set list listchars=tab:\ \ ,precedes:⇐,extends:⇒
 
 
 " " "
