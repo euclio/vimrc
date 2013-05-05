@@ -86,6 +86,9 @@ map <F9> :e $MYVIMRC<CR>
 " Disable visual and audio bell
 set noerrorbells visualbell t_vb=
 
+" Don't wrap lines
+set nowrap
+
 
 " " "
 " Colorscheme
