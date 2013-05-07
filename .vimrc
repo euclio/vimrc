@@ -7,6 +7,10 @@ set nocompatible
 " Make $VIMHOME point to .vimrc location independent of OS
 if has('win32') || has('win64')
     let $VIMHOME=$HOME.'/vimfiles'
+
+    " Fix the path of vimrc and gvimrc for Windows
+    let $MYVIMRC=$VIMHOME.'/.vimrc'
+    let $MYGVIMRC=$VIMHOME.'/.gvimrc'
 else
     let $VIMHOME=$HOME.'/.vim'
 endif
@@ -54,7 +58,7 @@ set tw=79 cc=+1
 set scrolloff=5
 
 " Show arrows when there are long lines, and show ∘ on trailing space
-set list listchars=tab:\ \ ,trail:∘,precedes:⇐,extends:⇒
+set list listchars=tab:\ \ ,trail:░,precedes:←,extends:→
 
 
 " " "
