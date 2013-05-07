@@ -58,7 +58,7 @@ set tw=79 cc=+1
 set scrolloff=5
 
 " Show arrows when there are long lines, and show ∘ on trailing space
-set list listchars=tab:\ \ ,trail:░,precedes:←,extends:→
+set list listchars=tab:\ \ ,trail:¤,precedes:←,extends:→
 
 
 " " "
