@@ -36,8 +36,9 @@ syntax enable
 " Set filetype specific indentation
 filetype plugin indent on
 
-" Fix quirkiness in HTML-specific indentation
+" Fix quirkiness in HTML-specific indentation and set tab width to 2
 autocmd FileType html setlocal indentkeys-=*<Return>
+autocmd FileType html setlocal ts=2 sw=2 sts=2
 
 " Make tabs into spaces...
 autocmd FileType * set expandtab ts=4 sw=4 sts=4
