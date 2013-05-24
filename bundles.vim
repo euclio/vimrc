@@ -42,6 +42,12 @@ Bundle 'Lokaltog/vim-powerline'
 " Filetype plugin for Scala
 Bundle 'derekwyatt/vim-scala'
 
+" Filetree viewer
+Bundle 'scrooloose/nerdtree'
+map <C-n> :NERDTreeToggle<CR>
+" Close vim if NERDTree is the only window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 if new_vundle_install
     echom 'Installing all bundles...'
     BundleInstall!
