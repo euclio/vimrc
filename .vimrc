@@ -42,8 +42,8 @@ autocmd FileType * set expandtab ts=4 sw=4 sts=4
 autocmd FileType make setlocal noexpandtab
 
 " Fix quirkiness in HTML-specific indentation and set tab width to 2
-autocmd FileType html setlocal indentkeys-=*<Return>
-autocmd FileType html setlocal ts=2 sw=2 sts=2
+autocmd FileType html* setlocal indentkeys-=*<Return>
+autocmd FileType html* setlocal ts=2 sw=2 sts=2
 
 
 " " "
@@ -58,7 +58,7 @@ set tw=79 cc=+1
 " Ensure that the cursor is at least 5 lines above bottom
 set scrolloff=5
 
-" Show arrows when there are long lines, and show ∘ on trailing space
+" Show arrows when there are long lines, and show ¤ on trailing space
 set list listchars=tab:\ \ ,trail:¤,precedes:←,extends:→
 
 
