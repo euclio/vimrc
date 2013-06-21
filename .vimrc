@@ -30,6 +30,10 @@ source $VIMHOME/bundles.vim
 set encoding=utf8
 set ffs=unix,dos,mac
 
+" Set column width to 80 characters, display a line at the limit, and don't
+" wrap lines
+set tw=79 cc=+1 nowrap
+
 " Enable syntax highlighting
 syntax enable
 
@@ -45,15 +49,15 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType html* setlocal indentkeys-=*<Return>
 autocmd FileType html* setlocal ts=2 sw=2 sts=2
 
+" Make html lines longer, and don't break lines automatically
+autocmd FileType html* setlocal tw=120 linebreak textwidth=0
+
 
 " " "
 " Editing Window Improvements
 "
 " Show line numbers, ruler, last command, and mode
 set ruler laststatus=2 showcmd showmode number
-
-" Set column width to 80 characters display a line at the limit
-set tw=79 cc=+1
 
 " Ensure that the cursor is at least 5 lines above bottom
 set scrolloff=5
@@ -94,9 +98,6 @@ map <F9> :e $MYVIMRC<CR>
 "
 " Disable visual and audio bell
 set noerrorbells visualbell t_vb=
-
-" Don't wrap lines
-set nowrap
 
 
 " " "
