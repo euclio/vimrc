@@ -25,11 +25,6 @@ call vundle#rc('$VIMHOME/bundle/')
 " Allow vundle to manage itself
 Bundle 'gmarik/vundle'
 
-" My bundles
-
-" Solarized Color Scheme (the best!)
-Bundle 'altercation/vim-colors-solarized'
-
 " Syntax checking on save
 Bundle 'scrooloose/syntastic'
 
@@ -47,6 +42,12 @@ Bundle 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
 " Close vim if NERDTree is the only window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Allow GUI colorschemes in 256-color or 88-color terminals
+Bundle 'CSApprox'
+
+" Colorschemes
+Bundle 'altercation/vim-colors-solarized'
 
 if new_vundle_install
     echom 'Installing all bundles...'
