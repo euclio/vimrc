@@ -1,7 +1,7 @@
 " " "
 " Compatibility fixes
 "
-" viMprove yourself
+" viMproved!
 set nocompatible
 
 " Make $VIMHOME point to .vimrc location independent of OS
@@ -24,7 +24,7 @@ source $VIMHOME/bundles.vim
 
 
 " " "
-" File-specific settings
+" File settings
 "
 " Set default encoding to utf8 and read all types of files
 set encoding=utf8
@@ -40,17 +40,8 @@ syntax enable
 " Set filetype specific indentation
 filetype plugin indent on
 
-" Make tabs into spaces...
-autocmd FileType * set expandtab ts=4 sw=4 sts=4
-" ...but not for Makefiles
-autocmd FileType make setlocal noexpandtab
-
-" Fix quirkiness in HTML-specific indentation and set tab width to 2
-autocmd FileType html* setlocal indentkeys-=*<Return>
-autocmd FileType html* setlocal ts=2 sw=2 sts=2
-
-" Make html lines longer, and don't break lines automatically
-autocmd FileType html* setlocal tw=120 linebreak textwidth=0
+" Generally, make tabs into spaces and indent with 4 spaces
+set expandtab ts=4 sw=4 sts=4
 
 
 " " "
@@ -103,5 +94,5 @@ set noerrorbells visualbell t_vb=
 " " "
 " Colorscheme
 "
-" Use a colorscheme that is safe for 16 colors 
+" Use a colorscheme that is safe for 16 colors
 colorscheme slate
