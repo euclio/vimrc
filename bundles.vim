@@ -45,6 +45,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " Allow GUI colorschemes in 256-color or 88-color terminals
 Bundle 'CSApprox'
+let g:CSApprox_verbose_level=0          " Disable warnings for <88 colors
 
 " Colorschemes
 Bundle 'altercation/vim-colors-solarized'
