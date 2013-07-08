@@ -1,2 +1,2 @@
 " Treat templates just like html
-set filetype=html
+source $VIMHOME/after/ftplugin/html.vim
