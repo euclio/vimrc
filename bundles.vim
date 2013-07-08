@@ -32,7 +32,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 
 " Statusline improvements
-Bundle 'Lokaltog/vim-powerline'
+" Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 
 " Filetype plugin for Scala
 Bundle 'derekwyatt/vim-scala'
