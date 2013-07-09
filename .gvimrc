@@ -1,23 +1,23 @@
-" " "
+" =============================================================================
 " Colorscheme
-"
-" Use solaized colorscheme with 12pt Inconsolata for GUI
-if has('gui_running')
-    " Use solarized colorscheme
-    set t_Co=256
-    set background=dark
-    colorscheme slate
+" =============================================================================
+colorscheme slate
 
-    " Font settings
-    if has('gui_gtk2')
-        set guifont=Inconsolata\ 12
-    elseif has('gui_win32')
-        set guifont=Inconsolata:h12:cANSI
-    endif
+" Font settings
+if has('gui_gtk2')
+  set guifont=Inconsolata\ 12
+elseif has('gui_win32')
+  set guifont=Inconsolata:h12:cANSI
 endif
 
-" " "
+" =============================================================================
 " Fix Annoyances
-"
+" =============================================================================
+" Remove scrollbars, menu, and toolbar
+set guioptions-=r
+set guioptions-=l
+set guioptions-=m
+set guioptions-=T
+
 " Remove visual and audio bell for GUI
-autocmd GUIEnter * set visualbell t_vb=
+set visualbell t_vb=
