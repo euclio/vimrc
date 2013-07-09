@@ -1,38 +1,40 @@
-" " "
-" Compatibility fixes
+" .vimrc, http://github.com/euclio/vim-settings
+" by Andy Russell (andy@acrussell.com)
+"
+" =============================================================================
+" Setup
+" =============================================================================
 "
 " viMproved!
 set nocompatible
 
 " Make $VIMHOME point to .vimrc location independent of OS
 if has('win32') || has('win64')
-    let $VIMHOME=$HOME.'/vimfiles'
+  let $VIMHOME=$HOME . '/vimfiles'
 
-    " Fix the path of vimrc and gvimrc for Windows
-    let $MYVIMRC=$VIMHOME.'/.vimrc'
-    let $MYGVIMRC=$VIMHOME.'/.gvimrc'
+  " Fix the path of vimrc and gvimrc for Windows
+  let $MYVIMRC=$VIMHOME . '/.vimrc'
+  let $MYGVIMRC=$VIMHOME . '/.gvimrc'
 else
-    let $VIMHOME=$HOME.'/.vim'
+  let $VIMHOME=$HOME . '/.vim'
 endif
 
-
-" " "
-" Plugins
-"
-" Enable vundle
+" Enable vundle and plugins
 source $VIMHOME/bundles.vim
 
-
-" " "
+" =============================================================================
 " File settings
+" =============================================================================
 "
-" Set default encoding to utf8 and read all types of files
+" Set default encodings and file formats
 set encoding=utf8
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
 
-" Set column width to 80 characters, display a line at the limit, and don't
-" wrap lines
-set tw=79 cc=+1 nowrap
+" Set column width to 79 characters, and display a line at the limit
+set textwidth=79 colorcolumn=+1
+
+" Don't wrap lines
+set nowrap
 
 " Enable syntax highlighting
 syntax enable
@@ -40,15 +42,21 @@ syntax enable
 " Set filetype specific indentation
 filetype plugin indent on
 
-" Generally, make tabs into spaces and indent with 4 spaces
-set expandtab ts=4 sw=4 sts=4
+" Make tabs into spaces and indent with 4 spaces
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
-
-" " "
+" =============================================================================
 " Editing Window Improvements
+" =============================================================================
 "
-" Show line numbers, ruler, last command, and mode
-set ruler laststatus=2 showcmd showmode number
+" Show line numbers
+set number
+
+" When leaving buffer, hide it instead of closing it
+set hidden
+
+" Statusline settings
+set laststatus=2 noshowmode showcmd cmdheight=2
 
 " Ensure that the cursor is at least 5 lines above bottom
 set scrolloff=5
@@ -56,9 +64,18 @@ set scrolloff=5
 " Show arrows when there are long lines, and show ¤ on trailing space
 set list listchars=tab:\ \ ,trail:¤,precedes:←,extends:→
 
+" Enable autocomplete menu
+set wildmenu
 
-" " "
+" On first tab, complete the longest common command. On second tab, show list
+set wildmode=longest:full,list:full
+
+" Files to ignore in autocompletion
+set wildignore=*.o,*.pyc,*.class,*.bak,*~
+
+" =============================================================================
 " Motions
+" =============================================================================
 "
 " Disable arrow keys; hjkl are way better anyways!
 noremap  <up>    <nop>
@@ -70,29 +87,43 @@ inoremap <left>  <nop>
 noremap  <right> <nop>
 inoremap <right> <nop>
 
-" Make backspace work as expected (across lines)
-set backspace=2
+" Backspace works as expected (across lines)
+set backspace=indent,eol,start
 
-" Make searching behave like a web browser
+" Searching behaves like a web browser
 set incsearch ignorecase smartcase hlsearch
 
-
-" " "
+" =============================================================================
 " New Commands
+" =============================================================================
 "
 " F9 opens .vimrc
 map <F9> :e $MYVIMRC<CR>
 
-
-" " "
+" =============================================================================
 " Fix Annoyances
+" =============================================================================
 "
 " Disable visual and audio bell
 set noerrorbells visualbell t_vb=
 
+" Change leader to comma
+let mapleader=","
+let g:mapleader=","
 
-" " "
+" Don't make backups
+set nobackup
+
+" Make regex a little easier
+set magic
+
+" Let vim change the terminal title (thanks for flying Vim)
+set title
+
+" =============================================================================
 " Colorscheme
+" =============================================================================
 "
-" Use a colorscheme that is safe for 16 colors
+" Use a dark colorscheme
 colorscheme slate
+set background=dark

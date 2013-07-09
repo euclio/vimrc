@@ -1,3 +1,7 @@
+" =============================================================================
+" Vundle Setup
+" =============================================================================
+"
 " Required for vundle
 filetype off
 
@@ -5,14 +9,14 @@ filetype off
 let new_vundle_install=0
 let vundle_readme=expand('$VIMHOME/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
-    let $VUNDLE=$VIMHOME.'/bundle/vundle' 
+    let $VUNDLE=$VIMHOME . '/bundle/vundle'
 
     echom 'Vundle not found. Installing...'
     echom ''
     if has('win32') || has('win64')
-        silent exe '!mkdir' $VIMHOME.'\bundle'
+        silent exe '!mkdir' $VIMHOME . '\bundle'
     else
-        silent exe '!mkdir -p ' $VIMHOME.'/bundle'
+        silent exe '!mkdir -p' $VIMHOME . '/bundle'
     endif
     exe '!git clone https://github.com/gmarik/vundle' $VUNDLE
     let new_vundle_install=1
@@ -22,6 +26,10 @@ endif
 set rtp+=$VIMHOME/bundle/vundle
 call vundle#rc('$VIMHOME/bundle/')
 
+" =============================================================================
+" Bundles
+" =============================================================================
+"
 " Allow vundle to manage itself
 Bundle 'gmarik/vundle'
 
@@ -32,7 +40,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 
 " Statusline improvements
-" Bundle 'Lokaltog/vim-powerline'
 Bundle 'bling/vim-airline'
 
 " Filetype plugin for Scala
@@ -46,11 +53,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " Allow GUI colorschemes in 256-color or 88-color terminals
 Bundle 'CSApprox'
-let g:CSApprox_verbose_level=0          " Disable warnings for <88 colors
+let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 
-" Colorschemes
-Bundle 'altercation/vim-colors-solarized'
-
+" Install the bundles if Vundle was installed for the first time
 if new_vundle_install
     echom 'Installing all bundles...'
     BundleInstall!
