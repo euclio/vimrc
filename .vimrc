@@ -19,6 +19,10 @@ else
   let $VIMHOME=$HOME . '/.vim'
 endif
 
+" Change leader to comma
+let mapleader=","
+let g:mapleader=","
+
 " Enable vundle and plugins
 source $VIMHOME/bundles.vim
 
@@ -98,7 +102,10 @@ set incsearch ignorecase smartcase hlsearch
 " =============================================================================
 "
 " F9 opens .vimrc
-map <F9> :e $MYVIMRC<CR>
+map <f9> :e $MYVIMRC<cr>
+
+" <leader><leader> clears previous search highlighting
+map <silent> <leader><leader> :nohlsearch<cr>
 
 " =============================================================================
 " Fix Annoyances
@@ -106,10 +113,6 @@ map <F9> :e $MYVIMRC<CR>
 "
 " Disable visual and audio bell
 set noerrorbells visualbell t_vb=
-
-" Change leader to comma
-let mapleader=","
-let g:mapleader=","
 
 " Don't make backups
 set nobackup
