@@ -41,6 +41,9 @@ Bundle 'tpope/vim-fugitive'
 
 " Statusline improvements
 Bundle 'bling/vim-airline'
+let g:airline_left_sep = '⟩'
+let g:airline_right_sep = '⟨'
+let g:airline_fugitive_prefix = '⎇  '     " Symbol displayed next to Git branch
 
 " Filetype plugin for Scala
 Bundle 'derekwyatt/vim-scala'
