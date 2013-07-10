@@ -120,7 +120,8 @@ set nobackup
 " Make regex a little easier
 set magic
 
-" Let vim change the terminal title (thanks for flying Vim)
+" Custom Terminal title
+let &titlestring=hostname() . ' %F %y %r- VIM %m'
 set title
 
 " =============================================================================
