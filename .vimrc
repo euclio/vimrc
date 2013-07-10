@@ -128,5 +128,5 @@ set title
 " =============================================================================
 "
 " Use a dark colorscheme
-colorscheme slate
 set background=dark
+colorscheme slate

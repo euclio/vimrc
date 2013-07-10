@@ -49,6 +49,9 @@ let g:airline_theme='badwolf'
 " Filetype plugin for Scala
 Bundle 'derekwyatt/vim-scala'
 
+" View highlight groups under cursor
+Bundle 'gerw/vim-HiLinkTrace'
+
 " Filetree viewer
 Bundle 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
