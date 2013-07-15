@@ -56,7 +56,9 @@ Bundle 'gerw/vim-HiLinkTrace'
 Bundle 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
 " Close vim if NERDTree is the only window
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter *
+  \ if (winnr("$") == 1 &&
+  \     exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " My personal colorscheme
 Bundle 'euclio/vim-nocturne'
