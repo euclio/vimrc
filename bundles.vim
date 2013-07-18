@@ -58,6 +58,9 @@ map <C-n> :NERDTreeToggle<CR>
 " Close vim if NERDTree is the only window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" My personal colorscheme
+Bundle 'euclio/vim-nocturne'
+
 " Allow GUI colorschemes in 256-color or 88-color terminals
 Bundle 'CSApprox'
 let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
