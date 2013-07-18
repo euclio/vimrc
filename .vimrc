@@ -130,7 +130,7 @@ set title
 "
 " Use a dark colorscheme
 set background=dark
-if &t_Co > 88
+if &t_Co >= 88
   colorscheme nocturne
 else
   colorscheme slate
