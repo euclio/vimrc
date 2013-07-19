@@ -47,6 +47,12 @@ filetype plugin indent on
 " Make tabs into spaces and indent with 4 spaces
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
+" Store undo history across sessions
+if v:version >= 703
+  let &undodir=$VIMHOME . '/undofiles'
+  set undofile
+endif
+
 " =============================================================================
 " Editing Window Improvements
 " =============================================================================
