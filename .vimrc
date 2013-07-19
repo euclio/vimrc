@@ -4,7 +4,6 @@
 " =============================================================================
 " Setup
 " =============================================================================
-"
 " viMproved!
 set nocompatible
 
@@ -29,7 +28,6 @@ source $VIMHOME/bundles.vim
 " =============================================================================
 " File settings
 " =============================================================================
-"
 " Set default encodings and file formats
 set encoding=utf8
 set fileformats=unix,dos,mac
@@ -52,7 +50,6 @@ set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 " =============================================================================
 " Editing Window Improvements
 " =============================================================================
-"
 " Show line numbers
 set number
 
@@ -80,7 +77,6 @@ set wildignore=*.o,*.pyc,*.class,*.bak,*~
 " =============================================================================
 " Motions
 " =============================================================================
-"
 " Disable arrow keys; hjkl are way better anyways!
 noremap  <up>    <nop>
 inoremap <up>    <nop>
@@ -100,7 +96,6 @@ set incsearch ignorecase smartcase hlsearch
 " =============================================================================
 " New Commands
 " =============================================================================
-"
 " F9 opens .vimrc
 map <f9> :e $MYVIMRC<cr>
 
@@ -110,7 +105,6 @@ map <silent> <leader><leader> :nohlsearch<cr>
 " =============================================================================
 " Fix Annoyances
 " =============================================================================
-"
 " Disable visual and audio bell
 set noerrorbells visualbell t_vb=
 
@@ -127,7 +121,6 @@ set title
 " =============================================================================
 " Colorscheme
 " =============================================================================
-"
 " Use a dark colorscheme
 set background=dark
 if &t_Co >= 88
