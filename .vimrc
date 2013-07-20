@@ -74,8 +74,8 @@ set list listchars=tab:\ \ ,trail:¤,precedes:←,extends:→
 " Enable autocomplete menu
 set wildmenu
 
-" On first tab, complete the longest common command
-set wildmode=longest
+" On first tab, complete the longest common command. On second tab, cycle menu
+set wildmode=longest,full
 
 " Files to ignore in autocompletion
 set wildignore=*.o,*.pyc,*.class,*.bak,*~
