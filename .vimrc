@@ -108,6 +108,11 @@ map <f9> :e $MYVIMRC<cr>
 " <leader><leader> clears previous search highlighting
 map <silent> <leader><leader> :nohlsearch<cr>
 
+" w!! saves file with superuser permissions
+if has('unix') || has('macunix')
+  cmap w!! w !sudo tee > /dev/null %
+endif
+
 " =============================================================================
 " Fix Annoyances
 " =============================================================================
