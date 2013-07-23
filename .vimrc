@@ -117,6 +117,9 @@ endif
 nmap <silent> <leader>d "_d
 vmap <silent> <leader>d "_d
 
+" <leader>/ opens current search in Quickfix window
+map <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
+
 " =============================================================================
 " Fix Annoyances
 " =============================================================================
