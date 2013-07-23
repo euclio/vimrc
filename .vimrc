@@ -113,6 +113,10 @@ if has('unix') || has('macunix')
   cmap w!! w !sudo tee > /dev/null %
 endif
 
+" <leader>d deletes without filling the yank buffer
+nmap <silent> <leader>d "_d
+vmap <silent> <leader>d "_d
+
 " =============================================================================
 " Fix Annoyances
 " =============================================================================
