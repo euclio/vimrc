@@ -20,5 +20,8 @@ set guioptions-=L
 set guioptions-=m
 set guioptions-=T
 
+" Force GUI to use text dialogs instead of popups
+set guioptions+=c
+
 " Remove visual and audio bell for GUI
 set visualbell t_vb=
