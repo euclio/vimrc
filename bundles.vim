@@ -43,7 +43,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'bling/vim-airline'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_fugitive_prefix = '⎇  '     " Symbol displayed next to Git branch
+let g:airline_branch_prefix = '⎇  '     " Symbol displayed next to Git branch
 let g:airline_theme='badwolf'
 
 " Filetype plugin for Scala
