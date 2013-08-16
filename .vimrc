@@ -53,6 +53,9 @@ if v:version >= 703
   set undofile
 endif
 
+" Autoformat comments into paragraphs when modifying text
+set formatoptions=tcqarw
+
 " =============================================================================
 " Editing Window Improvements
 " =============================================================================
