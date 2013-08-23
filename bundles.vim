@@ -64,6 +64,13 @@ NeoBundle 'euclio/vim-nocturne'
 NeoBundle 'CSApprox'
 let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 
+" Autocompletion for Python and C-like languages
+NeoBundle 'Valloric/YouCompleteMe', {
+            \ 'build': {
+            \     'unix': './install.sh --clang-completer',
+            \   },
+            \ }
+
 " Install the bundles if Vundle was installed for the first time
 if new_neobundle_install
     echom 'Installing all bundles...'
