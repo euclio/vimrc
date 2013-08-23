@@ -1,56 +1,56 @@
 " =============================================================================
-" Vundle Setup
+" Neobundle Setup
 " =============================================================================
 "
-" Required for vundle
-filetype off
-
-" Install vundle if it doesn't exist
-let new_vundle_install=0
-let vundle_readme=expand('$VIMHOME/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    let $VUNDLE=$VIMHOME . '/bundle/vundle'
+" Install neobundle if it doesn't exist
+let new_neobundle_install=0
+let neobundle_readme=expand('$VIMHOME/bundle/neobundle.vim/README.md')
+if !filereadable(neobundle_readme)
+    let $NEOBUNDLE=expand('$VIMHOME/bundle/neobundle.vim')
 
     echom 'Vundle not found. Installing...'
     echom ''
 
     call mkdir($VIMHOME . '/bundle', 'p')
-    exe '!git clone https://github.com/gmarik/vundle' $VUNDLE
+    silent exe '!git clone https://github.com/Shougo/neobundle.vim' $NEOBUNDLE
     let new_vundle_install=1
 endif
 
-" Add vundle to runtime path
-set rtp+=$VIMHOME/bundle/vundle
-call vundle#rc('$VIMHOME/bundle/')
+" Add neobundle to runtime path
+if has('vim_starting')
+    set rtp+=$VIMHOME/bundle/neobundle.vim
+endif
+
+call neobundle#rc(expand('$VIMHOME/bundle/'))
 
 " =============================================================================
 " Bundles
 " =============================================================================
 "
-" Allow vundle to manage itself
-Bundle 'gmarik/vundle'
+" Allow neobundle to manage itself
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Syntax checking on save
-Bundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 
 " Git wrapper
-Bundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 
 " Statusline improvements
-Bundle 'bling/vim-airline'
+NeoBundle 'bling/vim-airline'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_branch_prefix = '⎇  '     " Symbol displayed next to Git branch
 let g:airline_theme='badwolf'
 
 " Filetype plugin for Scala
-Bundle 'derekwyatt/vim-scala'
+NeoBundle 'derekwyatt/vim-scala'
 
 " View highlight groups under cursor
-Bundle 'gerw/vim-HiLinkTrace'
+NeoBundle 'gerw/vim-HiLinkTrace'
 
 " Filetree viewer
-Bundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
 " Close vim if NERDTree is the only window
 autocmd bufenter *
@@ -58,15 +58,18 @@ autocmd bufenter *
   \     exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " My personal colorscheme
-Bundle 'euclio/vim-nocturne'
+NeoBundle 'euclio/vim-nocturne'
 
 " Allow GUI colorschemes in 256-color or 88-color terminals
-Bundle 'CSApprox'
+NeoBundle 'CSApprox'
 let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 
 " Install the bundles if Vundle was installed for the first time
-if new_vundle_install
+if new_neobundle_install
     echom 'Installing all bundles...'
-    BundleInstall!
+    NeoBundleInstall!
     echom 'If there are errors, they can be safely ignored.'
 endif
+
+" Check installation
+NeoBundleCheck
