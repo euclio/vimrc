@@ -13,11 +13,8 @@ if !filereadable(vundle_readme)
 
     echom 'Vundle not found. Installing...'
     echom ''
-    if has('win32') || has('win64')
-        silent exe '!mkdir' $VIMHOME . '\bundle'
-    else
-        silent exe '!mkdir -p' $VIMHOME . '/bundle'
-    endif
+
+    call mkdir($VIMHOME . '/bundle', 'p')
     exe '!git clone https://github.com/gmarik/vundle' $VUNDLE
     let new_vundle_install=1
 endif
