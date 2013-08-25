@@ -8,7 +8,7 @@ let neobundle_readme=expand('$VIMHOME/bundle/neobundle.vim/README.md')
 if !filereadable(neobundle_readme)
     let $NEOBUNDLE=expand('$VIMHOME/bundle/neobundle.vim')
 
-    echom 'Vundle not found. Installing...'
+    echom 'NeoBundle not found. Installing...'
     echom ''
 
     call mkdir($VIMHOME . '/bundle', 'p')
