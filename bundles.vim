@@ -71,6 +71,9 @@ NeoBundle 'Valloric/YouCompleteMe', {
             \   },
             \ }
 
+" Automatic completion of parenthesis, brackets, etc.
+NeoBundle 'Raimondi/delimitMate'
+
 " Install the bundles if Vundle was installed for the first time
 if new_neobundle_install
     echom 'Installing all bundles...'
