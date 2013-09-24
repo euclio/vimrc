@@ -54,7 +54,7 @@ if v:version >= 703
 endif
 
 " Autoformat comments into paragraphs when modifying text
-set formatoptions=tcqarw
+set formatoptions=cqar
 
 " =============================================================================
 " Editing Window Improvements
