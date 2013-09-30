@@ -25,3 +25,6 @@ set guioptions+=c
 
 " Remove visual and audio bell for GUI
 set visualbell t_vb=
+
+" Maximize window by default
+set lines=999 columns=999
