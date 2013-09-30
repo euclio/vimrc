@@ -70,6 +70,7 @@ NeoBundle 'Valloric/YouCompleteMe', {
             \     'unix': './install.sh --clang-completer',
             \   },
             \ }
+let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
 
 " Automatic completion of parenthesis, brackets, etc.
 NeoBundle 'Raimondi/delimitMate'
