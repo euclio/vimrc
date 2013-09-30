@@ -56,6 +56,9 @@ endif
 " Autoformat comments into paragraphs when modifying text
 set formatoptions=cqar
 
+" Assume that .tex files are LaTeX
+let g:tex_flavor='latex'
+
 " =============================================================================
 " Editing Window Improvements
 " =============================================================================
