@@ -75,6 +75,9 @@ let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
 " Automatic completion of parenthesis, brackets, etc.
 NeoBundle 'Raimondi/delimitMate'
 
+" LaTeX compilation commands and autocomplete
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
+
 " Install the bundles if Vundle was installed for the first time
 if new_neobundle_install
     echom 'Installing all bundles...'
