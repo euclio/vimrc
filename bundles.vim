@@ -77,6 +77,7 @@ NeoBundle 'Raimondi/delimitMate'
 
 " LaTeX compilation commands and autocomplete
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
+let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 
 " Install the bundles if Vundle was installed for the first time
 if new_neobundle_install
