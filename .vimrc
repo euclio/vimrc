@@ -63,7 +63,7 @@ let g:tex_flavor='latex'
 " Editing Window Improvements
 " =============================================================================
 " Show line numbers
-set number
+set number relativenumber
 
 " When leaving buffer, hide it instead of closing it
 set hidden
