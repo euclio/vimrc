@@ -139,7 +139,7 @@ set nobackup
 set magic
 
 " Custom Terminal title
-let &titlestring=hostname() . ' %F %y %r- VIM %m'
+let &titlestring=hostname() . ' : %F %r: VIM %m'
 set title
 
 " =============================================================================
