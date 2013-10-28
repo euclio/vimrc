@@ -69,6 +69,8 @@ NeoBundle 'Valloric/YouCompleteMe', {
             \ 'build': {
             \     'unix': './install.sh --clang-completer',
             \   },
+            \ 'disabled': !has('python'),
+            \ 'vim_version': '7.3.584',
             \ }
 let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
 
