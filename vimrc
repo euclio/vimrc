@@ -142,6 +142,9 @@ set magic
 let &titlestring=hostname() . ' : %F %r: VIM %m'
 set title
 
+" Make sure that vim has a tmp directory to use
+set directory=,~/tmp,$TMP
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
