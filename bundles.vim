@@ -81,6 +81,9 @@ NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 
+" Jinja2 template syntax highlighting
+NeoBundle 'Glench/Vim-Jinja2-Syntax'
+
 " Install the bundles if Vundle was installed for the first time
 if new_neobundle_install
     echom 'Installing all bundles...'
