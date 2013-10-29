@@ -12,8 +12,8 @@ if has('win32') || has('win64')
   let $VIMHOME=$HOME . '/vimfiles'
 
   " Fix the path of vimrc and gvimrc for Windows
-  let $MYVIMRC=$VIMHOME . '/.vimrc'
-  let $MYGVIMRC=$VIMHOME . '/.gvimrc'
+  let $MYVIMRC=$VIMHOME . '/vimrc'
+  let $MYGVIMRC=$VIMHOME . '/gvimrc'
 else
   let $VIMHOME=$HOME . '/.vim'
 endif
