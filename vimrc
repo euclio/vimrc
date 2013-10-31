@@ -23,7 +23,7 @@ let mapleader=","
 let g:mapleader=","
 
 " Enable vundle and plugins
-source $VIMHOME/bundles.vim
+source $VIMHOME/plugins.vim
 
 " =============================================================================
 " File settings
