@@ -54,7 +54,7 @@ if v:version >= 703
 endif
 
 " Autoformat comments into paragraphs when modifying text
-set formatoptions=cqar
+set formatoptions=cqr
 
 " Assume that .tex files are LaTeX
 let g:tex_flavor='latex'
