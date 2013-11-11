@@ -76,6 +76,7 @@ let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
 
 " Automatic completion of parenthesis, brackets, etc.
 NeoBundle 'Raimondi/delimitMate'
+let delimitMate_expand_cr=1                 " Put new brace on newline after CR
 
 " LaTeX compilation commands and autocomplete
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
