@@ -85,6 +85,9 @@ let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 " Jinja2 template syntax highlighting
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
 
+" Better JavaScript syntax highlighting and indentation
+NeoBundle 'pangloss/vim-javascript'
+
 " Install the bundles if Vundle was installed for the first time
 if new_neobundle_install
     echom 'Installing all bundles...'
