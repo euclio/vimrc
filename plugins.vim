@@ -100,12 +100,5 @@ NeoBundle 'euclio/vim-nocturne'
 NeoBundle 'CSApprox'
 let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 
-" Install the bundles if Vundle was installed for the first time
-if new_neobundle_install
-    echom 'Installing all bundles...'
-    NeoBundleInstall!
-    echom 'If there are errors, they can be safely ignored.'
-endif
-
 " Check installation
 NeoBundleCheck
