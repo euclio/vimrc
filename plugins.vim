@@ -23,13 +23,13 @@ endif
 
 call neobundle#rc(expand('$VIMHOME/bundle/'))
 
-" =============================================================================
-" Bundles
-" =============================================================================
-"
 " Allow neobundle to manage itself
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" =============================================================================
+" Interface
+" =============================================================================
+"
 " Syntax checking on save
 NeoBundle 'scrooloose/syntastic'
 
@@ -43,12 +43,6 @@ let g:airline_right_sep = ''
 let g:airline_branch_prefix = '⎇  '     " Symbol displayed next to Git branch
 let g:airline_theme='badwolf'
 
-" Filetype plugin for Scala
-NeoBundle 'derekwyatt/vim-scala'
-
-" View highlight groups under cursor
-NeoBundle 'gerw/vim-HiLinkTrace'
-
 " Filetree viewer
 NeoBundle 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
@@ -57,13 +51,10 @@ autocmd bufenter *
   \ if (winnr("$") == 1 &&
   \     exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" My personal colorscheme
-NeoBundle 'euclio/vim-nocturne'
-
-" Allow GUI colorschemes in 256-color or 88-color terminals
-NeoBundle 'CSApprox'
-let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
-
+" =============================================================================
+" Features
+" =============================================================================
+"
 " Autocompletion for Python and C-like languages
 NeoBundle 'Valloric/YouCompleteMe', {
             \ 'build': {
@@ -78,6 +69,16 @@ let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
 NeoBundle 'Raimondi/delimitMate'
 let delimitMate_expand_cr=1                 " Put new brace on newline after CR
 
+" View highlight groups under cursor
+NeoBundle 'gerw/vim-HiLinkTrace'
+
+" =============================================================================
+" Languages
+" =============================================================================
+"
+" Filetype plugin for Scala
+NeoBundle 'derekwyatt/vim-scala'
+
 " LaTeX compilation commands and autocomplete
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
@@ -87,6 +88,17 @@ NeoBundle 'Glench/Vim-Jinja2-Syntax'
 
 " Better JavaScript syntax highlighting and indentation
 NeoBundle 'pangloss/vim-javascript'
+
+" =============================================================================
+" Cosmetic
+" =============================================================================
+"
+" My personal colorscheme
+NeoBundle 'euclio/vim-nocturne'
+
+" Allow GUI colorschemes in 256-color or 88-color terminals
+NeoBundle 'CSApprox'
+let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 
 " Install the bundles if Vundle was installed for the first time
 if new_neobundle_install
