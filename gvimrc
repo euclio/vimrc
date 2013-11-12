@@ -28,3 +28,7 @@ set visualbell t_vb=
 
 " Maximize window by default
 set lines=999 columns=999
+
+" Avoid visual artifacts on Windows
+set linespace=0
+set ttyscroll=0
