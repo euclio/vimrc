@@ -58,7 +58,7 @@ autocmd bufenter *
 " Autocompletion for Python and C-like languages
 NeoBundle 'Valloric/YouCompleteMe', {
             \ 'build': {
-            \     'unix': './install.sh --clang-completer',
+            \     'unix': './install.sh --clang-completer --system-libclang',
             \   },
             \ 'disabled': !has('python'),
             \ 'vim_version': '7.3.584',
