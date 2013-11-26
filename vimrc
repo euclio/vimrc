@@ -153,5 +153,5 @@ set background=dark
 if &t_Co >= 88
   colorscheme nocturne
 else
-  colorscheme slate
+  colorscheme default
 endif
