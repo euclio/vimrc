@@ -32,6 +32,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "
 " Syntax checking on save
 NeoBundle 'scrooloose/syntastic'
+let g:syntastic_python_checkers=['pyflakes', 'pylint', 'pep8', 'python']
 
 " Git wrapper
 NeoBundle 'tpope/vim-fugitive'
