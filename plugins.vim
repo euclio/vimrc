@@ -5,20 +5,18 @@
 " Install neobundle if it doesn't exist
 let new_neobundle_install=0
 let neobundle_readme=expand('$VIMHOME/bundle/neobundle.vim/README.md')
+let $NEOBUNDLE=expand('$VIMHOME/bundle/neobundle.vim')
 if !filereadable(neobundle_readme)
-    let $NEOBUNDLE=expand('$VIMHOME/bundle/neobundle.vim')
-
     echom 'NeoBundle not found. Installing...'
-    echom ''
 
-    call mkdir($VIMHOME . '/bundle', 'p')
-    silent exe '!git clone https://github.com/Shougo/neobundle.vim' $NEOBUNDLE
+    call mkdir(expand('$VIMHOME/bundle'), 'p')
+    silent exec '!git clone https://github.com/Shougo/neobundle.vim' $NEOBUNDLE
     let new_vundle_install=1
 endif
 
 " Add neobundle to runtime path
 if has('vim_starting')
-    set rtp+=$VIMHOME/bundle/neobundle.vim
+    set rtp+=$NEOBUNDLE
 endif
 
 call neobundle#rc(expand('$VIMHOME/bundle/'))
