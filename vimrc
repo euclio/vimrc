@@ -151,7 +151,7 @@ set directory=,~/tmp,$TMP
 " Use a dark colorscheme
 set background=dark
 if &t_Co >= 88
-  colorscheme nocturne
+  silent! colorscheme nocturne
 else
   colorscheme default
 endif

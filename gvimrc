@@ -1,7 +1,7 @@
 " =============================================================================
 " Colorscheme
 " =============================================================================
-colorscheme nocturne
+silent! colorscheme nocturne
 
 " Font settings
 if has('gui_gtk2')
