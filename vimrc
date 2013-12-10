@@ -75,7 +75,7 @@ set laststatus=2 noshowmode showcmd cmdheight=2
 set scrolloff=5
 
 " Show arrows when there are long lines, and show · for trailing space
-set list listchars=tab:\ \ ,trail:·,precedes:←,extends:→
+set list listchars=tab:»·,trail:·,precedes:←,extends:→
 
 " Enable autocomplete menu
 set wildmenu
