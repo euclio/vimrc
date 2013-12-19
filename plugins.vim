@@ -37,9 +37,9 @@ NeoBundle 'tpope/vim-fugitive'
 
 " Statusline improvements
 NeoBundle 'bling/vim-airline'
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_branch_prefix = '⎇  '     " Symbol displayed next to Git branch
+let g:airline_powerline_fonts=1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline_theme='badwolf'
 
 " Filetree viewer
