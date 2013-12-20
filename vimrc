@@ -126,6 +126,16 @@ vmap <silent> <leader>d "_d
 " <leader>/ opens current search in Quickfix window
 map <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 
+" <leader>df toggles diff mode for the current buffer
+nnoremap <silent> <leader>df :call DiffToggle()<CR>
+function! DiffToggle()
+    if &diff
+        diffoff
+    else
+        diffthis
+    endif
+endfunction
+
 " =============================================================================
 " Fix Annoyances
 " =============================================================================
