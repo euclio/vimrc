@@ -145,8 +145,8 @@ endfunction
 " Disable visual and audio bell
 set noerrorbells visualbell t_vb=
 
-" Don't make backups
-set nobackup
+" Don't make backups or swaps
+set nobackup noswapfile
 
 " Make regex a little easier
 set magic
