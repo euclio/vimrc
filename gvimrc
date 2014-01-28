@@ -28,3 +28,6 @@ set visualbell t_vb=
 
 " Maximize window by default
 set lines=999 columns=999
+
+" Remove extra space at bottom of GUI
+set guiheadroom=0
