@@ -89,6 +89,10 @@ NeoBundle 'Glench/Vim-Jinja2-Syntax'
 " Better JavaScript syntax highlighting and indentation
 NeoBundle 'pangloss/vim-javascript'
 
+" Syntax highlighting, indentation, etc. for haxe
+NeoBundle 'jdonaldson/vaxe'
+let g:vaxe_lime_target="flash"                  " Set default target to flash
+
 " =============================================================================
 " Cosmetic
 " =============================================================================
