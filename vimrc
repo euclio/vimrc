@@ -158,6 +158,9 @@ set title
 " Make sure that vim has a tmp directory to use
 set directory=,~/tmp,$TMP
 
+" Ensure that vim uses bash as the shell
+set shell=/bin/bash
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
