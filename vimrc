@@ -59,6 +59,9 @@ set formatoptions=cqr
 " Assume that .tex files are LaTeX
 let g:tex_flavor='latex'
 
+" Use one space between sentences
+set nojoinspaces
+
 " =============================================================================
 " Editing Window Improvements
 " =============================================================================
