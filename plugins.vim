@@ -63,6 +63,7 @@ NeoBundle 'Valloric/YouCompleteMe', {
             \ 'disabled': !has('python'),
             \ 'vim_version': '7.3.584',
             \ }
+let g:ycm_confirm_extra_conf=0              " Disable .ycm_extra_conf confirmation
 let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
 
 " Automatic completion of parenthesis, brackets, etc.
