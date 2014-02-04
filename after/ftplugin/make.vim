@@ -1,3 +1,2 @@
-
-" ...but not for Makefiles
-" autocmd FileType make setlocal noexpandtab
+" Disable showing tabs as visible
+setlocal listchars=tab:\ \ 
