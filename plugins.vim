@@ -94,6 +94,9 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'jdonaldson/vaxe'
 let g:vaxe_lime_target="flash"                  " Set default target to flash
 
+" Markdown preview
+NeoBundle 'suan/vim-instant-markdown'
+
 " =============================================================================
 " Cosmetic
 " =============================================================================
