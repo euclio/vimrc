@@ -49,7 +49,10 @@ set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " Store undo history across sessions
 if v:version >= 703
-  let &undodir=$VIMHOME . '/undofiles'
+  let &undodir=$VIMHOME . '/undodir'
+  if !isdirectory(&undodir)
+    call mkdir(&undodir)
+  endif
   set undofile
 endif
 
