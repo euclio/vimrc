@@ -97,6 +97,9 @@ let g:vaxe_lime_target="flash"                  " Set default target to flash
 " Markdown preview
 NeoBundle 'suan/vim-instant-markdown'
 
+" Haskell omnifunc
+NeoBundle 'eagletmt/neco-ghc'
+
 " =============================================================================
 " Cosmetic
 " =============================================================================
