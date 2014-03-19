@@ -5,7 +5,7 @@ silent! colorscheme nocturne
 
 " Font settings
 if has('gui_gtk2')
-  set guifont=Inconsolata\ 11
+  set guifont=Inconsolata\ 14
 elseif has('gui_win32')
   set guifont=Consolas:h11:cDEFAULT
 endif
