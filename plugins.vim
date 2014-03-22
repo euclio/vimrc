@@ -108,7 +108,7 @@ NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'euclio/vim-nocturne'
 
 " Allow GUI colorschemes in 256-color or 88-color terminals
-NeoBundle 'CSApprox'
+NeoBundle 'godlygeek/CSApprox'
 let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 
 " Check installation
