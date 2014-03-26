@@ -170,6 +170,9 @@ set autowrite
 " Don't show the scratch buffer during completions
 set completeopt-=preview
 
+" Show mode changes faster
+set ttimeoutlen=50
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
