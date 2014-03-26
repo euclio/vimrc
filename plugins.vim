@@ -59,46 +59,101 @@ autocmd bufenter *
 NeoBundle 'Valloric/YouCompleteMe', {
             \ 'build': {
             \     'unix': './install.sh --clang-completer --system-libclang',
-            \   },
+            \ },
             \ 'disabled': !has('python'),
             \ 'vim_version': '7.3.584',
-            \ }
+            \}
 let g:ycm_confirm_extra_conf=0              " Disable .ycm_extra_conf confirmation
 let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
 
 " Automatic completion of parenthesis, brackets, etc.
-NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'Raimondi/delimitMate', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'insert': 1
+            \ },
+            \}
 let delimitMate_expand_cr=1                 " Put new brace on newline after CR
 
 " View highlight groups under cursor
-NeoBundle 'gerw/vim-HiLinkTrace'
+NeoBundle 'gerw/vim-HiLinkTrace', {
+            \ 'lazy': 1,
+            \}
 
 " =============================================================================
 " Languages
 " =============================================================================
 "
 " Filetype plugin for Scala
-NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'derekwyatt/vim-scala', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'scala',
+            \   ],
+            \ },
+            \}
 
 " LaTeX compilation commands and autocomplete
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'tex',
+            \   ],
+            \ },
+            \}
 let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 
 " Jinja2 template syntax highlighting
-NeoBundle 'Glench/Vim-Jinja2-Syntax'
+NeoBundle 'Glench/Vim-Jinja2-Syntax', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'jinja',
+            \   ],
+            \ },
+            \}
 
 " Better JavaScript syntax highlighting and indentation
-NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'pangloss/vim-javascript', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'javascript',
+            \   ],
+            \ },
+            \}
 
 " Syntax highlighting, indentation, etc. for haxe
-NeoBundle 'jdonaldson/vaxe'
+NeoBundleLazy 'jdonaldson/vaxe', {
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'haxe',
+            \   ],
+            \ },
+            \}
 let g:vaxe_lime_target="flash"                  " Set default target to flash
 
 " Markdown preview
-NeoBundle 'suan/vim-instant-markdown'
+NeoBundle 'suan/vim-instant-markdown', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'markdown',
+            \   ],
+            \ },
+            \}
 
 " Haskell omnifunc
-NeoBundle 'eagletmt/neco-ghc'
+NeoBundle 'eagletmt/neco-ghc', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'haskell',
+            \   ],
+            \ },
+            \}
 
 " =============================================================================
 " Cosmetic
@@ -108,7 +163,9 @@ NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'euclio/vim-nocturne'
 
 " Allow GUI colorschemes in 256-color or 88-color terminals
-NeoBundle 'godlygeek/CSApprox'
+NeoBundle 'godlygeek/CSApprox', {
+            \ 'terminal': 1,
+            \}
 let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 
 " Check installation
