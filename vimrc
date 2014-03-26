@@ -170,12 +170,6 @@ set autowrite
 " Don't show the scratch buffer during completions
 set completeopt-=preview
 
-" Assume that .md files are markdown
-augroup markdown
-    autocmd!
-    autocmd BufNewFile,BufRead *.md set filetype=markdown
-augroup END
-
 " =============================================================================
 " Colorscheme
 " =============================================================================
