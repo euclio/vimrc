@@ -57,6 +57,11 @@ autocmd bufenter *
 "
 " Autocompletion for Python and C-like languages
 NeoBundle 'Valloric/YouCompleteMe', {
+            \ 'lazy': 1,
+            \ 'augroup': 'youcompletemeStart',
+            \ 'autoload': {
+            \   'insert': 1,
+            \ },
             \ 'build': {
             \     'unix': './install.sh --clang-completer --system-libclang',
             \ },
