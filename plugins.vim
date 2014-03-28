@@ -132,9 +132,14 @@ NeoBundle 'pangloss/vim-javascript', {
 
 " Syntax highlighting, indentation, etc. for haxe
 NeoBundleLazy 'jdonaldson/vaxe', {
+            \ 'lazy': 1,
             \ 'autoload': {
             \   'filetypes': [
             \       'haxe',
+            \       'hss',
+            \       'hxml',
+            \       'lime',
+            \       'nmml',
             \   ],
             \ },
             \}
