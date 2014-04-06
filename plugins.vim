@@ -44,7 +44,7 @@ let g:airline_theme='badwolf'
 
 " Filetree viewer
 NeoBundle 'scrooloose/nerdtree'
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 let NERDTreeHijackNetrw=1           " Use NERDtree instead of netrw
 " Close vim if NERDTree is the only window
 autocmd bufenter *
