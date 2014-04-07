@@ -70,6 +70,10 @@ NeoBundle 'Valloric/YouCompleteMe', {
             \}
 let g:ycm_confirm_extra_conf=0              " Disable .ycm_extra_conf confirmation
 let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
+" Hack to allow automatic neco-ghc completions
+let g:ycm_semantic_triggers={
+            \ 'haskell': ['.'],
+            \}
 
 " Automatic completion of parenthesis, brackets, etc.
 NeoBundle 'Raimondi/delimitMate', {
