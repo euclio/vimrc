@@ -22,8 +22,12 @@ endif
 let mapleader=","
 let g:mapleader=","
 
-" Ensure that vim uses bash as the shell
-set shell=/bin/bash
+" Ensure that vim uses the correct shell
+if has('win32') || has('win64')
+    set shell=cmd.exe
+else
+    set shell=/bin/bash
+endif
 
 " Enable vundle and plugins
 source $VIMHOME/plugins.vim
