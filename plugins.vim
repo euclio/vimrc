@@ -89,6 +89,9 @@ NeoBundle 'gerw/vim-HiLinkTrace', {
             \ 'lazy': 1,
             \}
 
+" On save, create directories if they don't exist
+NeoBundle 'dockyard/vim-easydir'
+
 " =============================================================================
 " Languages
 " =============================================================================
