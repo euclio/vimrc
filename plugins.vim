@@ -51,6 +51,11 @@ autocmd bufenter *
   \ if (winnr("$") == 1 &&
   \     exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" Extended % matching
+NeoBundle 'matchit.zip', {
+            \ 'regular_name': 'matchit.vim',
+            \}
+
 " =============================================================================
 " Features
 " =============================================================================
