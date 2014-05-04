@@ -169,7 +169,7 @@ set title
 set directory=,~/tmp,$TMP
 
 " Let vim reload files after shelling out
-set autowrite
+set autoread
 
 " Don't show the scratch buffer during completions
 set completeopt-=preview
