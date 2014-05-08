@@ -129,7 +129,7 @@ map <silent> <leader><leader> :nohlsearch<cr>
 
 " w!! saves file with superuser permissions
 if has('unix') || has('macunix')
-  cmap w!! w !sudo tee > /dev/null %
+  cabbrev w!! w !sudo tee > /dev/null %
 endif
 
 " <leader>d deletes without filling the yank buffer
