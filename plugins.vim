@@ -53,7 +53,7 @@ autocmd bufenter *
 
 " Extended % matching
 NeoBundle 'matchit.zip', {
-            \ 'regular_name': 'matchit.vim',
+            \ 'name': 'matchit.vim',
             \}
 
 " =============================================================================
