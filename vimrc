@@ -177,6 +177,12 @@ set completeopt-=preview
 " Show mode changes faster
 set ttimeoutlen=50
 
+" Jump to the last known cursor position when opening a file
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \     execute "normal! g`\"" |
+    \ endif
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
