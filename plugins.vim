@@ -119,6 +119,9 @@ NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {
             \       'tex',
             \   ],
             \ },
+            \ 'external_commands': [
+            \   'latexmk',
+            \ ],
             \}
 let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 
@@ -198,6 +201,9 @@ NeoBundle 'eagletmt/neco-ghc', {
             \       'haskell',
             \   ],
             \ },
+            \ 'external_commands': [
+            \   'ghc-mod',
+            \ ],
             \}
 
 " Syntax highlighting for fish scripts
