@@ -155,6 +155,16 @@ NeoBundle 'pangloss/vim-javascript', {
 "             \ },
 "             \}
 
+" JSON Highlight and indent plugin
+NeoBundle 'elzr/vim-json', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'json',
+            \   ],
+            \ },
+            \}
+
 " Syntax highlighting, indentation, etc. for haxe
 NeoBundleLazy 'jdonaldson/vaxe', {
             \ 'lazy': 1,
