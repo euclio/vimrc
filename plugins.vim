@@ -169,7 +169,7 @@ NeoBundle 'elzr/vim-json', {
             \}
 
 " Syntax highlighting, indentation, etc. for haxe
-NeoBundleLazy 'jdonaldson/vaxe', {
+NeoBundle 'jdonaldson/vaxe', {
             \ 'lazy': 1,
             \ 'autoload': {
             \   'filetypes': [
