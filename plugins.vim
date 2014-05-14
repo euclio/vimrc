@@ -142,6 +142,19 @@ NeoBundle 'pangloss/vim-javascript', {
             \ },
             \}
 
+" JavaScript omnicompletion
+" NeoBundle 'marijnh/tern_for_vim', {
+"             \ 'lazy': 1,
+"             \ 'autoload': {
+"             \   'filetypes': [
+"             \       'javascript',
+"             \   ],
+"             \ },
+"             \ 'build': {
+"             \   'unix': 'npm install',
+"             \ },
+"             \}
+
 " Syntax highlighting, indentation, etc. for haxe
 NeoBundleLazy 'jdonaldson/vaxe', {
             \ 'lazy': 1,
