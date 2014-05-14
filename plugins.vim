@@ -191,6 +191,7 @@ NeoBundle 'suan/vim-instant-markdown', {
             \       'markdown',
             \   ],
             \ },
+            \ 'disabled': has('win32') || has('win64'),
             \}
 
 " Haskell omnifunc
