@@ -29,8 +29,14 @@ else
     set shell=/bin/bash
 endif
 
-" Enable vundle and plugins
+" Enable NeoBundle and plugins
 source $VIMHOME/plugins.vim
+
+" Set filetype specific indentation
+filetype plugin indent on
+
+" Ensure all plugins are installed
+NeoBundleCheck
 
 " =============================================================================
 " File settings
@@ -47,9 +53,6 @@ set nowrap
 
 " Enable syntax highlighting
 syntax enable
-
-" Set filetype specific indentation
-filetype plugin indent on
 
 " Make tabs into spaces and indent with 4 spaces
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4

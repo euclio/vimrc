@@ -19,7 +19,7 @@ if has('vim_starting')
     set rtp+=$NEOBUNDLE
 endif
 
-call neobundle#rc(expand('$VIMHOME/bundle/'))
+call neobundle#begin(expand('$VIMHOME/bundle/'))
 
 " Allow neobundle to manage itself
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -230,5 +230,4 @@ NeoBundle 'godlygeek/CSApprox', {
             \}
 let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 
-" Check installation
-NeoBundleCheck
+call neobundle#end()
