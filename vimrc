@@ -20,7 +20,10 @@ endif
 
 " Change leader to comma
 let mapleader=","
-let g:mapleader=","
+" This could cause filetype plugins to have mappings that conflict with other
+" plugins, but as I have encountered few filetype plugins that add additional
+" mappings there is little concern.
+let maplocalleader=mapleader
 
 " Ensure that vim uses the correct shell
 if has('win32') || has('win64')
