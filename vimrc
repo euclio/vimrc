@@ -127,8 +127,8 @@ set incsearch ignorecase smartcase hlsearch
 " =============================================================================
 " New Commands
 " =============================================================================
-" F9 opens .vimrc
-map <f9> :e $MYVIMRC<cr>
+" F9 opens .vimrc in a new window
+map <f9> :sp $MYVIMRC<cr>
 
 " <leader><leader> clears previous search highlighting
 map <silent> <leader><leader> :nohlsearch<cr>
