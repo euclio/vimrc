@@ -41,6 +41,10 @@ filetype plugin indent on
 " Ensure all plugins are installed
 NeoBundleCheck
 
+if filereadable(expand('~/.vimrc_local'))
+  source ~/.vimrc_local
+endif
+
 " =============================================================================
 " File settings
 " =============================================================================
