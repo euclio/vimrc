@@ -28,7 +28,7 @@ let maplocalleader=mapleader
 " Ensure that vim uses the correct shell
 if has('win32') || has('win64')
     set shell=cmd.exe
-else
+elseif !has('patch-7.4.276')
     set shell=/bin/bash
 endif
 
