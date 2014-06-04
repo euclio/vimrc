@@ -97,6 +97,19 @@ NeoBundle 'gerw/vim-HiLinkTrace', {
 " On save, create directories if they don't exist
 NeoBundle 'dockyard/vim-easydir'
 
+" Class outline viewer
+NeoBundle 'majutsushi/tagbar', {
+           \ 'autoload': {
+           \    'commands': [
+           \      'TagbarToggle',
+           \    ],
+           \ },
+           \ 'external_commands': 'ctags-exuberant',
+           \ 'lazy': 1,
+           \ 'vim_version': '7.0.167',
+           \}
+nnoremap <f8> :TagbarToggle<cr>
+
 " =============================================================================
 " Languages
 " =============================================================================
