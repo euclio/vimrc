@@ -3,7 +3,6 @@
 " =============================================================================
 "
 " Install neobundle if it doesn't exist
-let new_neobundle_install=0
 let neobundle_readme=expand('$VIMHOME/bundle/neobundle.vim/README.md')
 let $NEOBUNDLE=expand('$VIMHOME/bundle/neobundle.vim')
 if !filereadable(neobundle_readme)
@@ -11,7 +10,6 @@ if !filereadable(neobundle_readme)
 
     call mkdir(expand('$VIMHOME/bundle'), 'p')
     silent exec '!git clone https://github.com/Shougo/neobundle.vim' $NEOBUNDLE
-    let new_vundle_install=1
 endif
 
 " Add neobundle to runtime path
