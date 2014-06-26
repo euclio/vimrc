@@ -35,15 +35,18 @@ endif
 " Enable NeoBundle and plugins
 source $VIMHOME/plugins.vim
 
-" Set filetype specific indentation
-filetype plugin indent on
-
-" Ensure all plugins are installed
-NeoBundleCheck
-
 if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
 endif
+
+" Set filetype specific indentation
+filetype plugin indent on
+
+" Enable syntax highlighting
+syntax enable
+
+" Ensure all plugins are installed
+NeoBundleCheck
 
 " =============================================================================
 " File settings
@@ -57,9 +60,6 @@ set textwidth=79 colorcolumn=+1
 
 " Don't wrap lines
 set nowrap
-
-" Enable syntax highlighting
-syntax enable
 
 " Make tabs into spaces and indent with 4 spaces
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
