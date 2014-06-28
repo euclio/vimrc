@@ -228,6 +228,16 @@ NeoBundle 'dag/vim-fish', {
             \ },
             \}
 
+" Syntax highlighting for moonscript
+NeoBundle 'leafo/moonscript-vim', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': [
+            \       'moon',
+            \   ],
+            \ },
+            \}
+
 " =============================================================================
 " Cosmetic
 " =============================================================================
