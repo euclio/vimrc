@@ -1,5 +1,8 @@
-"Enable spellchecking
+" Enable spellchecking
 setlocal spell spelllang=en_us
+
+" Don't check if sentences start with a capital letter
+setlocal spellcapcheck=
 
 " Disable showing tabs locally
 setlocal listchars=tab:\ \ 
