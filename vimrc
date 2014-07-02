@@ -193,6 +193,9 @@ autocmd BufReadPost *
     \     execute "normal! g`\"" |
     \ endif
 
+" Unfold all folds by default
+set nofoldenable
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
