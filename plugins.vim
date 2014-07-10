@@ -68,6 +68,7 @@ NeoBundle 'Valloric/YouCompleteMe', {
             \ 'build': {
             \     'unix': './install.sh --clang-completer --system-libclang',
             \ },
+            \ 'build_commands': 'cmake',
             \ 'disabled': !has('python'),
             \ 'vim_version': '7.3.584',
             \}
@@ -167,6 +168,7 @@ NeoBundle 'marijnh/tern_for_vim', {
             \ 'build': {
             \   'unix': 'npm install',
             \ },
+            \ 'build_commands': 'npm',
             \}
 
 " JSON Highlight and indent plugin
