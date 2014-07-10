@@ -204,7 +204,7 @@ NeoBundle 'suan/vim-instant-markdown', {
             \       'markdown',
             \   ],
             \ },
-            \ 'disabled': has('win32') || has('win64'),
+            \ 'disabled': has('win32') || has('win64') || &shell =~ 'fish\>',
             \}
 
 " Haskell omnifunc
