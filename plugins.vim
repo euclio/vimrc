@@ -115,6 +115,15 @@ NeoBundle 'majutsushi/tagbar', {
            \}
 nnoremap <f8> :TagbarToggle<cr>
 
+" Fuzzy file finder
+NeoBundle 'kien/ctrlp.vim', {
+          \ 'lazy': 1,
+          \ 'autoload': {
+          \   'commands': 'CtrlP',
+          \   'mappings': '<c-p>',
+          \ },
+          \}
+
 " =============================================================================
 " Languages
 " =============================================================================
