@@ -159,6 +159,9 @@ function! DiffToggle()
     endif
 endfunction
 
+" %% expands to the current directory
+cabbrev <expr> %% expand('%:p:h')
+
 " =============================================================================
 " Fix Annoyances
 " =============================================================================
