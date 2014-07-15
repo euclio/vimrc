@@ -98,13 +98,13 @@ NeoBundle 'dockyard/vim-easydir'
 
 " Class outline viewer
 NeoBundle 'majutsushi/tagbar', {
+           \ 'lazy': 1,
            \ 'autoload': {
            \    'commands': [
            \      'TagbarToggle',
            \    ],
            \ },
            \ 'external_commands': 'ctags-exuberant',
-           \ 'lazy': 1,
            \ 'vim_version': '7.0.167',
            \}
 nnoremap <f8> :TagbarToggle<cr>
