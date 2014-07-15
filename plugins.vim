@@ -117,9 +117,7 @@ nnoremap <f8> :TagbarToggle<cr>
 NeoBundle 'derekwyatt/vim-scala', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'scala',
-            \   ],
+            \   'filetypes': 'scala',
             \ },
             \}
 
@@ -127,13 +125,9 @@ NeoBundle 'derekwyatt/vim-scala', {
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'tex',
-            \   ],
+            \   'filetypes': 'tex',
             \ },
-            \ 'external_commands': [
-            \   'latexmk',
-            \ ],
+            \ 'external_commands': 'latexmk',
             \}
 let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 
@@ -141,9 +135,7 @@ let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 NeoBundle 'Glench/Vim-Jinja2-Syntax', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'jinja',
-            \   ],
+            \   'filetypes': 'jinja',
             \ },
             \}
 
@@ -151,9 +143,7 @@ NeoBundle 'Glench/Vim-Jinja2-Syntax', {
 NeoBundle 'pangloss/vim-javascript', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'javascript',
-            \   ],
+            \   'filetypes': 'javascript',
             \ },
             \}
 
@@ -161,9 +151,7 @@ NeoBundle 'pangloss/vim-javascript', {
 NeoBundle 'marijnh/tern_for_vim', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'javascript',
-            \   ],
+            \   'filetypes': 'javascript',
             \ },
             \ 'build': {
             \   'unix': 'npm install',
@@ -175,9 +163,7 @@ NeoBundle 'marijnh/tern_for_vim', {
 NeoBundle 'elzr/vim-json', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'json',
-            \   ],
+            \   'filetypes': 'json',
             \ },
             \}
 
@@ -200,9 +186,7 @@ let g:vaxe_lime_target="flash"                  " Set default target to flash
 NeoBundle 'suan/vim-instant-markdown', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'markdown',
-            \   ],
+            \   'filetypes': 'markdown',
             \ },
             \ 'disabled': has('win32') || has('win64') || &shell =~ 'fish\>',
             \}
@@ -211,22 +195,16 @@ NeoBundle 'suan/vim-instant-markdown', {
 NeoBundle 'eagletmt/neco-ghc', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'haskell',
-            \   ],
+            \   'filetypes': 'haskell',
             \ },
-            \ 'external_commands': [
-            \   'ghc-mod',
-            \ ],
+            \ 'external_commands': 'ghc-mod',
             \}
 
 " Syntax highlighting for fish scripts
 NeoBundle 'dag/vim-fish', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'fish',
-            \   ],
+            \   'filetypes': 'fish',
             \ },
             \}
 
@@ -234,9 +212,7 @@ NeoBundle 'dag/vim-fish', {
 NeoBundle 'leafo/moonscript-vim', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': [
-            \       'moon',
-            \   ],
+            \   'filetypes': 'moon',
             \ },
             \}
 
