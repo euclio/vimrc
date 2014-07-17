@@ -88,6 +88,9 @@ set nojoinspaces
 " Show line numbers
 set number relativenumber
 
+" Hide line numbers when entering diff mode
+autocmd FilterWritePre * if &diff | set nonumber norelativenumber | endif
+
 " When leaving buffer, hide it instead of closing it
 set hidden
 
