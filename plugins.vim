@@ -60,6 +60,11 @@ NeoBundle 'matchit.zip', {
             \ 'name': 'matchit.vim',
             \}
 
+" Add files in gitignore to wildignore
+NeoBundle 'euclio/gitignore.vim', {
+            \ 'depends': 'tpope/vim-fugitive',
+            \}
+
 " =============================================================================
 " Features
 " =============================================================================
