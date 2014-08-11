@@ -65,6 +65,10 @@ NeoBundle 'euclio/gitignore.vim', {
             \ 'depends': 'tpope/vim-fugitive',
             \}
 
+NeoBundle 'mhinz/vim-signify'
+let g:signify_vcs_list = ['git']
+let g:signify_sign_change = '~'
+
 " =============================================================================
 " Features
 " =============================================================================
