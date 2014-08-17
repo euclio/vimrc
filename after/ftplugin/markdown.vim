@@ -13,3 +13,6 @@ let g:markdown_fenced_languages=[
             \ 'python',
             \ 'sh',
             \]
+
+" Let triple backticks behave properly
+autocmd FileType markdown let b:delimitMate_nesting_quotes = ['`']
