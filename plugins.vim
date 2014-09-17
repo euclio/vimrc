@@ -28,6 +28,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "
 " Syntax checking on save
 NeoBundle 'scrooloose/syntastic'
+let g:syntastic_scala_checkers = []     " Don't check Scala -- it's too slow
 
 " Git wrapper
 NeoBundle 'tpope/vim-fugitive'
