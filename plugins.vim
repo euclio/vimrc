@@ -159,6 +159,7 @@ NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {
             \ 'external_commands': 'latexmk',
             \}
 let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
+let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
 
 " Jinja2 template syntax highlighting
 NeoBundle 'Glench/Vim-Jinja2-Syntax', {
