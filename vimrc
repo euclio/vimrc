@@ -202,6 +202,9 @@ autocmd BufReadPost *
 " Unfold all folds by default
 set nofoldenable
 
+" Allow the virtual cursor to move one space beyond actual text
+set virtualedit=onemore
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
