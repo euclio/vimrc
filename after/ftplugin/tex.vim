@@ -1,5 +1,5 @@
 " Enable spellchecking
-setlocal spell spelllang=en_us
+setlocal spell
 
 " Enable automatic text formatting
 setlocal formatoptions+=t

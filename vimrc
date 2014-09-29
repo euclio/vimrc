@@ -82,6 +82,9 @@ let g:tex_flavor='latex'
 " Use one space between sentences
 set nojoinspaces
 
+" Set default dictionary to english
+set spelllang=en_us
+
 " =============================================================================
 " Editing Window Improvements
 " =============================================================================

@@ -1,5 +1,5 @@
 " Enable spellchecking
-setlocal spell spelllang=en_us
+setlocal spell
 
 " Don't check if sentences start with a capital letter
 setlocal spellcapcheck=
