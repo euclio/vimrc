@@ -13,7 +13,6 @@ let g:markdown_fenced_languages=[
             \ 'java',
             \ 'javascript',
             \ 'python',
-            \ 'scala',
             \ 'sh',
             \]
 
