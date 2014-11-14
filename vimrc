@@ -208,6 +208,10 @@ set nofoldenable
 " Allow the virtual cursor to move one space beyond actual text
 set virtualedit=onemore
 
+" Toggle showing tabs and expanding tabs, in the case that the file already
+" uses tabs. Mnemonic: tt = toggle tab
+nnoremap <leader>tt :set expandtab! list!<CR>
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
