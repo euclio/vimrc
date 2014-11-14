@@ -233,7 +233,7 @@ NeoBundle 'eagletmt/neco-ghc', {
             \}
 
 " Syntax highlighting for fish scripts
-NeoBundle 'dag/vim-fish', {
+NeoBundle 'kballard/vim-fish', {
             \ 'lazy': 1,
             \ 'autoload': {
             \   'filetypes': 'fish',
