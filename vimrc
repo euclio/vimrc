@@ -62,7 +62,7 @@ set textwidth=79 colorcolumn=+1
 set nowrap
 
 " Make tabs into spaces and indent with 4 spaces
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+set expandtab tabstop=4 shiftwidth=0 softtabstop=0
 
 " Store undo history across sessions
 if v:version >= 703
