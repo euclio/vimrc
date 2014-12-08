@@ -63,9 +63,7 @@ autocmd bufenter *
   \     exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Extended % matching
-NeoBundle 'matchit.zip', {
-            \ 'name': 'matchit.vim',
-            \}
+runtime macros/matchit.vim
 
 " Add files in gitignore to wildignore
 NeoBundle 'euclio/gitignore.vim', {
