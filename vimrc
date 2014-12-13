@@ -62,7 +62,11 @@ set textwidth=79 colorcolumn=+1
 set nowrap
 
 " Make tabs into spaces and indent with 4 spaces
-set expandtab tabstop=4 shiftwidth=0 softtabstop=0
+if has('patch-7.3.629')
+    set expandtab tabstop=4 shiftwidth=0 softtabstop=0
+else
+    set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+endif
 
 " Store undo history across sessions
 if v:version >= 703
@@ -74,7 +78,11 @@ if v:version >= 703
 endif
 
 " Autoformat comments into paragraphs when modifying text
-set formatoptions=cqrj
+set formatoptions=cqr
+if has('patch-7.3.541')
+    " Join comment leaders automatically
+    set formatoptions+=j
+endif
 
 " Assume that .tex files are LaTeX
 let g:tex_flavor='latex'
