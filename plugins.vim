@@ -249,6 +249,21 @@ NeoBundle 'alisdair/vim-armasm', {
             \ },
             \}
 
+NeoBundle 'rust-lang/rust', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': 'rust',
+            \ },
+            \ 'rtp': '~/.vim/bundle/rust/src/etc/vim'
+            \}
+
+NeoBundle 'cespare/vim-toml', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': 'toml',
+            \ },
+            \}
+
 " =============================================================================
 " Cosmetic
 " =============================================================================
