@@ -213,12 +213,16 @@ NeoBundle 'jdonaldson/vaxe', {
 let g:vaxe_lime_target="flash"                  " Set default target to flash
 
 " Markdown preview
-NeoBundle 'suan/vim-instant-markdown', {
+NeoBundle 'euclio/vim-instant-markdown', {
             \ 'lazy': 1,
             \ 'autoload': {
             \   'filetypes': 'markdown',
             \ },
-            \ 'disabled': has('win32') || has('win64') || &shell =~ 'fish\>',
+            \ 'disabled': &shell =~ 'fish\>',
+            \ 'build': {
+            \   'unix': 'npm install euclio/instant-markdown-d',
+            \   'windows': 'npm install euclio/instant-markdown-d',
+            \ }
             \}
 
 " Haskell omnifunc
