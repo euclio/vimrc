@@ -18,6 +18,3 @@ let g:markdown_fenced_languages=[
 
 " Let triple backticks behave properly
 autocmd FileType markdown let b:delimitMate_nesting_quotes = ['`']
-
-" Automatically format paragraphs
-setlocal formatoptions+=a
