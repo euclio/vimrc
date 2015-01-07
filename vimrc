@@ -77,6 +77,13 @@ if v:version >= 703
   set undofile
 endif
 
+" Store viminfo in $VIMHOME
+let viminfodir = $VIMHOME . '/viminfo'
+if !isdirectory(viminfodir)
+  call mkdir(viminfodir)
+endif
+let &viminfo="'100,<50,s10,h,n" . viminfodir . '/viminfo'
+
 " Autoformat comments into paragraphs when modifying text
 set formatoptions=cqr
 if has('patch-7.3.541')
