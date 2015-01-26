@@ -220,6 +220,14 @@ set virtualedit=onemore
 " uses tabs. Mnemonic: tt = toggle tab
 nnoremap <leader>tt :set expandtab! list!<CR>
 
+" Remove all trailing whitespace in the file, while preserving cursor position
+function! RemoveTrailingSpaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfunction
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
