@@ -249,12 +249,11 @@ NeoBundle 'alisdair/vim-armasm', {
             \ },
             \}
 
-NeoBundle 'rust-lang/rust', {
+NeoBundle 'wting/rust.vim', {
             \ 'lazy': 1,
             \ 'autoload': {
             \   'filetypes': 'rust',
             \ },
-            \ 'rtp': '~/.vim/bundle/rust/src/etc/vim'
             \}
 
 NeoBundle 'cespare/vim-toml', {
