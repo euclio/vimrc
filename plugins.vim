@@ -256,6 +256,13 @@ NeoBundle 'hail2u/vim-css3-syntax', {
             \ },
             \}
 
+NeoBundle 'digitaltoad/vim-jade', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': 'jade',
+            \ },
+            \}
+
 NeoBundle 'alisdair/vim-armasm', {
             \ 'lazy': 1,
             \ 'autoload': {
