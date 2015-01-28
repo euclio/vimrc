@@ -242,6 +242,20 @@ NeoBundle 'kballard/vim-fish', {
             \ },
             \}
 
+NeoBundle 'othree/html5.vim', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': 'html',
+            \ },
+            \}
+
+NeoBundle 'hail2u/vim-css3-syntax', {
+            \ 'lazy': 1,
+            \ 'autoload': {
+            \   'filetypes': ['css', 'scss'],
+            \ },
+            \}
+
 NeoBundle 'alisdair/vim-armasm', {
             \ 'lazy': 1,
             \ 'autoload': {
