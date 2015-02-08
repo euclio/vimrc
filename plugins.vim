@@ -233,6 +233,7 @@ NeoBundle 'eagletmt/neco-ghc', {
             \ },
             \ 'external_commands': 'ghc-mod',
             \}
+let g_necoghc_enable_detailed_browse=1          " Show types of symbols
 
 " Syntax highlighting for fish scripts
 NeoBundle 'kballard/vim-fish', {
