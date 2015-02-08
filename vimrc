@@ -7,15 +7,32 @@
 " viMproved!
 set nocompatible
 
-" Make $VIMHOME point to .vimrc location independent of OS
-if has('win32') || has('win64')
-  let $VIMHOME=$HOME . '/vimfiles'
+" Store vim configuration in $XDG_CONFIG_HOME
+let $VIMHOME=$XDG_CONFIG_HOME . '/vim'
+set runtimepath+=$VIMHOME/vim,$VIMHOME/vim/after
+let $MYVIMRC=$XDG_CONFIG_HOME . '/vim/vimrc'
+let $MYGVIMRC=$XDG_CONFIG_HOME . '/vim/gvimrc'
 
-  " Fix the path of vimrc and gvimrc for Windows
-  let $MYVIMRC=$VIMHOME . '/vimrc'
-  let $MYGVIMRC=$VIMHOME . '/gvimrc'
-else
-  let $VIMHOME=$HOME . '/.vim'
+" Store vim caches in $XDG_CACHE_HOME
+let $VIMCACHE=$XDG_CACHE_HOME . '/vim'
+
+" Set tmp directory
+set directory=$VIMCACHE,$TMP
+
+" Save viminfo in the cache directory
+let viminfodir = $VIMCACHE
+if !isdirectory(viminfodir)
+  call mkdir(viminfodir)
+endif
+let &viminfo="'100,<50,s10,h,n" . viminfodir . '/viminfo'
+
+" Store undo history across sessions
+if v:version >= 703
+  let &undodir=$VIMCACHE . '/undodir'
+  if !isdirectory(&undodir)
+    call mkdir(&undodir)
+  endif
+  set undofile
 endif
 
 " Change leader to comma
@@ -67,22 +84,6 @@ if has('patch-7.3.629')
 else
     set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 endif
-
-" Store undo history across sessions
-if v:version >= 703
-  let &undodir=$VIMHOME . '/undodir'
-  if !isdirectory(&undodir)
-    call mkdir(&undodir)
-  endif
-  set undofile
-endif
-
-" Store viminfo in $VIMHOME
-let viminfodir = $VIMHOME . '/viminfo'
-if !isdirectory(viminfodir)
-  call mkdir(viminfodir)
-endif
-let &viminfo="'100,<50,s10,h,n" . viminfodir . '/viminfo'
 
 " Autoformat comments into paragraphs when modifying text
 set formatoptions=cqr
@@ -198,9 +199,6 @@ set magic
 " Custom Terminal title
 let &titlestring=hostname() . ' : %F %r: VIM %m'
 set title
-
-" Make sure that vim has a tmp directory to use
-set directory=,~/tmp,$TMP
 
 " Let vim reload files after shelling out
 set autoread
