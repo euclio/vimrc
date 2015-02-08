@@ -9,9 +9,9 @@ set nocompatible
 
 " Store vim configuration in $XDG_CONFIG_HOME
 let $VIMHOME=$XDG_CONFIG_HOME . '/vim'
-set runtimepath+=$VIMHOME/vim,$VIMHOME/vim/after
-let $MYVIMRC=$XDG_CONFIG_HOME . '/vim/vimrc'
-let $MYGVIMRC=$XDG_CONFIG_HOME . '/vim/gvimrc'
+set runtimepath+=$VIMHOME,$VIMHOME/after
+let $MYVIMRC=$VIMHOME . '/vimrc'
+let $MYGVIMRC=$VIMHOME . '/gvimrc'
 
 " Store vim caches in $XDG_CACHE_HOME
 let $VIMCACHE=$XDG_CACHE_HOME . '/vim'
