@@ -246,7 +246,7 @@ NeoBundle 'kballard/vim-fish', {
 NeoBundle 'othree/html5.vim', {
             \ 'lazy': 1,
             \ 'autoload': {
-            \   'filetypes': 'html',
+            \   'filetypes': ['html', 'jinja'],
             \ },
             \}
 
