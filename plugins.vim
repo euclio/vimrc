@@ -3,21 +3,21 @@
 " =============================================================================
 "
 " Install neobundle if it doesn't exist
-let neobundle_readme=expand('$VIMHOME/bundle/neobundle.vim/README.md')
-let $NEOBUNDLE=expand('$VIMHOME/bundle/neobundle.vim')
-if !filereadable(neobundle_readme)
+let s:bundles=$VIMCACHE . '/bundle'
+let s:neobundle=s:bundles . '/neobundle.vim'
+if !filereadable(s:neobundle . '/README.md')
     echo "NeoBundle not found. Installing...\n"
 
-    call mkdir(expand('$VIMHOME/bundle'), 'p')
-    silent exec '!git clone https://github.com/Shougo/neobundle.vim' $NEOBUNDLE
+    call mkdir(s:bundles, 'p')
+    silent exec '!git clone https://github.com/Shougo/neobundle.vim' s:neobundle
 endif
 
-" Add neobundle to runtime path
+" Add neobundle to runtimepath
 if has('vim_starting')
-    set rtp+=$NEOBUNDLE
+    let &runtimepath .= ',' . s:neobundle
 endif
 
-call neobundle#begin(expand('$VIMHOME/bundle/'))
+call neobundle#begin(s:bundles)
 
 " Allow neobundle to manage itself
 NeoBundleFetch 'Shougo/neobundle.vim'
