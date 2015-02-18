@@ -116,6 +116,17 @@ NeoBundle 'gerw/vim-HiLinkTrace', {
 " On save, create directories if they don't exist
 NeoBundle 'dockyard/vim-easydir'
 
+let g:easytags_file=$VIMCACHE . '/tags'
+NeoBundle 'xolox/vim-easytags', {
+           \ 'lazy': 1,
+           \ 'autoload': {
+           \    'insert': 1,
+           \ },
+           \ 'depends': [
+           \    'xolox/vim-misc'
+           \ ]
+           \}
+
 " Class outline viewer
 NeoBundle 'majutsushi/tagbar', {
            \ 'lazy': 1,
