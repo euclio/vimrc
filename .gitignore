@@ -1,8 +1,5 @@
 bundle/
 .netrwhist
 *.swp
-cache/
 plugin/
 eclim/
-undodir/
-viminfo/

@@ -24,7 +24,7 @@ let viminfodir = $VIMCACHE
 if !isdirectory(viminfodir)
   call mkdir(viminfodir)
 endif
-let &viminfo="'100,<50,s10,h,n" . viminfodir . '/viminfo'
+let &viminfo="'100,<50,s10,h,n" . viminfodir . '/info'
 
 " Store undo history across sessions
 if v:version >= 703
