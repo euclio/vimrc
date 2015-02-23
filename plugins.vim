@@ -71,7 +71,7 @@ NeoBundle 'euclio/gitignore.vim', {
             \}
 
 NeoBundle 'mhinz/vim-signify'
-let g:signify_vcs_list = ['git']
+let g:signify_vcs_list = ['git', 'svn', 'hg']
 let g:signify_sign_change = '~'
 
 " =============================================================================
