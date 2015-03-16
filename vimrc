@@ -15,12 +15,13 @@ let $MYGVIMRC=$VIMHOME . '/gvimrc'
 
 " Store vim caches in $XDG_CACHE_HOME
 let $VIMCACHE=$XDG_CACHE_HOME . '/vim'
+let $VIMDATA=$XDG_DATA_HOME . '/vim'
 
 " Set tmp directory
 set directory=$VIMCACHE,$TMP
 
-" Save viminfo in the cache directory
-let viminfodir = $VIMCACHE
+" Save viminfo in the data directory
+let viminfodir = $VIMDATA
 if !isdirectory(viminfodir)
   call mkdir(viminfodir)
 endif
@@ -28,12 +29,15 @@ let &viminfo="'100,<50,s10,h,n" . viminfodir . '/info'
 
 " Store undo history across sessions
 if v:version >= 703
-  let &undodir=$VIMCACHE . '/undodir'
+  let &undodir=$VIMDATA . '/undodir'
   if !isdirectory(&undodir)
     call mkdir(&undodir)
   endif
   set undofile
 endif
+
+" Store netrw history in cache
+let g:netrw_home=$VIMDATA
 
 " Change leader to comma
 let mapleader=","
