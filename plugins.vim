@@ -49,21 +49,6 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='badwolf'
 
-" Filetree viewer
-NeoBundle 'scrooloose/nerdtree', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'commands': 'NERDTreeToggle',
-            \   'explorer': 1,
-            \ },
-            \}
-map <leader>n :NERDTreeToggle<CR>
-let NERDTreeHijackNetrw=1           " Use NERDtree instead of netrw
-" Close vim if NERDTree is the only window
-autocmd bufenter *
-  \ if (winnr("$") == 1 &&
-  \     exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
 " Extended % matching
 runtime macros/matchit.vim
 
