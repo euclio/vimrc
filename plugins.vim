@@ -3,7 +3,7 @@
 " =============================================================================
 "
 " Install neobundle if it doesn't exist
-let s:bundles=$VIMCACHE . '/bundle'
+let s:bundles=$VIMDATA . '/bundle'
 let s:neobundle=s:bundles . '/neobundle.vim'
 if !filereadable(s:neobundle . '/README.md')
     echo "NeoBundle not found. Installing...\n"
@@ -121,7 +121,7 @@ NeoBundle 'dockyard/vim-easydir'
 " is 'ctags-exuberant'
 call system('grep -Fq "Arch Linux" /etc/os-release')
 let g:ctags_executable= !v:shell_error ? 'ctags' : 'ctags-exuberant'
-let g:easytags_file=$VIMCACHE . '/tags'
+let g:easytags_file=$VIMDATA . '/tags'
 NeoBundle 'xolox/vim-easytags', {
            \ 'lazy': 1,
            \ 'autoload': {
