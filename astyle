@@ -1,0 +1,13 @@
+style=attach
+indent=spaces=4
+indent-namespaces
+indent-labels
+indent-col1-comments
+min-conditional-indent=2
+break-blocks
+pad-oper
+unpad-paren
+keep-one-line-statements
+keep-one-line-blocks
+align-pointer=name
+align-reference=type
