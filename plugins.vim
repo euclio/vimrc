@@ -117,6 +117,10 @@ NeoBundle 'gerw/vim-HiLinkTrace', {
 " On save, create directories if they don't exist
 NeoBundle 'dockyard/vim-easydir'
 
+" On Arch Linux, the exuberant-ctags executable is named 'ctags'. Elsewhere, it
+" is 'ctags-exuberant'
+call system('grep -Fq "Arch Linux" /etc/os-release')
+let g:ctags_executable= !v:shell_error ? 'ctags' : 'ctags-exuberant'
 let g:easytags_file=$VIMCACHE . '/tags'
 NeoBundle 'xolox/vim-easytags', {
            \ 'lazy': 1,
@@ -125,7 +129,8 @@ NeoBundle 'xolox/vim-easytags', {
            \ },
            \ 'depends': [
            \    'xolox/vim-misc'
-           \ ]
+           \ ],
+           \ 'external_commands': g:ctags_executable,
            \}
 
 " Class outline viewer
@@ -136,7 +141,7 @@ NeoBundle 'majutsushi/tagbar', {
            \      'TagbarToggle',
            \    ],
            \ },
-           \ 'external_commands': 'ctags-exuberant',
+           \ 'external_commands': g:ctags_executable,
            \ 'vim_version': '7.0.167',
            \}
 nnoremap <f8> :TagbarToggle<cr>
