@@ -17,6 +17,11 @@ if has('vim_starting')
     let &runtimepath .= ',' . s:neobundle
 endif
 
+" Neovim won't allow use to check if python is available in a sandbox.
+" Therefore, if we want to disable plugins based on whether python is
+" available, then we use this variable.
+let g:has_python = has('python')
+
 call neobundle#begin(s:bundles)
 
 " Allow neobundle to manage itself
@@ -76,7 +81,7 @@ NeoBundle 'Valloric/YouCompleteMe', {
             \     'unix': './install.sh --clang-completer --system-libclang',
             \ },
             \ 'build_commands': 'cmake',
-            \ 'disabled': !has('python'),
+            \ 'disabled': !g:has_python,
             \ 'vim_version': '7.3.584',
             \}
 let g:ycm_confirm_extra_conf=0              " Disable .ycm_extra_conf confirmation
