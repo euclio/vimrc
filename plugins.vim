@@ -100,6 +100,16 @@ let g:ycm_semantic_triggers={
             \ 'haskell': ['.'],
             \}
 
+" Snippets
+NeoBundle 'SirVer/ultisnips', {
+            \ 'depends': [
+            \    'honza/vim-snippets',
+            \ ],
+            \}
+let g:UltiSnipsExpandTrigger='<c-j>'
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+
 " Automatic completion of parenthesis, brackets, etc.
 NeoBundle 'Raimondi/delimitMate', {
             \ 'lazy': 1,
