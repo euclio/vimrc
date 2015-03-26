@@ -4,9 +4,11 @@
 " =============================================================================
 " Setup
 " =============================================================================
-" viMproved!
-set nocompatible
-
+"
+" Use utf-8 everywhere
+set encoding=utf8
+scriptencoding utf8
+"
 " Store vim configuration in $XDG_CONFIG_HOME
 let $VIMHOME=$XDG_CONFIG_HOME . '/vim'
 set runtimepath+=$VIMHOME,$VIMHOME/after
@@ -40,7 +42,7 @@ endif
 let g:netrw_home=$VIMDATA
 
 " Change leader to comma
-let mapleader=","
+let mapleader=','
 " This could cause filetype plugins to have mappings that conflict with other
 " plugins, but as I have encountered few filetype plugins that add additional
 " mappings there is little concern.
@@ -72,8 +74,7 @@ NeoBundleCheck
 " =============================================================================
 " File settings
 " =============================================================================
-" Set default encodings and file formats
-set encoding=utf8
+" Use Unix line endings by default
 set fileformats=unix,dos,mac
 
 " Set column width to 79 characters, and display a line at the limit
@@ -112,7 +113,10 @@ set spelllang=en_us
 set number relativenumber
 
 " Hide line numbers when entering diff mode
-autocmd FilterWritePre * if &diff | set nonumber norelativenumber | endif
+augroup hide_lines
+  autocmd!
+  autocmd FilterWritePre * if &diff | set nonumber norelativenumber | endif
+augroup END
 
 " When leaving buffer, hide it instead of closing it
 set hidden
@@ -178,11 +182,11 @@ map <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 " <leader>df toggles diff mode for the current buffer
 nnoremap <silent> <leader>df :call DiffToggle()<CR>
 function! DiffToggle()
-    if &diff
-        diffoff
-    else
-        diffthis
-    endif
+  if &diff
+    diffoff
+  else
+    diffthis
+  endif
 endfunction
 
 " %% expands to the current directory
@@ -214,10 +218,13 @@ set completeopt-=preview
 set ttimeoutlen=50
 
 " Jump to the last known cursor position when opening a file
-autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \     execute "normal! g`\"" |
-    \ endif
+augroup last_cursor_position
+  autocmd!
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \     execute "normal! g`\"" |
+        \ endif
+augroup END
 
 " Unfold all folds by default
 set nofoldenable
@@ -231,10 +238,12 @@ nnoremap <leader>tt :set expandtab! list!<CR>
 
 " Remove all trailing whitespace in the file, while preserving cursor position
 function! RemoveTrailingSpaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
+  let l = line('.')
+  let c = col('.')
+  " vint: -ProhibitCommandWithUnintendedSideEffect -ProhibitCommandRelyOnUser
+  %s/\s\+$//e
+  " vint: +ProhibitCommandWithUnintendedSideEffect +ProhibitCommandRelyOnUser
+  call cursor(l, c)
 endfunction
 
 " =============================================================================

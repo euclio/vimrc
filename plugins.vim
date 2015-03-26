@@ -238,7 +238,7 @@ NeoBundle 'jdonaldson/vaxe', {
             \   ],
             \ },
             \}
-let g:vaxe_lime_target="flash"                  " Set default target to flash
+let g:vaxe_lime_target='flash'                  " Set default target to flash
 
 " Markdown preview
 NeoBundle 'euclio/vim-instant-markdown', {
