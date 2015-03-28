@@ -55,7 +55,7 @@ elseif !has('patch-7.4.276')
     set shell=/bin/bash
 endif
 
-" Enable NeoBundle and plugins
+" Install plugins
 source $VIMHOME/plugins.vim
 
 if filereadable(expand('~/.vimrc_local'))
@@ -67,9 +67,6 @@ filetype plugin indent on
 
 " Enable syntax highlighting
 syntax enable
-
-" Ensure all plugins are installed
-NeoBundleCheck
 
 " =============================================================================
 " File settings

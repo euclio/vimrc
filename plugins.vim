@@ -1,47 +1,45 @@
 " =============================================================================
-" Neobundle Setup
+" Plugin Manager Setup
 " =============================================================================
 "
-" Install neobundle if it doesn't exist
-let s:bundles=$VIMDATA . '/bundle'
-let s:neobundle=s:bundles . '/neobundle.vim'
-if !filereadable(s:neobundle . '/README.md')
-    echo "NeoBundle not found. Installing...\n"
+" Install the plugin manager if it doesn't exist
+let s:plugins=$VIMDATA . '/bundle'
+let s:plugin_manager=s:plugins . '/vim-plug'
 
-    call mkdir(s:bundles, 'p')
-    silent exec '!git clone https://github.com/Shougo/neobundle.vim' s:neobundle
+if empty(glob(s:plugin_manager))
+  echom 'vim-plug not found. Installing...'
+  silent exec '!curl -fLo ' . s:plugin_manager/autoload/vim-plug .
+      \ ' --create-dirs ' .
+      \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  augroup vimplug
+    autocmd!
+    autocmd VimEnter * PlugInstall
+  augroup END
 endif
 
-" Add neobundle to runtimepath
-if has('vim_starting')
-    let &runtimepath .= ',' . s:neobundle
-endif
+" Make sure vim-plug is on the runtime path
+let &rtp .= ',' . s:plugin_manager
 
-" Neovim won't allow use to check if python is available in a sandbox.
-" Therefore, if we want to disable plugins based on whether python is
-" available, then we use this variable.
-let g:has_python = has('python')
+" Create a horizontal split at the bottom when installing plugins
+let g:plug_window = 'botright new'
 
-call neobundle#begin(s:bundles)
-
-" Allow neobundle to manage itself
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin(s:plugins)
 
 " =============================================================================
 " Interface
 " =============================================================================
 "
 " Syntax checking on save
-NeoBundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 let g:syntastic_scala_checkers = []     " Don't check Scala -- it's too slow
 let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_check_on_wq = 0
 
 " Git wrapper
-NeoBundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Statusline improvements
-NeoBundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_min_count=2
 let g:airline#extensions#tabline#buffer_nr_show=1
@@ -58,11 +56,9 @@ let g:airline_theme='badwolf'
 runtime macros/matchit.vim
 
 " Add files in gitignore to wildignore
-NeoBundle 'euclio/gitignore.vim', {
-            \ 'depends': 'tpope/vim-fugitive',
-            \}
+Plug 'gitignore.vim'
 
-NeoBundle 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'
 let g:signify_vcs_list = ['git', 'svn', 'hg']
 let g:signify_sign_change = '~'
 
@@ -71,249 +67,120 @@ let g:signify_sign_change = '~'
 " =============================================================================
 "
 " Autocompletion for Python and C-like languages
-NeoBundle 'Valloric/YouCompleteMe', {
-            \ 'lazy': 1,
-            \ 'augroup': 'youcompletemeStart',
-            \ 'autoload': {
-            \   'insert': 1,
-            \ },
-            \ 'build': {
-            \     'unix': './install.sh --clang-completer --system-libclang',
-            \ },
-            \ 'build_commands': 'cmake',
-            \ 'disabled': !g:has_python,
-            \ 'vim_version': '7.3.584',
-            \}
-let g:ycm_confirm_extra_conf=0              " Disable .ycm_extra_conf confirmation
-let g:EclimCompletionMethod='omnifunc'      " Let YCM use Eclipse autocomplete
-" Hack to allow automatic neco-ghc completions
-let g:ycm_semantic_triggers={
-            \ 'haskell': ['.'],
-            \}
+if has('patch-7.3.584') && has('python') && executable('cmake')
+  Plug 'Valloric/YouCompleteMe', {
+      \ 'do': './install.sh --clang-completer --system-libclang'
+      \}
+  let g:ycm_confirm_extra_conf=0          " Disable .ycm_extra_conf confirmation
+  let g:EclimCompletionMethod='omnifunc'  " Let YCM use Eclipse autocomplete
+  " Allow automatic neco-ghc completions
+  let g:ycm_semantic_triggers={
+              \ 'haskell': ['.'],
+              \}
+endif
 
 " Snippets
-NeoBundle 'SirVer/ultisnips', {
-            \ 'depends': [
-            \    'honza/vim-snippets',
-            \ ],
-            \}
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger='<c-j>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
 let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 
 " Automatic completion of parenthesis, brackets, etc.
-NeoBundle 'Raimondi/delimitMate', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'insert': 1
-            \ },
-            \}
+Plug 'Raimondi/delimitMate'
 let delimitMate_expand_cr=1                 " Put new brace on newline after CR
 
 " View highlight groups under cursor
-NeoBundle 'gerw/vim-HiLinkTrace', {
-            \ 'lazy': 1,
-            \}
+Plug 'gerw/vim-HiLinkTrace'
 
 " On save, create directories if they don't exist
-NeoBundle 'dockyard/vim-easydir'
+Plug 'dockyard/vim-easydir'
 
 " On Arch Linux, the exuberant-ctags executable is named 'ctags'. Elsewhere, it
 " is 'ctags-exuberant'
-call system('grep -Fq "Arch Linux" /etc/os-release')
-let g:ctags_executable= !v:shell_error ? 'ctags' : 'ctags-exuberant'
-let g:easytags_file=$VIMDATA . '/tags'
-NeoBundle 'xolox/vim-easytags', {
-           \ 'lazy': 1,
-           \ 'autoload': {
-           \    'insert': 1,
-           \ },
-           \ 'depends': [
-           \    'xolox/vim-misc'
-           \ ],
-           \ 'external_commands': g:ctags_executable,
-           \}
+if executable('ctags') || executable('ctags-exuberant')
+  Plug 'xolox/vim-misc'       " Dependency for easytags
+  Plug 'xolox/vim-easytags'
+  let g:easytags_file=$VIMDATA . '/tags'
 
-" Class outline viewer
-NeoBundle 'majutsushi/tagbar', {
-           \ 'lazy': 1,
-           \ 'autoload': {
-           \    'commands': [
-           \      'TagbarToggle',
-           \    ],
-           \ },
-           \ 'external_commands': g:ctags_executable,
-           \ 'vim_version': '7.0.167',
-           \}
-nnoremap <f8> :TagbarToggle<cr>
+  " Class outline viewer
+  if has('patch-7.0.167')
+    Plug 'majutsushi/tagbar'
+    nnoremap <f8> :TagbarToggle<cr>
+  endif
+endif
 
 " Fuzzy file finder
-NeoBundle 'kien/ctrlp.vim', {
-          \ 'lazy': 1,
-          \ 'autoload': {
-          \   'commands': 'CtrlP',
-          \   'mappings': '<c-p>',
-          \ },
-          \}
+Plug 'kien/ctrlp.vim'
 
 " =============================================================================
 " Languages
 " =============================================================================
 "
 " Filetype plugin for Scala
-NeoBundle 'derekwyatt/vim-scala', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'scala',
-            \ },
-            \}
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 
 " LaTeX compilation commands and autocomplete
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'tex',
-            \ },
-            \ 'external_commands': 'latexmk',
-            \}
-let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
-let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
-
-" Jinja2 template syntax highlighting
-NeoBundle 'Glench/Vim-Jinja2-Syntax', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'jinja',
-            \ },
-            \}
-
-" Better JavaScript syntax highlighting and indentation
-NeoBundle 'pangloss/vim-javascript', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'javascript',
-            \ },
-            \}
+if executable('latexmk')
+  Plug 'euclio/LaTeX-Box', { 'for': 'tex' }
+  let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
+  let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
+endif
 
 " JavaScript omnicompletion
-NeoBundle 'marijnh/tern_for_vim', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'javascript',
-            \ },
-            \ 'build': {
-            \   'unix': 'npm install',
-            \ },
-            \ 'build_commands': 'npm',
-            \}
+if executable('npm')
+  Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+endif
 
 " JSON Highlight and indent plugin
-NeoBundle 'elzr/vim-json', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'json',
-            \ },
-            \}
+Plug 'elzr/vim-json', { 'for': 'json' }
 
 " Syntax highlighting, indentation, etc. for haxe
-NeoBundle 'jdonaldson/vaxe', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': [
-            \       'haxe',
-            \       'hss',
-            \       'hxml',
-            \       'lime',
-            \       'nmml',
-            \   ],
-            \ },
-            \}
+Plug 'jdonaldson/vaxe', { 'for': ['haxe', 'hss', 'hxml', 'lime', 'nmml'] }
 let g:vaxe_lime_target='flash'                  " Set default target to flash
 
 " Markdown preview
-NeoBundle 'euclio/vim-instant-markdown', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'markdown',
-            \ },
-            \ 'disabled': &shell =~ 'fish\>',
-            \ 'build': {
-            \   'unix': 'npm install euclio/instant-markdown-d',
-            \   'windows': 'npm install euclio/instant-markdown-d',
-            \ }
-            \}
+Plug 'euclio/vim-instant-markdown', {
+      \ 'for': 'markdown',
+      \ 'do' : 'npm install euclio/instant-markdown-d'
+      \}
 
 " Haskell omnifunc
-NeoBundle 'eagletmt/neco-ghc', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'haskell',
-            \ },
-            \ 'external_commands': 'ghc-mod',
-            \}
-let g_necoghc_enable_detailed_browse=1          " Show types of symbols
+if executable('ghc-mod')
+  Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+  let g_necoghc_enable_detailed_browse=1          " Show types of symbols
+endif
 
-" Syntax highlighting for fish scripts
-NeoBundle 'kballard/vim-fish', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'fish',
-            \ },
-            \}
+" Syntax highlighting
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 
-NeoBundle 'othree/html5.vim', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': ['html', 'jinja'],
-            \ },
-            \}
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
-NeoBundle 'hail2u/vim-css3-syntax', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': ['css', 'scss'],
-            \ },
-            \}
+Plug 'kballard/vim-fish', { 'for': 'fish' }
 
-NeoBundle 'digitaltoad/vim-jade', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'jade',
-            \ },
-            \}
+Plug 'othree/html5.vim', { 'for': ['html', 'jinja'] }
 
-NeoBundle 'alisdair/vim-armasm', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'armasm',
-            \ },
-            \}
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 
-NeoBundle 'wting/rust.vim', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'rust',
-            \ },
-            \}
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 
-NeoBundle 'cespare/vim-toml', {
-            \ 'lazy': 1,
-            \ 'autoload': {
-            \   'filetypes': 'toml',
-            \ },
-            \}
+Plug 'alisdair/vim-armasm', { 'for': 'armasm' }
+
+Plug 'wting/rust.vim', { 'for': 'rust' }
+
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " =============================================================================
 " Cosmetic
 " =============================================================================
 "
 " My personal colorscheme
-NeoBundle 'euclio/vim-nocturne'
+Plug 'euclio/vim-nocturne'
 
 " Allow GUI colorschemes in 256-color or 88-color terminals
-NeoBundle 'godlygeek/CSApprox', {
-            \ 'terminal': 1,
-            \}
-let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
+if !has('gui')
+  Plug 'godlygeek/CSApprox'
+  let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
+endif
 
-call neobundle#end()
+call plug#end()
