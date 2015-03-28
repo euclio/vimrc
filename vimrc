@@ -153,6 +153,11 @@ inoremap <left>  <nop>
 noremap  <right> <nop>
 inoremap <right> <nop>
 
+" Press escape to exit terminal
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
 " Backspace works as expected (across lines)
 set backspace=indent,eol,start
 
