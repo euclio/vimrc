@@ -49,10 +49,14 @@ let mapleader=','
 let maplocalleader=mapleader
 
 " Ensure that vim uses the correct shell
-if has('win32') || has('win64')
+if executable('fish')
+  set shell=/bin/fish
+else
+  if has('win32') || has('win64')
     set shell=cmd.exe
-elseif !has('patch-7.4.276')
+  elseif !has('patch-7.4.276')
     set shell=/bin/bash
+  endif
 endif
 
 " Install plugins
