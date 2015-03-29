@@ -55,9 +55,6 @@ let g:airline_theme='badwolf'
 " Extended % matching
 runtime macros/matchit.vim
 
-" Add files in gitignore to wildignore
-Plug 'gitignore.vim'
-
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list = ['git', 'svn', 'hg']
 let g:signify_sign_change = '~'
@@ -112,6 +109,9 @@ endif
 
 " Fuzzy file finder
 Plug 'kien/ctrlp.vim'
+let g:ctrlp_user_command = [
+      \ '.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'
+      \]
 
 " =============================================================================
 " Languages
