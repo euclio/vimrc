@@ -1,2 +1,4 @@
 plugin/
 eclim/
+spell/*.spl
+spell/*.sug
