@@ -79,11 +79,13 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
 endif
 
 " Snippets
-Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger='<c-j>'
-let g:UltiSnipsJumpForwardTrigger='<c-j>'
-let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+if has('python')
+  Plug 'honza/vim-snippets'
+  Plug 'SirVer/ultisnips'
+  let g:UltiSnipsExpandTrigger='<c-j>'
+  let g:UltiSnipsJumpForwardTrigger='<c-j>'
+  let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+endif
 
 " Automatic completion of parenthesis, brackets, etc.
 Plug 'Raimondi/delimitMate'
