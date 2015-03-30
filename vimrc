@@ -72,6 +72,7 @@ filetype plugin indent on
 
 " Enable syntax highlighting
 syntax enable
+syntax sync minlines=250
 
 " =============================================================================
 " File settings
