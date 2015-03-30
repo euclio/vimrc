@@ -62,6 +62,7 @@ endif
 " Install plugins
 source $VIMHOME/plugins.vim
 
+" Allow local configuration to override
 if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
 endif
