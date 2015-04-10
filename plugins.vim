@@ -97,8 +97,19 @@ Plug 'gerw/vim-HiLinkTrace'
 Plug 'dockyard/vim-easydir'
 
 " On Arch Linux, the exuberant-ctags executable is named 'ctags'. Elsewhere, it
-" is 'ctags-exuberant'
-if executable('ctags') || executable('ctags-exuberant')
+" is 'ctags-exuberant'. On Macs, the ctags executable provided is NOT exuberant
+" ctags.
+"
+" Detect OSX
+let s:has_mac = 0
+if has('unix')
+  let s:uname = system('uname -s')
+  if s:uname == 'Darwin'
+    s:has_mac = 1
+  endif
+endif
+
+if executable('ctags') && s:has_mac || executable('ctags-exuberant')
   Plug 'xolox/vim-misc'       " Dependency for easytags
   Plug 'xolox/vim-easytags'
   let g:easytags_file=$VIMDATA . '/tags'
