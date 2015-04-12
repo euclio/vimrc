@@ -192,7 +192,7 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'euclio/vim-nocturne'
 
 " Allow GUI colorschemes in 256-color or 88-color terminals
-if !has('gui')
+if !has('gui_running')
   Plug 'godlygeek/CSApprox'
   let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 endif
