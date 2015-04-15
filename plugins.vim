@@ -66,6 +66,7 @@ let g:airline_theme='badwolf'
 " Extended % matching
 runtime macros/matchit.vim
 
+" Place signs to indicate current version control diff
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list = ['git', 'svn', 'hg']
 let g:signify_sign_change = '~'
