@@ -146,7 +146,7 @@ Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 
 " LaTeX compilation commands and autocomplete
 if executable('latexmk')
-  Plug 'euclio/LaTeX-Box', { 'for': 'tex' }
+  Plug 'LaTeX-Box-Team/LaTeX-Box', { 'for': 'tex' }
   let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
   let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
 endif
