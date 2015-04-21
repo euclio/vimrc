@@ -5,11 +5,21 @@
 " Install the plugin manager if it doesn't exist
 let s:plugins=$VIMDATA . '/bundle'
 let s:plugin_manager=$VIMHOME . '/autoload/plug.vim'
+let s:plugin_url='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 if empty(glob(s:plugin_manager))
   echom 'vim-plug not found. Installing...'
-  silent exec '!curl -fLo ' . s:plugin_manager . ' --create-dirs ' .
-      \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  if executable('curl')
+    silent exec '!curl -fLo ' . s:plugin_manager . ' --create-dirs ' .
+        \ s:plugin_url
+  elseif executable('wget')
+    call mkdir(expand(s:plugin_manager . ':h'), 'p')
+    silent exec '!wget --force-directories -O ' . s:plugin_manager . ' '
+        \ s:plugin_url
+  else
+    echom 'Could not download plugin manager. No plugins were installed.'
+    finish
+  endif
   augroup vimplug
     autocmd!
     autocmd VimEnter * PlugInstall
