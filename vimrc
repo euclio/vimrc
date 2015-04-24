@@ -8,7 +8,14 @@
 " Use utf-8 everywhere
 set encoding=utf8
 scriptencoding utf8
-"
+
+" Allow the neovim Python plugin to work inside a virtualenv, by manually
+" specifying the path to python2. This variable must be set before any calls to
+" `has('python')`.
+if has('nvim')
+  let g:python_host_prog='/usr/bin/python2'
+endif
+
 " Store vim configuration in $XDG_CONFIG_HOME
 let $VIMHOME=$XDG_CONFIG_HOME . '/vim'
 set runtimepath+=$VIMHOME,$VIMHOME/after
