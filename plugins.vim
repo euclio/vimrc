@@ -176,6 +176,12 @@ if executable('ghc-mod')
   let g_necoghc_enable_detailed_browse=1          " Show types of symbols
 endif
 
+if executable('cargo')
+  Plug 'phildawes/racer', { 'for': 'rust', 'do': 'cargo build --release' }
+  let g:racer_cmd = s:plugins . '/racer/target/release/racer'
+  let $RUST_SRC_PATH=$HOME . '/build/rust/src'
+endif
+
 " Syntax highlighting
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 
