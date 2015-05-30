@@ -120,7 +120,7 @@ if has('unix')
   endif
 endif
 
-if executable('ctags') && s:has_mac || executable('ctags-exuberant')
+if executable('ctags') && !s:has_mac || executable('ctags-exuberant')
   Plug 'xolox/vim-misc'       " Dependency for easytags
   Plug 'xolox/vim-easytags'
   let g:easytags_file=$VIMDATA . '/tags'
