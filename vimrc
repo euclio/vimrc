@@ -178,6 +178,8 @@ set incsearch ignorecase smartcase hlsearch
 " =============================================================================
 " F9 opens .vimrc in a new window
 map <f9> :sp $MYVIMRC<cr>
+" F10 opens plugins.vim in a new window
+map <f10> :execute 'sp $VIMHOME/plugins.vim'<cr>
 
 " <leader><leader> clears previous search highlighting
 map <silent> <leader><leader> :nohlsearch<cr>
