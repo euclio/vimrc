@@ -40,7 +40,10 @@ call plug#begin(s:plugins)
 "
 " Syntax checking on save
 Plug 'scrooloose/syntastic'
-let g:syntastic_scala_checkers = []     " Don't check Scala -- it's too slow
+" Languages with slow checkers should only be checked manually.
+let g:syntastic_mode_map = {
+      \ "passive_filetypes": ["scala"]
+      \}
 let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_check_on_wq = 0
 
