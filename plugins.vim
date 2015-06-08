@@ -148,8 +148,9 @@ let g:ctrlp_user_command = [
 " Languages
 " =============================================================================
 "
-" Filetype plugin for Scala
-Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+" Filetype plugin for Scala and SBT
+Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
+Plug 'derekwyatt/vim-sbt', { 'for': 'sbt.scala' }
 
 " LaTeX compilation commands and autocomplete
 if executable('latexmk')
