@@ -121,8 +121,8 @@ Plug 'dockyard/vim-easydir'
 let s:has_mac = 0
 if has('unix')
   let s:uname = system('uname -s')
-  if s:uname == 'Darwin'
-    s:has_mac = 1
+  if s:uname =~ 'Darwin'
+    let s:has_mac = 1
   endif
 endif
 
