@@ -32,7 +32,7 @@ set directory=$VIMCACHE,$TMP
 " Save viminfo in the data directory
 let viminfodir = $VIMDATA
 if !isdirectory(viminfodir)
-  call mkdir(viminfodir)
+  call mkdir(viminfodir, 'p')
 endif
 let &viminfo="'100,<50,s10,h,n" . viminfodir . '/info'
 
@@ -40,7 +40,7 @@ let &viminfo="'100,<50,s10,h,n" . viminfodir . '/info'
 if v:version >= 703
   let &undodir=$VIMDATA . '/undodir'
   if !isdirectory(&undodir)
-    call mkdir(&undodir)
+    call mkdir(&undodir, 'p')
   endif
   set undofile
 endif
