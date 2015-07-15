@@ -13,9 +13,9 @@ if empty(glob(s:plugin_manager))
     silent exec '!curl -fLo ' . s:plugin_manager . ' --create-dirs ' .
         \ s:plugin_url
   elseif executable('wget')
-    call mkdir(expand(s:plugin_manager . ':h'), 'p')
-    silent exec '!wget --force-directories -O ' . s:plugin_manager . ' '
-        \ s:plugin_url
+    call mkdir(fnamemodify(s:plugin_manager, ':h'), 'p')
+    silent exec '!wget --force-directories --no-check-certificate -O ' .
+        \ expand(s:plugin_manager) . ' ' . s:plugin_url
   else
     echom 'Could not download plugin manager. No plugins were installed.'
     finish
