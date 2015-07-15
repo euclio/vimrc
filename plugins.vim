@@ -172,10 +172,12 @@ Plug 'jdonaldson/vaxe', { 'for': ['haxe', 'hss', 'hxml', 'lime', 'nmml'] }
 let g:vaxe_lime_target='flash'                  " Set default target to flash
 
 " Markdown preview
-Plug 'euclio/vim-instant-markdown', {
-      \ 'for': 'markdown',
-      \ 'do' : 'npm install euclio/instant-markdown-d'
-      \}
+if executable('npm')
+  Plug 'euclio/vim-instant-markdown', {
+        \ 'for': 'markdown',
+        \ 'do' : 'npm install euclio/instant-markdown-d'
+        \}
+endif
 
 " Haskell omnifunc
 if executable('ghc-mod')
