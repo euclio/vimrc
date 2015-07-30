@@ -172,10 +172,20 @@ Plug 'jdonaldson/vaxe', { 'for': ['haxe', 'hss', 'hxml', 'lime', 'nmml'] }
 let g:vaxe_lime_target='flash'                  " Set default target to flash
 
 " Markdown preview
-if executable('npm')
+if has('nvim')
+  function! BuildComposer(info)
+    if a:info.status != 'unchanged' || a:info.force
+      !cargo build --release
+      UpdateRemotePlugins
+    endif
+  endfunction
+
+  Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+  let g:markdown_composer_syntax_theme='hybrid'
+elseif executable('npm')
   Plug 'euclio/vim-instant-markdown', {
         \ 'for': 'markdown',
-        \ 'do' : 'npm install euclio/instant-markdown-d'
+        \ 'do': 'npm install euclio/vim-instant-markdown-d'
         \}
 endif
 
