@@ -14,6 +14,7 @@ let g:markdown_fenced_languages=[
             \ 'javascript',
             \ 'python',
             \ 'sh',
+            \ 'vim'
             \]
 
 " Let triple backticks behave properly
