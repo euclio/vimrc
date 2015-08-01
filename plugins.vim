@@ -92,6 +92,9 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
   let g:ycm_semantic_triggers={
               \ 'haskell': ['.'],
               \}
+  let g_ycm_filetype_blacklist = {
+        \ 'rust': 1
+        \}
 endif
 
 " Snippets
@@ -199,6 +202,21 @@ if executable('cargo')
   Plug 'phildawes/racer', { 'for': 'rust', 'do': 'cargo build --release' }
   let g:racer_cmd = s:plugins . '/racer/target/release/racer'
   let $RUST_SRC_PATH=$HOME . '/build/rust/src'
+
+  function! BuildDeoplete(info)
+    if a:info.status != 'unchanged' || a:info.force
+      UpdateRemotePlugins
+    endif
+  endfunction
+
+  " Until YouCompleteMe supports Rust, let's use a plugin that does.
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', {
+          \ 'for': 'rust',
+          \ 'do': function('BuildDeoplete')
+          \}
+  endif
+  let g:deoplete#enable_at_startup=1
 endif
 
 " Syntax highlighting
