@@ -48,8 +48,8 @@ endif
 " Store netrw history in cache
 let g:netrw_home=$VIMDATA
 
-" Change leader to comma
-let mapleader=','
+" Change leader to spacebar.
+let mapleader=' '
 " This could cause filetype plugins to have mappings that conflict with other
 " plugins, but as I have encountered few filetype plugins that add additional
 " mappings there is little concern.
