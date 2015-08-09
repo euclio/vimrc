@@ -35,6 +35,20 @@ let g:plug_window = 'botright new'
 call plug#begin(s:plugins)
 
 " =============================================================================
+" Dependencies
+" =============================================================================
+" Google plugins have some required setup...
+Plug 'google/vim-maktaba'
+
+" Workaround for vim-maktaba#158
+if has('nvim')
+  let &rtp .= ',' . s:plugins . '/vim-maktaba'
+  call maktaba#json#python#Disable()
+endif
+
+Plug 'google/vim-glaive'
+
+" =============================================================================
 " Interface
 " =============================================================================
 "
@@ -147,6 +161,12 @@ let g:ctrlp_user_command = [
       \ '.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'
       \]
 
+" Code formatting
+Plug 'google/vim-codefmt'
+
+" Automatically format on save for all filetypes supported by clang-format
+autocmd FileType c,cpp,java,javascript,proto,python AutoFormatBuffer
+
 " =============================================================================
 " Languages
 " =============================================================================
@@ -252,3 +272,7 @@ if !has('gui_running')
 endif
 
 call plug#end()
+
+" Google plugin configuration
+call glaive#Install()
+Glaive codefmt plugin[mappings]
