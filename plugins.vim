@@ -60,7 +60,6 @@ Plug 'scrooloose/syntastic'
 let g:syntastic_mode_map = {
       \ 'passive_filetypes': ['scala']
       \}
-Plug 'todesking/vint-syntasic', { 'for': 'vim' }
 let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
