@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 " =============================================================================
 " Plugin Manager Setup
 " =============================================================================
@@ -32,7 +34,7 @@ let &rtp .= ',' . s:plugin_manager
 " Create a horizontal split at the bottom when installing plugins
 let g:plug_window = 'botright new'
 
-call plug#begin(s:plugins)
+call g:plug#begin(s:plugins)
 
 " =============================================================================
 " Dependencies
@@ -43,7 +45,7 @@ Plug 'google/vim-maktaba'
 " Workaround for vim-maktaba#158
 if has('nvim')
   let &rtp .= ',' . s:plugins . '/vim-maktaba'
-  call maktaba#json#python#Disable()
+  call g:maktaba#json#python#Disable()
 endif
 
 Plug 'google/vim-glaive'
@@ -56,8 +58,9 @@ Plug 'google/vim-glaive'
 Plug 'scrooloose/syntastic'
 " Languages with slow checkers should only be checked manually.
 let g:syntastic_mode_map = {
-      \ "passive_filetypes": ["scala"]
+      \ 'passive_filetypes': ['scala']
       \}
+Plug 'todesking/vint-syntasic', { 'for': 'vim' }
 let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -106,7 +109,7 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
   let g:ycm_semantic_triggers={
               \ 'haskell': ['.'],
               \}
-  let g_ycm_filetype_blacklist = {
+  let g:ycm_filetype_blacklist = {
         \ 'rust': 1
         \}
 endif
@@ -122,7 +125,7 @@ endif
 
 " Automatic completion of parenthesis, brackets, etc.
 Plug 'Raimondi/delimitMate'
-let delimitMate_expand_cr=1                 " Put new brace on newline after CR
+let g:delimitMate_expand_cr=1                 " Put new brace on newline after CR
 
 " View highlight groups under cursor
 Plug 'gerw/vim-HiLinkTrace'
@@ -138,7 +141,7 @@ Plug 'dockyard/vim-easydir'
 let s:has_mac = 0
 if has('unix')
   let s:uname = system('uname -s')
-  if s:uname =~ 'Darwin'
+  if s:uname =~? 'Darwin'
     let s:has_mac = 1
   endif
 endif
@@ -165,7 +168,10 @@ let g:ctrlp_user_command = [
 Plug 'google/vim-codefmt'
 
 " Automatically format on save for all filetypes supported by clang-format
-autocmd FileType c,cpp,java,javascript,proto,python AutoFormatBuffer
+augroup clangformat
+  autocmd!
+  autocmd FileType c,cpp,java,javascript,proto,python AutoFormatBuffer
+augroup END
 
 " =============================================================================
 " Languages
@@ -196,14 +202,14 @@ let g:vaxe_lime_target='flash'                  " Set default target to flash
 
 " Markdown preview
 if has('nvim')
-  function! BuildComposer(info)
-    if a:info.status != 'unchanged' || a:info.force
+  function! g:BuildComposer(info)
+    if a:info.status !=# 'unchanged' || a:info.force
       !cargo build --release
       UpdateRemotePlugins
     endif
   endfunction
 
-  Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+  Plug 'euclio/vim-markdown-composer', { 'do': function('g:BuildComposer') }
   let g:markdown_composer_syntax_theme='hybrid'
 elseif executable('npm')
   Plug 'euclio/vim-instant-markdown', {
@@ -215,7 +221,7 @@ endif
 " Haskell omnifunc
 if executable('ghc-mod')
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  let g_necoghc_enable_detailed_browse=1          " Show types of symbols
+  let g:necoghc_enable_detailed_browse=1          " Show types of symbols
 endif
 
 if executable('cargo')
@@ -223,8 +229,8 @@ if executable('cargo')
   let g:racer_cmd = s:plugins . '/racer/target/release/racer'
   let $RUST_SRC_PATH=$HOME . '/build/rust/src'
 
-  function! BuildDeoplete(info)
-    if a:info.status != 'unchanged' || a:info.force
+  function! g:BuildDeoplete(info)
+    if a:info.status !=# 'unchanged' || a:info.force
       UpdateRemotePlugins
     endif
   endfunction
@@ -233,7 +239,7 @@ if executable('cargo')
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', {
           \ 'for': 'rust',
-          \ 'do': function('BuildDeoplete')
+          \ 'do': function('g:BuildDeoplete')
           \}
   endif
   let g:deoplete#enable_at_startup=1
@@ -271,8 +277,8 @@ if !has('gui_running')
   let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 endif
 
-call plug#end()
+call g:plug#end()
 
 " Google plugin configuration
-call glaive#Install()
+call g:glaive#Install()
 Glaive codefmt plugin[mappings]
