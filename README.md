@@ -1,38 +1,45 @@
-#Vim Settings
+# vimrc
 
-I set up a repository to easily sync my Vim settings across multiple computers.
-This setup takes advantage of the NeoBundle plugin to automatically install,
-manage and update plugins. In the case that NeoBundle is not installed, I have
-written some code in `bundles.vim` that automatically clones its repository.
+My vim configuration.
 
-#Set Up
+My config strives to be:
 
-##OSX/Unix
+- Organized
+- Cross-platform
+- Backwards-compatible
 
-Open up a terminal and enter the following commands:
+These scripts should work on any machine. However, plugins and configuration
+that require functionality introduced in a newer patch level or in Neovim will
+be disabled. In addition, any plugins that require external commands that are
+not present will also be disabled.
 
-    cd
-    git clone https://github.com/euclio/vim-settings.git .vim
+Most configuration is handled in `vimrc`. All plugin configuration is handled
+by [vim-plug](https://github.com/junegunn/vim-plug.git) in `plugins.vim`.
 
-If running Vim 7.4, you're done. Otherwise, enter
+## Installation
 
-    ln -s .vim/vimrc .vimrc
-    ln -s .vim/gvimrc .gvimrc
+Ensure that `$XDG_CONFIG_HOME`, `XDG_DATA_HOME`, and `XDG_CACHE_HOME` are set to
+their defaults (or directories of your choosing). I use sh syntax here, but
+setting the variables manually in Windows should work as well.
 
-##Windows
+```sh
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
+```
 
-Open up cmd.exe and enter the following commands:
+Clone the repository to `$XDG_CONFIG_HOME`.
 
-    cd %USERPROFILE%
-    git clone https://github.com/euclio/vim-settings.git vimfiles
+```sh
+git clone https://github.com/euclio/vimrc ${XDG_CONFIG_HOME}/vim
+```
 
-If running Vim 7.4, you're done. Otherwise, enter
+Set the proper initialization variables.
 
-    copy vimfiles\win\_vimrc .
-    copy vimfiles\win\_gvimrc .
+```sh
+export VIMINIT='let $MYVIMRC=$XDG_CONFIG_HOME . "/vim/vimrc" | source $MYVIMRC'
+export GVIMINIT='let $MYGVIMRC=$XDG_CONFIG_HOME . "/vim/gvimrc" | source $MYGVIMRC'
+```
 
-These files are very minimal scripts that simply source the actual files. This
-is because Vim does not treat symlinks the same way that it does on other
-platforms. It is easiest to simply source the real files that attempt to link
-them. The actual `.vimrc` maintains `$MYVIMRC` and `$MYGVIMRC` to keep track of
-the actual files.
+Upon starting vim, all plugins should be installed automatically, provided
+`wget` or `curl` is installed.
