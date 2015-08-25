@@ -55,16 +55,36 @@ Plug 'google/vim-glaive'
 " =============================================================================
 "
 " Syntax checking on save
-Plug 'scrooloose/syntastic'
-" Languages with slow checkers should only be checked manually.
-let g:syntastic_mode_map = {
-      \ 'passive_filetypes': ['scala']
-      \}
-let g:syntastic_vim_checkers = ['vint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+if has('nvim')
+Plug 'benekastah/neomake'
+augroup neomake_after_save
+  autocmd!
+  autocmd BufReadPost,BufWritePost * Neomake
+  autocmd BufReadPost,BufWritePost *.rs Neomake! cargo
+augroup END
+let g:neomake_verbose = 0
+let g:neomake_error_sign = {
+      \ 'text': '>>',
+      \ 'texthl': 'ErrorMsg'
+      \ }
+let g:neomake_warning_sign = {
+      \ 'text': '>>',
+      \ 'texthl': 'WarningMsg'
+      \ }
+" Disable rustc checker
+let g:neomake_rust_enabled_makers = []
+else
+  Plug 'scrooloose/syntastic'
+  " Languages with slow checkers should only be checked manually.
+  let g:syntastic_mode_map = {
+        \ 'passive_filetypes': ['scala']
+        \}
+  let g:syntastic_vim_checkers = ['vint']
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+endif
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
