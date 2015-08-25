@@ -29,7 +29,7 @@ if empty(glob(s:plugin_manager))
 endif
 
 " Make sure vim-plug is on the runtime path
-let &rtp .= ',' . s:plugin_manager
+let &runtimepath .= ',' . s:plugin_manager
 
 " Create a horizontal split at the bottom when installing plugins
 let g:plug_window = 'botright new'
@@ -44,7 +44,7 @@ Plug 'google/vim-maktaba'
 
 " Workaround for vim-maktaba#158
 if has('nvim')
-  let &rtp .= ',' . s:plugins . '/vim-maktaba'
+  let &runtimepath .= ',' . s:plugins . '/vim-maktaba'
   call g:maktaba#json#python#Disable()
 endif
 
