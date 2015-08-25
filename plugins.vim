@@ -93,6 +93,9 @@ Plug 'mhinz/vim-signify'
 let g:signify_vcs_list = ['git', 'svn', 'hg']
 let g:signify_sign_change = '~'
 
+" Provides command to rename the current buffer.
+Plug 'danro/rename.vim'
+
 " =============================================================================
 " Features
 " =============================================================================
