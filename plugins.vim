@@ -125,6 +125,10 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
   Plug 'Valloric/YouCompleteMe', {
       \ 'do': './install.sh --clang-completer --system-libclang'
       \}
+  augroup ycm
+    autocmd!
+    autocmd! User YouCompleteMe call youcompleteme#Enable()
+  augroup END
   let g:ycm_confirm_extra_conf=0          " Disable .ycm_extra_conf confirmation
   let g:EclimCompletionMethod='omnifunc'  " Let YCM use Eclipse autocomplete
   " Allow automatic neco-ghc completions
