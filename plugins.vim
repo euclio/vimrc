@@ -294,6 +294,8 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 
+Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean' }
+
 " =============================================================================
 " Cosmetic
 " =============================================================================
