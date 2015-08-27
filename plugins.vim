@@ -237,7 +237,7 @@ if has('nvim')
     endif
   endfunction
 
-  Plug 'euclio/vim-markdown-composer', { 'do': function('g:BuildComposer') }
+  Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
   let g:markdown_composer_syntax_theme='hybrid'
 elseif executable('npm')
   Plug 'euclio/vim-instant-markdown', {
@@ -267,7 +267,7 @@ if executable('cargo')
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', {
           \ 'for': 'rust',
-          \ 'do': function('g:BuildDeoplete')
+          \ 'do': function('BuildDeoplete')
           \}
   endif
   let g:deoplete#enable_at_startup=1
