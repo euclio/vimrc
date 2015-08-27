@@ -34,6 +34,21 @@ let &runtimepath .= ',' . s:plugin_manager
 " Create a horizontal split at the bottom when installing plugins
 let g:plug_window = 'botright new'
 
+" Additional operating system detection
+let s:has_mac = 0
+let s:has_arch = 0
+if has('unix')
+  let s:uname = system('uname -s')
+  if s:uname =~? 'Darwin'
+    let s:has_mac = 1
+  else
+    let s:issue = system('cat /etc/issue')
+    if s:issue =~? 'Arch Linux'
+      let s:has_arch = 1
+    endif
+  endif
+endif
+
 call g:plug#begin(s:plugins)
 
 " =============================================================================
@@ -122,9 +137,21 @@ Plug 'danro/rename.vim'
 "
 " Autocompletion for Python and C-like languages
 if has('patch-7.3.584') && has('python') && executable('cmake')
-  Plug 'Valloric/YouCompleteMe', {
-      \ 'do': './install.sh --clang-completer --system-libclang'
-      \}
+  function! g:BuildYCM(info)
+    if a:info.status ==# 'installed' || a:info.force
+      let l:flags = ['--clang-completer']
+      if s:has_arch
+        " We're on Arch, so assume that the system libraries are up-to-date
+        call extend(l:flags, ['--system-libclang', '--system-boost'])
+        " Workaround for YouCompleteMe#1651
+        silent exec '!python2 install.py ' . join(l:flags)
+      else
+        silent exec '!./install.py ' . join(l:flags)
+      endif
+    endif
+  endfunction
+
+  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
   augroup ycm
     autocmd!
     autocmd! User YouCompleteMe call youcompleteme#Enable()
@@ -164,16 +191,6 @@ Plug 'dockyard/vim-easydir'
 " On Arch Linux, the exuberant-ctags executable is named 'ctags'. Elsewhere, it
 " is 'ctags-exuberant'. On Macs, the ctags executable provided is NOT exuberant
 " ctags.
-"
-" Detect OSX
-let s:has_mac = 0
-if has('unix')
-  let s:uname = system('uname -s')
-  if s:uname =~? 'Darwin'
-    let s:has_mac = 1
-  endif
-endif
-
 if executable('ctags') && !s:has_mac || executable('ctags-exuberant')
   Plug 'xolox/vim-misc'       " Dependency for easytags
   Plug 'xolox/vim-easytags'
