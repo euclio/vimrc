@@ -49,7 +49,7 @@ if has('unix')
   endif
 endif
 
-call g:plug#begin(s:plugins)
+call plug#begin(s:plugins)
 
 " =============================================================================
 " Dependencies
@@ -168,7 +168,7 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
 endif
 
 " Snippets
-if has('python')
+if has('python') && v:version >= 704
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
   let g:UltiSnipsExpandTrigger='<c-j>'
   let g:UltiSnipsJumpForwardTrigger='<c-j>'
@@ -326,8 +326,8 @@ if !has('gui_running')
   let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
 endif
 
-call g:plug#end()
+call plug#end()
 
 " Google plugin configuration
-call g:glaive#Install()
+call glaive#Install()
 Glaive codefmt plugin[mappings]
