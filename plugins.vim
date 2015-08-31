@@ -28,9 +28,6 @@ if empty(glob(s:plugin_manager))
   augroup END
 endif
 
-" Make sure vim-plug is on the runtime path
-let &runtimepath .= ',' . s:plugin_manager
-
 " Create a horizontal split at the bottom when installing plugins
 let g:plug_window = 'botright new'
 
