@@ -42,6 +42,8 @@ if has('unix')
     let s:issue = system('cat /etc/issue')
     if s:issue =~? 'Arch Linux'
       let s:has_arch = 1
+    elseif s:issue =~? 'Oracle Linux'
+      let s:has_oracle = 1
     endif
   endif
 endif
@@ -142,6 +144,9 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
         call extend(l:flags, ['--system-libclang', '--system-boost'])
         " Workaround for YouCompleteMe#1651
         silent exec '!python2 install.py ' . join(l:flags)
+      elseif s:has_oracle
+        " Don't attempt to build with clang completer; the compiler is too old
+        silent exec '!./install.py'
       else
         silent exec '!./install.py ' . join(l:flags)
       endif
