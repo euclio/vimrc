@@ -73,7 +73,7 @@ if has('nvim')
 Plug 'benekastah/neomake'
 augroup neomake_after_save
   autocmd!
-  autocmd BufReadPost,BufWritePost * Neomake
+  autocmd BufReadPost,BufWritePost * Neomake | Neomake!
   autocmd BufReadPost,BufWritePost *.rs Neomake! cargo
 augroup END
 let g:neomake_verbose = 0
