@@ -68,6 +68,7 @@ endif
 
 " Install plugins
 source $VIMHOME/plugins.vim
+nnoremap <silent> <leader>pu :PlugUpdate<cr>
 
 " Set filetype specific indentation
 filetype plugin indent on
