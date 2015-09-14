@@ -82,8 +82,8 @@ syntax sync minlines=250
 " Use Unix line endings by default
 set fileformats=unix,dos,mac
 
-" Set column width to 79 characters, and display a line at the limit
-set textwidth=79 colorcolumn=+1
+" Set column width to 80 characters, and display a line at the limit
+set textwidth=80 colorcolumn=+1
 
 " Don't wrap lines
 set nowrap
