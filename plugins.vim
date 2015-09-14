@@ -195,10 +195,11 @@ if executable('ctags') && !s:has_mac || executable('ctags-exuberant')
 endif
 
 " Fuzzy file finder
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_user_command = [
-      \ '.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'
-      \]
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes n \| ./install' }
+let g:fzf_action = {
+      \ 'ctrl-s': 'botright split'
+      \ }
+nnoremap <c-p> :FZF<cr>
 
 " Code formatting
 Plug 'google/vim-codefmt'
