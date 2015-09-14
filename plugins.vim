@@ -89,6 +89,9 @@ let g:neomake_rust_enabled_makers = []
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
+" Perforce wrapper
+Plug 'nfvs/vim-perforce'
+
 " Statusline improvements
 Plug 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled=1
@@ -110,7 +113,7 @@ runtime macros/matchit.vim
 
 " Place signs to indicate current version control diff
 Plug 'mhinz/vim-signify'
-let g:signify_vcs_list = ['git', 'svn', 'hg']
+let g:signify_vcs_list = ['git', 'svn', 'hg', 'perforce']
 let g:signify_sign_change = '~'
 
 " Provides command to rename the current buffer.
