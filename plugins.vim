@@ -57,10 +57,8 @@ call plug#begin(s:plugins)
 Plug 'google/vim-maktaba'
 
 " Workaround for vim-maktaba#158
-if has('nvim')
-  let &runtimepath .= ',' . s:plugins . '/vim-maktaba'
-  call g:maktaba#json#python#Disable()
-endif
+let &runtimepath .= ',' . s:plugins . '/vim-maktaba'
+call g:maktaba#json#python#Disable()
 
 Plug 'google/vim-glaive'
 
