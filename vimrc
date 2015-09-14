@@ -263,6 +263,9 @@ function! RemoveTrailingSpaces()
   call cursor(l, c)
 endfunction
 
+" Enable mouse in all modes (don't overuse it)
+set mouse=a
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
