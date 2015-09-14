@@ -69,11 +69,6 @@ endif
 " Install plugins
 source $VIMHOME/plugins.vim
 
-" Allow local configuration to override
-if filereadable(expand('~/.vimrc_local'))
-  source ~/.vimrc_local
-endif
-
 " Set filetype specific indentation
 filetype plugin indent on
 
@@ -275,4 +270,9 @@ if &t_Co >= 88
   silent! colorscheme nocturne
 else
   colorscheme default
+endif
+
+" Allow local configuration to override
+if filereadable(expand('~/.vimrc_local'))
+  source ~/.vimrc_local
 endif
