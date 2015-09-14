@@ -231,7 +231,7 @@ Plug 'jdonaldson/vaxe', { 'for': ['haxe', 'hss', 'hxml', 'lime', 'nmml'] }
 let g:vaxe_lime_target='flash'                  " Set default target to flash
 
 " Markdown preview
-if has('nvim')
+if has('nvim') && executable('cargo')
   function! g:BuildComposer(info)
     if a:info.status !=# 'unchanged' || a:info.force
       !cargo build --release
