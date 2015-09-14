@@ -203,12 +203,6 @@ let g:ctrlp_user_command = [
 " Code formatting
 Plug 'google/vim-codefmt'
 
-" Automatically format on save for all filetypes supported by clang-format
-augroup clangformat
-  autocmd!
-  autocmd FileType c,cpp,java,javascript,proto,python AutoFormatBuffer
-augroup END
-
 " =============================================================================
 " Languages
 " =============================================================================
