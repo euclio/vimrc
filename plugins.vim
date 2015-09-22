@@ -197,7 +197,8 @@ endif
 " Fuzzy file finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes n \| ./install' }
 let g:fzf_action = {
-      \ 'ctrl-s': 'botright split'
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
       \ }
 nnoremap <c-p> :FZF<cr>
 
