@@ -1,4 +1,9 @@
 compiler perl
 
 " Show perldoc for the current file
-nnoremap <silent> <leader>pd :silent !perldoc %<cr> <bar> :redraw!<cr>
+if has('nvim')
+  nnoremap <silent> <leader>pd :split +terminal\ perldoc\ %<cr>
+else
+  nnoremap <silent> <leader>pd :silent !perldoc %<cr> <bar> :redraw!<cr>
+endif
+
