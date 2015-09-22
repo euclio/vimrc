@@ -186,6 +186,9 @@ if executable('ctags') && !s:has_mac || executable('ctags-exuberant')
   Plug 'xolox/vim-misc'       " Dependency for easytags
   Plug 'xolox/vim-easytags'
   let g:easytags_file=$VIMDATA . '/tags'
+  if !(has('win32') || has('win64'))
+    let g:easytags_async=1
+  endif
 
   " Class outline viewer
   if has('patch-7.0.167')
