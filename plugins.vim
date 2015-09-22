@@ -303,6 +303,8 @@ Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean' }
 
+Plug 'groenewege/vim-less', { 'for': 'less' }
+
 " =============================================================================
 " Cosmetic
 " =============================================================================
