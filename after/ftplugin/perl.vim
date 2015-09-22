@@ -7,3 +7,5 @@ else
   nnoremap <silent> <leader>pd :silent !perldoc %<cr> <bar> :redraw!<cr>
 endif
 
+" Highlight known function tags as functions
+highlight link perlFunctionTag Function
