@@ -142,11 +142,7 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
     endif
   endfunction
 
-  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-  augroup ycm
-    autocmd!
-    autocmd! User YouCompleteMe call youcompleteme#Enable()
-  augroup END
+  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': [] }
   let g:ycm_confirm_extra_conf=0          " Disable .ycm_extra_conf confirmation
   let g:EclimCompletionMethod='omnifunc'  " Let YCM use Eclipse autocomplete
   " Allow automatic neco-ghc completions
@@ -160,7 +156,7 @@ endif
 
 " Snippets
 if has('python') && v:version >= 704
-  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+  Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
   let g:UltiSnipsExpandTrigger='<c-j>'
   let g:UltiSnipsJumpForwardTrigger='<c-j>'
   let g:UltiSnipsJumpBackwardTrigger='<c-k>'
@@ -320,6 +316,8 @@ endif
 
 call plug#end()
 
-" Google plugin configuration
-call glaive#Install()
-Glaive codefmt plugin[mappings]
+augroup load_slow_plugins
+  autocmd!
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+                    \ | call youcompleteme#Enable() | autocmd! load_slow_plugins
+augroup END
