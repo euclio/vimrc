@@ -193,7 +193,7 @@ if executable('ctags') && !s:has_mac || executable('ctags-exuberant')
 endif
 
 " Fuzzy file finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes n \| ./install' }
+Plug 'junegunn/fzf', { 'dir': $XDG_DATA_HOME . '/fzf', 'do': 'yes n \| ./install' }
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
