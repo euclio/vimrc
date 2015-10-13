@@ -262,6 +262,9 @@ endfunction
 " Enable mouse in all modes (don't overuse it)
 set mouse=a
 
+" Make Y behavior consistent with C and D
+nnoremap Y y$
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
