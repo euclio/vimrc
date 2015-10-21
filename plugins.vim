@@ -34,6 +34,7 @@ let g:plug_window = 'botright new'
 " Additional operating system detection
 let s:has_mac = 0
 let s:has_arch = 0
+let s:has_oracle = 0
 if has('unix')
   let s:uname = system('uname -s')
   if s:uname =~? 'Darwin'
