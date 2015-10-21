@@ -149,10 +149,8 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
   " Allow automatic neco-ghc completions
   let g:ycm_semantic_triggers={
               \ 'haskell': ['.'],
+              \ 'rust': ['::', '.'],
               \}
-  let g:ycm_filetype_blacklist = {
-        \ 'rust': 1
-        \}
 endif
 
 " Snippets
@@ -256,25 +254,9 @@ if executable('ghc-mod')
   let g:necoghc_enable_detailed_browse=1          " Show types of symbols
 endif
 
-if executable('cargo')
-  Plug 'phildawes/racer', { 'for': 'rust', 'do': 'cargo build --release' }
-  let g:racer_cmd = s:plugins . '/racer/target/release/racer'
-  let $RUST_SRC_PATH=$HOME . '/build/rust/src'
-
-  function! g:BuildDeoplete(info)
-    if a:info.status !=# 'unchanged' || a:info.force
-      UpdateRemotePlugins
-    endif
-  endfunction
-
-  " Until YouCompleteMe supports Rust, let's use a plugin that does.
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', {
-          \ 'for': 'rust',
-          \ 'do': function('BuildDeoplete')
-          \}
-  endif
-  let g:deoplete#enable_at_startup=1
+if executable('racer')
+  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+  let $RUST_SRC_PATH='/usr/src/rust/src'
 endif
 
 " Syntax highlighting
