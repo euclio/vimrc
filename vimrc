@@ -270,6 +270,10 @@ set mouse=a
 " Make Y behavior consistent with C and D
 nnoremap Y y$
 
+" Move cursor as usual through wrapped lines
+nnoremap j gj
+nnoremap k gk
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
