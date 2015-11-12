@@ -274,6 +274,9 @@ nnoremap Y y$
 nnoremap j gj
 nnoremap k gk
 
+" Open new splits below and to the right of the current window
+set splitbelow splitright
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
