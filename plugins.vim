@@ -275,7 +275,7 @@ Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 
 Plug 'alisdair/vim-armasm', { 'for': 'armasm' }
 
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim'
 
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
