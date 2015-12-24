@@ -258,6 +258,10 @@ endif
 if executable('racer')
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
   let $RUST_SRC_PATH='/usr/src/rust/src'
+  if !isdirectory($RUST_SRC_PATH)
+    " Fallback to a cloned repository
+    let $RUST_SRC_PATH=$HOME . '/repos/rust/src'
+  endif
 endif
 
 " Syntax highlighting
