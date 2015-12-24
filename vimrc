@@ -14,6 +14,7 @@ scriptencoding utf8
 " `has('python')`.
 if has('nvim')
   let g:python_host_prog='/usr/bin/python2'
+  let g:python3_host_prog='/usr/bin/python3'
 endif
 
 " Store vim configuration in $XDG_CONFIG_HOME
