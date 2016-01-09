@@ -130,6 +130,9 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
   function! g:BuildYCM(info)
     if a:info.status ==# 'installed' || a:info.force
       let l:flags = ['--clang-completer']
+      if executable('cargo')
+        call extend(l:flags, ['--racer-completer'])
+      endif
       if s:has_arch
         " We're on Arch, so assume that the system libraries are up-to-date
         call extend(l:flags, ['--system-libclang', '--system-boost'])
@@ -150,8 +153,13 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
   " Allow automatic neco-ghc completions
   let g:ycm_semantic_triggers={
               \ 'haskell': ['.'],
-              \ 'rust': ['::', '.'],
               \}
+  let s:rust_src_path='/usr/src/rust/src'
+  if !isdirectory(s:rust_src_path)
+    " Fallback to a cloned repository
+    let s:rust_src_path=$HOME . '/repos/rust/src'
+  endif
+  let g:ycm_rust_src_path=s:rust_src_path
 endif
 
 " Snippets
@@ -253,15 +261,6 @@ endif
 if executable('ghc-mod')
   Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
   let g:necoghc_enable_detailed_browse=1          " Show types of symbols
-endif
-
-if executable('racer')
-  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-  let $RUST_SRC_PATH='/usr/src/rust/src'
-  if !isdirectory($RUST_SRC_PATH)
-    " Fallback to a cloned repository
-    let $RUST_SRC_PATH=$HOME . '/repos/rust/src'
-  endif
 endif
 
 " Syntax highlighting
