@@ -133,6 +133,9 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
       if executable('cargo')
         call extend(l:flags, ['--racer-completer'])
       endif
+      if executable('npm')
+        call extend(l:flags, ['--tern-completer'])
+      endif
       if s:has_arch
         " We're on Arch, so assume that the system libraries are up-to-date
         call extend(l:flags, ['--system-libclang', '--system-boost'])
@@ -225,11 +228,6 @@ if executable('latexmk')
   Plug 'LaTeX-Box-Team/LaTeX-Box', { 'for': 'tex' }
   let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
   let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
-endif
-
-" JavaScript omnicompletion
-if executable('npm')
-  Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 endif
 
 " JSON Highlight and indent plugin
