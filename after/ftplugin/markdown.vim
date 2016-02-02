@@ -1,6 +1,3 @@
-" Enable spellchecking
-setlocal spell
-
 " Automatically wrap lines at 80 characters
 setlocal textwidth=80
 

@@ -118,6 +118,12 @@ set nojoinspaces
 " Set default dictionary to english
 set spelllang=en_us
 
+" Enable spellcheck if the buffer is modifiable
+augroup spelling
+  autocmd!
+  autocmd BufRead * if &modifiable | setlocal spell | endif
+augroup END
+
 " =============================================================================
 " Editing Window Improvements
 " =============================================================================

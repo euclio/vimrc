@@ -1,6 +1,3 @@
-" Enable spellchecking
-setlocal spell
-
 " Don't check if sentences start with a capital letter
 setlocal spellcapcheck=
 

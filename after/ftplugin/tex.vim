@@ -1,6 +1,3 @@
-" Enable spellchecking
-setlocal spell
-
 " Enable automatic text formatting
 setlocal formatoptions+=t
 
