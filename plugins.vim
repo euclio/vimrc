@@ -94,7 +94,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'nfvs/vim-perforce'
 
 " Statusline improvements
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_min_count=2
 let g:airline#extensions#tabline#buffer_nr_show=1
