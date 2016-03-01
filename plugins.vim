@@ -265,6 +265,8 @@ endif
 " Syntax highlighting
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
+
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 Plug 'kballard/vim-fish', { 'for': 'fish' }
