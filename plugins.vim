@@ -57,10 +57,6 @@ call plug#begin(s:plugins)
 " Google plugins have some required setup...
 Plug 'google/vim-maktaba'
 
-" Workaround for vim-maktaba#158
-let &runtimepath .= ',' . s:plugins . '/vim-maktaba'
-call g:maktaba#json#python#Disable()
-
 Plug 'google/vim-glaive'
 
 " =============================================================================
