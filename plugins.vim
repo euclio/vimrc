@@ -138,14 +138,11 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
       if s:has_arch
         " We're on Arch, so assume that the system libraries are up-to-date
         call extend(l:flags, ['--system-libclang', '--system-boost'])
-        " Workaround for YouCompleteMe#1651
-        exec '!python2 install.py ' . join(l:flags)
       elseif s:has_oracle
         " Don't attempt to build with clang completer; the compiler is too old
-        exec '!./install.py'
-      else
-        exec '!./install.py ' . join(l:flags)
+        let l:flags = []
       endif
+      exec '!./install.py ' . join(l:flags)
     endif
   endfunction
 
