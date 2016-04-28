@@ -77,11 +77,9 @@ augroup neomake_after_save
 augroup END
 let g:neomake_verbose = 0
 let g:neomake_error_sign = {
-      \ 'text': '>>',
       \ 'texthl': 'ErrorMsg'
       \ }
 let g:neomake_warning_sign = {
-      \ 'text': '>>',
       \ 'texthl': 'WarningMsg'
       \ }
 " Disable rustc checker
