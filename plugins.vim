@@ -104,6 +104,7 @@ let g:airline_left_alt_sep='▒'
 let g:airline_right_sep='░▒▓'
 let g:airline_right_alt_sep='░'
 let g:airline_theme='badwolf'
+let g:airline_detect_spell=0
 
 " Extended % matching
 runtime macros/matchit.vim
