@@ -132,10 +132,7 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
       if executable('npm')
         call extend(l:flags, ['--tern-completer'])
       endif
-      if s:has_arch
-        " We're on Arch, so assume that the system libraries are up-to-date
-        call extend(l:flags, ['--system-libclang', '--system-boost'])
-      elseif s:has_oracle
+      if s:has_oracle
         " Don't attempt to build with clang completer; the compiler is too old
         let l:flags = []
       endif
@@ -156,6 +153,11 @@ if has('patch-7.3.584') && has('python') && executable('cmake')
     let s:rust_src_path=$HOME . '/repos/rust/src'
   endif
   let g:ycm_rust_src_path=s:rust_src_path
+
+  if s:has_arch
+    " Force YCM to use a Python 3 interpreter
+    let g:ycm_server_python_interpreter='/usr/bin/python3'
+  endif
 endif
 
 " Snippets
@@ -166,7 +168,11 @@ if has('python') && v:version >= 704
   let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 
   " Avoid conflict with YCM's python
-  let g:UltiSnipsUsePythonVersion=2
+  if s:has_arch
+    let g:UltiSnipsUsePythonVersion=3
+  else
+    let g:UltiSnipsUsePythonVersion=2
+  endif
 endif
 
 " Automatic completion of parenthesis, brackets, etc.
