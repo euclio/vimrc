@@ -121,44 +121,28 @@ Plug 'danro/rename.vim'
 " =============================================================================
 " Features
 " =============================================================================
-"
-" Autocompletion for Python and C-like languages
-if has('patch-7.3.584') && has('python') && executable('cmake')
-  function! g:BuildYCM(info)
-    if a:info.status ==# 'installed' || a:info.force
-      let l:flags = ['--clang-completer']
-      if executable('cargo')
-        call extend(l:flags, ['--racer-completer'])
-      endif
-      if executable('npm')
-        call extend(l:flags, ['--tern-completer'])
-      endif
-      if s:has_oracle
-        " Don't attempt to build with clang completer; the compiler is too old
-        let l:flags = []
-      endif
-      exec '!./install.py ' . join(l:flags)
-    endif
+
+" Autocompletion
+if has('nvim') && has('python3')
+  function! DoRemote(arg)
+    UpdateRemotePlugins
   endfunction
 
-  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': [] }
-  let g:ycm_confirm_extra_conf=0          " Disable .ycm_extra_conf confirmation
-  let g:EclimCompletionMethod='omnifunc'  " Let YCM use Eclipse autocomplete
-  " Allow automatic neco-ghc completions
-  let g:ycm_semantic_triggers={
-              \ 'haskell': ['.'],
-              \}
+  Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+  let g:deoplete#enable_at_startup = 1
+  inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+  " Rust
+  Plug 'racer-rust/vim-racer'
   let s:rust_src_path='/usr/src/rust/src'
   if !isdirectory(s:rust_src_path)
     " Fallback to a cloned repository
     let s:rust_src_path=$HOME . '/repos/rust/src'
   endif
-  let g:ycm_rust_src_path=s:rust_src_path
-
-  if s:has_arch
-    " Force YCM to use a Python 3 interpreter
-    let g:ycm_server_python_interpreter='/usr/bin/python3'
-  endif
+  let g:racer_cmd=$HOME . '/.cargo/bin/racer'
+  let $RUST_SRC_PATH=s:rust_src_path
+  let $CARGO_HOME = $HOME . '/.cargo'
 endif
 
 " Snippets
@@ -285,7 +269,10 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 
-Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean' }
+let $PATH=$PATH . ':' . s:plugins . '/perlomni.vim/bin'
+Plug 'c9s/perlomni.vim', { 'for': 'perl' }
+
+Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean try-tiny' }
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
 
@@ -306,6 +293,8 @@ call plug#end()
 
 augroup load_slow_plugins
   autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                    \ | call youcompleteme#Enable() | autocmd! load_slow_plugins
+  " autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+  "                   \ | call youcompleteme#Enable() | autocmd! load_slow_plugins
+  autocmd InsertEnter * call plug#load('ultisnips')
+                    \ | autocmd! load_slow_plugins
 augroup END
