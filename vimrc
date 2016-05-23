@@ -284,6 +284,11 @@ nnoremap k gk
 " Open new splits below and to the right of the current window
 set splitbelow splitright
 
+" Don't show message when inserting completions
+if has('patch-7.4.314')
+  set shortmess+=c
+endif
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
