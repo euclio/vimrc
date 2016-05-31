@@ -291,6 +291,9 @@ set splitbelow splitright
 set background=dark
 if &t_Co >= 88
   silent! colorscheme nocturne
+
+  " Mute Highlight listchar highlighting
+  hi SpecialKey guifg=#303030 guibg=NONE gui=NONE
 else
   colorscheme default
 endif
