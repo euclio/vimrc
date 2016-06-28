@@ -283,12 +283,6 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 " My personal colorscheme
 Plug 'euclio/vim-nocturne'
 
-" Allow GUI colorschemes in 256-color or 88-color terminals
-if !has('gui_running')
-  Plug 'godlygeek/CSApprox'
-  let g:CSApprox_verbose_level=0      " Disable warnings for <88 colors
-endif
-
 call plug#end()
 
 augroup load_slow_plugins

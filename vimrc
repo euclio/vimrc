@@ -295,6 +295,7 @@ endif
 " Use a dark colorscheme
 set background=dark
 if &t_Co >= 88
+  set termguicolors
   silent! colorscheme nocturne
 
   " Mute Highlight listchar highlighting
