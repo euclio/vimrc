@@ -15,6 +15,12 @@ scriptencoding utf8
 if has('nvim')
   let g:python_host_prog='/usr/bin/python2'
   let g:python3_host_prog='/usr/bin/python3'
+
+  " Use Homebrew Python on Macs
+  if has('mac')
+    let g:python_host_prog='/usr/bin/python'
+    let g:python3_host_prog='/usr/local/bin/python3'
+  endif
 endif
 
 " Store vim configuration in $XDG_CONFIG_HOME
