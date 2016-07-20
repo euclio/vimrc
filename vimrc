@@ -68,7 +68,7 @@ let mapleader=' '
 let maplocalleader=mapleader
 
 " Ensure that vim uses the correct shell
-if has('patch-7.4.276') && executable('fish')
+if has('patch-7.4.276') && executable('/bin/fish')
   set shell=/bin/fish
 else
   if has('win32') || has('win64')
