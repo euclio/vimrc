@@ -310,7 +310,7 @@ else
   colorscheme default
 endif
 
-" Allow local configuration to override
-if filereadable(expand('~/.vimrc_local'))
-  source ~/.vimrc_local
+" Allow local configuration to override this configuration
+if filereadable(expand('$XDG_DATA_HOME/vimrc'))
+  source $XDG_DATA_HOME/vimrc
 endif
