@@ -315,6 +315,6 @@ else
 endif
 
 " Allow local configuration to override this configuration
-if filereadable(expand('$XDG_DATA_HOME/vimrc'))
-  source $XDG_DATA_HOME/vimrc
+if filereadable(expand('$HOME/.local/vimrc'))
+  source $HOME/.local/vimrc
 endif
