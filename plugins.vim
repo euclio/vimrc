@@ -183,7 +183,7 @@ if executable('ctags') && !s:has_mac || executable('ctags-exuberant')
   " Class outline viewer
   if has('patch-7.0.167')
     Plug 'majutsushi/tagbar'
-    nnoremap <f8> :TagbarToggle<cr>
+    nnoremap <leader>tb :TagbarToggle<cr>
   endif
 endif
 
