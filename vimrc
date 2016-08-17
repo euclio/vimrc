@@ -301,7 +301,11 @@ endif
 " Use a dark colorscheme
 set background=dark
 if &t_Co >= 88
-  set termguicolors
+  " Use GUI colors in the terminal if supported
+  if has('termguicolors')
+    set termguicolors
+  endif
+
   silent! colorscheme nocturne
 
   " Mute Highlight listchar highlighting
