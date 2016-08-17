@@ -174,8 +174,7 @@ Plug 'dockyard/vim-easydir'
 " is 'ctags-exuberant'. On Macs, the ctags executable provided is NOT exuberant
 " ctags.
 if executable('ctags') && !s:has_mac || executable('ctags-exuberant')
-  Plug 'xolox/vim-misc'       " Dependency for easytags
-  Plug 'xolox/vim-easytags'
+  Plug 'xolox/vim-easytags' | Plug 'xolox/vim-misc'
   let g:easytags_file=$VIMDATA . '/tags'
   if !(has('win32') || has('win64'))
     let g:easytags_async=1
