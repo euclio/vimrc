@@ -314,6 +314,9 @@ else
   colorscheme default
 endif
 
+" Enable cursor shape switching on mode change
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 " Allow local configuration to override this configuration
 if filereadable(expand('$HOME/.local/vimrc'))
   source $HOME/.local/vimrc
