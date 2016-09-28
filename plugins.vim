@@ -72,12 +72,24 @@ augroup neomake_after_save
   autocmd BufReadPost,BufWritePost *.rs if has('nvim') | Neomake! cargo | endif
 augroup END
 let g:neomake_verbose = 0
+
 let g:neomake_error_sign = {
-      \ 'texthl': 'ErrorMsg'
+      \ 'text': '✘',
+      \ 'texthl': 'ErrorMsg',
       \ }
 let g:neomake_warning_sign = {
-      \ 'texthl': 'WarningMsg'
+      \ 'text': '♦',
+      \ 'texthl': 'WarningMsg',
       \ }
+let g:neomake_message_sign = {
+      \ 'text': '→',
+      \ 'texthl': 'Normal',
+      \ }
+let g:neomake_info_sign = {
+      \ 'text': '…',
+      \ 'texthl': 'Normal',
+      \ }
+
 " Disable rustc checker
 let g:neomake_rust_enabled_makers = []
 
