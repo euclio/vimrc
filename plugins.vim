@@ -269,6 +269,7 @@ Plug 'alisdair/vim-armasm', { 'for': 'armasm' }
 
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
+let g:rustfmt_fail_silently = 1
 
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
