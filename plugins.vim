@@ -147,13 +147,7 @@ if has('nvim') && has('python3')
 
   " Rust
   Plug 'racer-rust/vim-racer'
-  let s:rust_src_path='/usr/src/rust/src'
-  if !isdirectory(s:rust_src_path)
-    " Fallback to a cloned repository
-    let s:rust_src_path=$HOME . '/repos/rust/src'
-  endif
   let g:racer_cmd=$HOME . '/.cargo/bin/racer'
-  let $RUST_SRC_PATH=s:rust_src_path
   let $CARGO_HOME = $HOME . '/.cargo'
 endif
 
