@@ -64,12 +64,10 @@ Plug 'google/vim-glaive'
 " =============================================================================
 "
 " Syntax checking on save
-Plug 'benekastah/neomake'
-augroup neomake_after_save
+Plug 'neomake/neomake'
+augroup run_neomake
   autocmd!
-  autocmd BufReadPost,BufWritePost *
-        \ Neomake | if has('nvim') | Neomake! | endif
-  autocmd BufReadPost,BufWritePost *.rs if has('nvim') | Neomake! cargo | endif
+  autocmd BufReadPost,BufWritePost * Neomake
 augroup END
 let g:neomake_verbose = 1
 
