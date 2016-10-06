@@ -295,6 +295,9 @@ if has('patch-7.4.314')
   set shortmess+=c
 endif
 
+" Postpone redrawing the screen for things like repeated macros or reindenting
+set lazyredraw
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
