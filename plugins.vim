@@ -71,7 +71,7 @@ augroup neomake_after_save
         \ Neomake | if has('nvim') | Neomake! | endif
   autocmd BufReadPost,BufWritePost *.rs if has('nvim') | Neomake! cargo | endif
 augroup END
-let g:neomake_verbose = 0
+let g:neomake_verbose = 1
 
 let g:neomake_error_sign = {
       \ 'text': '✘',
