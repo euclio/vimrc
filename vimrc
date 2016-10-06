@@ -313,6 +313,17 @@ if &t_Co >= 88
 
   " Mute Highlight listchar highlighting
   hi SpecialKey guifg=#303030 guibg=NONE gui=NONE
+
+  " Highlight trailing whitespace when not in insert mode
+  hi ExtraWhitespace guifg=red guibg=red
+  match ExtraWhitespace /\s\+$/
+  augroup whitespace
+    autocmd!
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+  augroup END
 else
   colorscheme default
 endif
