@@ -90,9 +90,6 @@ let g:neomake_info_sign = {
       \ 'texthl': 'Normal',
       \ }
 
-" Disable rustc checker
-let g:neomake_rust_enabled_makers = []
-
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
