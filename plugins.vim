@@ -192,12 +192,14 @@ let g:fzf_action = {
 nnoremap <c-p> :FZF<cr>
 
 " =============================================================================
-" Languages
+" Language Plugins
 " =============================================================================
-"
-" Filetype plugin for Scala and SBT
-Plug 'derekwyatt/vim-scala', { 'for': ['scala', 'sbt.scala'] }
-Plug 'derekwyatt/vim-sbt', { 'for': 'sbt.scala' }
+
+" Haskell omnifunc
+if executable('ghc-mod')
+  Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+  let g:necoghc_enable_detailed_browse=1          " Show types of symbols
+endif
 
 " LaTeX compilation commands and autocomplete
 if executable('latexmk')
@@ -206,14 +208,7 @@ if executable('latexmk')
   let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
 endif
 
-" JSON Highlight and indent plugin
-Plug 'elzr/vim-json', { 'for': 'json' }
-
-" Syntax highlighting, indentation, etc. for haxe
-Plug 'jdonaldson/vaxe', { 'for': ['haxe', 'hss', 'hxml', 'lime', 'nmml'] }
-let g:vaxe_lime_target='flash'                  " Set default target to flash
-
-" Markdown preview
+" Markdown automatic HTML preview
 if has('nvim') && executable('cargo')
   function! g:BuildComposer(info)
     if a:info.status !=# 'unchanged' || a:info.force
@@ -231,43 +226,31 @@ elseif executable('npm')
         \}
 endif
 
-" Haskell omnifunc
-if executable('ghc-mod')
-  Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  let g:necoghc_enable_detailed_browse=1          " Show types of symbols
-endif
+" Filetype plugins
 
-" Syntax highlighting
-Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
-
-Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
-
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-
-Plug 'kballard/vim-fish', { 'for': 'fish' }
-
-Plug 'othree/html5.vim', { 'for': ['html', 'jinja'] }
-
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
-
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
-
-Plug 'alisdair/vim-armasm', { 'for': 'armasm' }
-
-Plug 'rust-lang/rust.vim'
+Plug 'alisdair/vim-armasm',                 { 'for': 'armasm' }
+Plug 'hail2u/vim-css3-syntax',              { 'for': ['css', 'scss'] }
+Plug 'kballard/vim-fish',                   { 'for': 'fish' }
+Plug 'jdonaldson/vaxe',                     { 'for': ['haxe', 'hss', 'hxml',
+                                                    \ 'lime', 'nmml'] }
+let g:vaxe_lime_target='flash'                  " Set default target to flash
+Plug 'othree/html5.vim',                    { 'for': ['html', 'jinja'] }
+Plug 'mustache/vim-mustache-handlebars',    { 'for': 'html.handlebars' }
+Plug 'digitaltoad/vim-jade',                { 'for': 'jade' }
+Plug 'Glench/Vim-Jinja2-Syntax',            { 'for': 'jinja' }
+Plug 'elzr/vim-json',                       { 'for': 'json' }
+Plug 'groenewege/vim-less',                 { 'for': 'less' }
+Plug 'c9s/perlomni.vim',                    { 'for': 'perl' }
+let $PATH=$PATH . ':' . s:plugins . '/perlomni.vim/bin'
+Plug 'vim-perl/vim-perl',                   { 'for': 'perl',
+                                              \ 'do': 'make clean try-tiny' }
+Plug 'rust-lang/rust.vim',                  { 'for': 'rust' }
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 1
-
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-
-Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
-
-let $PATH=$PATH . ':' . s:plugins . '/perlomni.vim/bin'
-Plug 'c9s/perlomni.vim', { 'for': 'perl' }
-
-Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean try-tiny' }
-
-Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'derekwyatt/vim-scala',                { 'for': ['scala', 'sbt.scala'] }
+Plug 'derekwyatt/vim-sbt',                  { 'for': 'sbt.scala' }
+Plug 'cespare/vim-toml',                    { 'for': 'toml' }
+Plug 'avakhov/vim-yaml',                    { 'for': 'yaml' }
 
 " =============================================================================
 " Cosmetic
