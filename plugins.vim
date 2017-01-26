@@ -195,6 +195,9 @@ nnoremap <c-p> :FZF<cr>
 " Undo tree viewer
 Plug 'sjl/gundo.vim'
 
+" Unit-testing framework
+Plug 'junegunn/vader.vim'
+
 " =============================================================================
 " Language Plugins
 " =============================================================================
