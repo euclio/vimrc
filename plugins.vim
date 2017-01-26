@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 " =============================================================================
-" Plugin Manager Setup
+" Plugin Manager Setup {{{
 " =============================================================================
 "
 " Install the plugin manager if it doesn't exist
@@ -48,6 +48,7 @@ if has('unix')
     endif
   endif
 endif
+" }}}
 
 call plug#begin(s:plugins)
 
