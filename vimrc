@@ -294,6 +294,9 @@ endif
 " Postpone redrawing the screen for things like repeated macros or reindenting
 set lazyredraw
 
+" When scrolling sideways, move the screen in smaller increments
+set sidescroll=1
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
