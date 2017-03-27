@@ -109,6 +109,7 @@ let g:airline#extensions#tabline#left_sep=''
 let g:airline#extensions#tabline#right_sep=''
 let g:airline#extensions#whitespace#enabled=1
 let g:airline#extensions#whitespace#symbol='µ'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " Extended % matching
 runtime macros/matchit.vim
