@@ -255,12 +255,6 @@ let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
 let g:rustfmt_autosave=1                        " Don't rustfmt on save
 let g:rustfmt_fail_silently=1                   " Don't report rustfmt errors
 
-" Filetype plugins not supported by vim-polyglot
-Plug 'alisdair/vim-armasm',                 { 'for': 'armasm' }
-Plug 'jdonaldson/vaxe',                     { 'for': ['haxe', 'hss', 'hxml',
-                                                    \ 'lime', 'nmml'] }
-let g:vaxe_lime_target='flash'                  " Set default target to flash
-
 " =============================================================================
 " Cosmetic
 " =============================================================================
