@@ -55,7 +55,17 @@ call plug#begin(s:plugins)
 " =============================================================================
 " Interface
 " =============================================================================
-"
+
+" Signs and highlighting for errors, etc.
+let s:error_sign = '✘'
+let s:error_hl = 'ErrorMsg'
+let s:warning_sign = '♦'
+let s:warning_hl = 'WarningMsg'
+let s:message_sign = '→'
+let s:message_hl = 'Normal'
+let s:info_sign = '…'
+let s:info_hl = 'Normal'
+
 " Syntax checking on save
 Plug 'neomake/neomake'
 augroup run_neomake
@@ -63,22 +73,22 @@ augroup run_neomake
   autocmd BufReadPost,BufWritePost * Neomake
 augroup END
 let g:neomake_verbose = 1
-
+let g:neomake_rust_enabled_makers=[]
 let g:neomake_error_sign = {
-      \ 'text': '✘',
-      \ 'texthl': 'ErrorMsg',
+      \ 'text': s:error_sign,
+      \ 'texthl': s:error_hl,
       \ }
 let g:neomake_warning_sign = {
-      \ 'text': '♦',
-      \ 'texthl': 'WarningMsg',
+      \ 'text': s:warning_sign,
+      \ 'texthl': s:warning_hl,
       \ }
 let g:neomake_message_sign = {
-      \ 'text': '→',
-      \ 'texthl': 'Normal',
+      \ 'text': s:message_sign,
+      \ 'texthl': s:message_hl,
       \ }
 let g:neomake_info_sign = {
-      \ 'text': '…',
-      \ 'texthl': 'Normal',
+      \ 'text': s:info_sign,
+      \ 'texthl': s:info_hl,
       \ }
 
 " Git wrapper
@@ -149,11 +159,6 @@ if has('nvim') && has('python3')
   let g:deoplete#enable_at_startup = 1
   inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
   inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-  " Rust
-  Plug 'racer-rust/vim-racer'
-  let g:racer_cmd=$HOME . '/.cargo/bin/racer'
-  let $CARGO_HOME = $HOME . '/.cargo'
 endif
 
 " Snippets
@@ -215,6 +220,47 @@ Plug 'junegunn/vader.vim'
 " =============================================================================
 " Language Plugins
 " =============================================================================
+
+" Language server support
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+let g:LanguageClient_autoStart = 1
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <leader>r :call LanguageClient_textDocument_rename()<CR>
+
+let g:LanguageClient_diagnosticsDisplay = {
+      \  1: {
+      \    'name': 'Error',
+      \    'texthl': s:error_hl,
+      \    'signText': s:error_sign,
+      \    'signTexthl': s:error_hl,
+      \  },
+      \  2: {
+      \    'name': 'Warning',
+      \    'texthl': s:warning_hl,
+      \    'signText': s:warning_sign,
+      \    'signTexthl': s:warning_hl,
+      \  },
+      \  3: {
+      \    'name': 'Information',
+      \    'texthl': s:info_hl,
+      \    'signText': s:info_sign,
+      \    'signTexthl': s:info_hl,
+      \  },
+      \  4: {
+      \    'name': 'Hint',
+      \    'texthl': s:message_hl,
+      \    'signText': s:message_sign,
+      \    'signTexthl': s:message_hl,
+      \  },
+      \ }
+let g:LanguageClient_serverCommands = {}
+
+" Rust language server
+if executable('rls')
+  let g:LanguageClient_serverCommands['rust'] = ['rls', '+nightly']
+endif
 
 " Haskell omnifunc
 if executable('ghc-mod')
