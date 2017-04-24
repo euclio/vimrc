@@ -1,1 +1,1 @@
-autocmd FileType python let b:delimitMate_nesting_quotes = ['"']
+let b:delimitMate_nesting_quotes = ['"']
