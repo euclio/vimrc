@@ -273,21 +273,19 @@ Plug 'c9s/perlomni.vim', { 'for': 'perl' }
 let $PATH.=':' . s:plugins . 'perlomni.vim/bin'
 
 " Markdown automatic HTML preview
-if has('nvim') && executable('cargo')
+if executable('cargo')
   function! g:BuildComposer(info)
     if a:info.status !=# 'unchanged' || a:info.force
-      !cargo build --release
-      UpdateRemotePlugins
+      if has('nvim')
+        !cargo build --release
+      else
+        !cargo build --release --no-default-features --features json-rpc
+      endif
     endif
   endfunction
 
   Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
   let g:markdown_composer_syntax_theme='hybrid'
-elseif executable('npm')
-  Plug 'euclio/vim-instant-markdown', {
-        \ 'for': 'markdown',
-        \ 'do': 'npm install euclio/vim-instant-markdown-d'
-        \}
 endif
 
 " 100+ common filetype plugins
