@@ -311,7 +311,14 @@ if &t_Co >= 88
   silent! colorscheme nocturne
 
   " Mute Highlight listchar highlighting
-  hi SpecialKey guifg=#303030 guibg=NONE gui=NONE
+  if has('nvim')
+    hi Whitespace guifg=#303030 guibg=NONE gui=NONE
+
+    " Use Tag highlighting for special keys
+    hi! link SpecialKey Tag
+  else
+    hi SpecialKey guifg=#303030 guibg=NONE gui=NONE
+  endif
 
   " Highlight trailing whitespace when not in insert mode
   hi ExtraWhitespace guifg=red guibg=red
