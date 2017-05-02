@@ -328,7 +328,9 @@ else
 endif
 
 " Enable cursor shape switching on mode change
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+if has('nvim')
+  set guicursor=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
+endif
 
 " Allow local configuration to override this configuration
 let &runtimepath.=',~/.local/vim'
