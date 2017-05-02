@@ -37,11 +37,11 @@ let $VIMDATA=$XDG_DATA_HOME . '/vim'
 set directory=$VIMCACHE,$TMP
 
 " Save viminfo in the data directory
-let viminfodir = $VIMDATA
-if !isdirectory(viminfodir)
-  call mkdir(viminfodir, 'p')
+let s:viminfodir = $VIMDATA
+if !isdirectory(s:viminfodir)
+  call mkdir(s:viminfodir, 'p')
 endif
-let &viminfo="'100,<50,s10,h,n" . viminfodir
+let &viminfo="'100,<50,s10,h,n" . s:viminfodir
 if has('nvim')
   let &viminfo.='/info.shada'
 else
@@ -61,11 +61,11 @@ endif
 let g:netrw_home=$VIMDATA
 
 " Change leader to spacebar.
-let mapleader=' '
+let g:mapleader=' '
 " This could cause filetype plugins to have mappings that conflict with other
 " plugins, but as I have encountered few filetype plugins that add additional
 " mappings there is little concern.
-let maplocalleader=mapleader
+let g:maplocalleader=g:mapleader
 
 " Ensure that vim uses the correct shell
 if executable('/usr/local/bin/zsh')
@@ -265,12 +265,12 @@ nnoremap <leader>tt :set expandtab! list!<CR>
 
 " Remove all trailing whitespace in the file, while preserving cursor position
 function! RemoveTrailingSpaces()
-  let l = line('.')
-  let c = col('.')
+  let l:l = line('.')
+  let l:c = col('.')
   " vint: -ProhibitCommandWithUnintendedSideEffect -ProhibitCommandRelyOnUser
   %s/\s\+$//e
   " vint: +ProhibitCommandWithUnintendedSideEffect +ProhibitCommandRelyOnUser
-  call cursor(l, c)
+  call cursor(l:l, l:c)
 endfunction
 
 " Enable mouse in all modes (don't overuse it)
