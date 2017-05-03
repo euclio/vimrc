@@ -297,6 +297,15 @@ set lazyredraw
 " When scrolling sideways, move the screen in smaller increments
 set sidescroll=1
 
+" Close loclist and quickfix windows automatically if they're the last window
+augroup close_ll_qf
+  autocmd!
+  autocmd BufEnter *
+        \ if &buftype == "quickfix" && winbufnr(2) == -1 |
+        \   quit! |
+        \ endif
+augroup END
+
 " =============================================================================
 " Colorscheme
 " =============================================================================
