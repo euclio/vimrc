@@ -349,4 +349,5 @@ if has('nvim')
 endif
 
 " Allow local configuration to override this configuration
-let &runtimepath.=',~/.local/vim'
+set runtimepath+=',~/.local/vim'
+source ~/.local/vim/vimrc
