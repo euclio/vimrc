@@ -13,14 +13,14 @@ scriptencoding utf8
 " specifying the path to python2. This variable must be set before any calls to
 " `has('python')`.
 if has('nvim')
-  let g:python_host_prog='/usr/bin/python2'
-  let g:python3_host_prog='/usr/bin/python3'
-
   " Use Homebrew Python on Macs
   if has('mac')
     let g:python_host_prog='/usr/local/bin/python2'
     let g:python3_host_prog='/usr/local/bin/python3'
   endif
+
+  let g:python_host_prog = get(g:, 'python_host_prog', '/usr/bin/python2')
+  let g:python3_host_prog = get(g:, 'python3_host_prog', '/usr/bin/python3')
 endif
 
 " Store vim configuration in $XDG_CONFIG_HOME
