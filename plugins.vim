@@ -128,7 +128,9 @@ endif
 let g:airline_symbols.linenr = ''
 
 function! AirlineInit()
-  let g:airline_section_z = airline#section#create(['linenr', 'maxlinenr'])
+  call airline#parts#define_raw('colnr', '%2c')
+  call airline#parts#define_accent('colnr', 'bold')
+  let g:airline_section_z = airline#section#create(['colnr', ':%l'])
 endfunction
 augroup airline_config
   autocmd!
