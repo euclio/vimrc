@@ -1,23 +1,5 @@
 scriptencoding utf-8
 
-" Additional operating system detection
-let s:has_mac = 0
-let s:has_arch = 0
-let s:has_oracle = 0
-if has('unix')
-  let s:uname = system('uname -s')
-  if s:uname =~? 'Darwin'
-    let s:has_mac = 1
-  else
-    let s:issue = system('cat /etc/issue')
-    if s:issue =~? 'Arch Linux'
-      let s:has_arch = 1
-    elseif s:issue =~? 'Oracle Linux'
-      let s:has_oracle = 1
-    endif
-  endif
-endif
-
 " =============================================================================
 " Interface
 " =============================================================================
@@ -139,18 +121,11 @@ if has('nvim') && has('python3')
 endif
 
 " Snippets
-if has('python') && v:version >= 704
+if has('python')
   Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
   let g:UltiSnipsExpandTrigger='<c-j>'
   let g:UltiSnipsJumpForwardTrigger='<c-j>'
   let g:UltiSnipsJumpBackwardTrigger='<c-k>'
-
-  " Avoid conflict with YCM's python
-  if s:has_arch
-    let g:UltiSnipsUsePythonVersion=3
-  else
-    let g:UltiSnipsUsePythonVersion=2
-  endif
 endif
 
 " Automatic completion of parenthesis, brackets, etc.
@@ -166,18 +141,16 @@ Plug 'dockyard/vim-easydir'
 " On Arch Linux, the exuberant-ctags executable is named 'ctags'. Elsewhere, it
 " is 'ctags-exuberant'. On Macs, the ctags executable provided is NOT exuberant
 " ctags.
-if executable('ctags') && !s:has_mac || executable('ctags-exuberant')
+if executable('ctags') && !has('macunix') || executable('ctags-exuberant')
   Plug 'xolox/vim-easytags' | Plug 'xolox/vim-misc'
   let g:easytags_file=$VIMDATA . '/tags'
-  if !(has('win32') || has('win64'))
+  if !has('win32')
     let g:easytags_async=1
   endif
 
   " Class outline viewer
-  if has('patch-7.0.167')
-    Plug 'majutsushi/tagbar'
-    nnoremap <leader>tb :TagbarToggle<cr>
-  endif
+  Plug 'majutsushi/tagbar'
+  nnoremap <leader>tb :TagbarToggle<cr>
 endif
 
 " Fuzzy file finder
@@ -286,8 +259,5 @@ Plug 'euclio/vim-nocturne'
 
 augroup load_slow_plugins
   autocmd!
-  " autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-  "                   \ | call youcompleteme#Enable() | autocmd! load_slow_plugins
-  autocmd InsertEnter * call plug#load('ultisnips')
-                    \ | autocmd! load_slow_plugins
+  autocmd InsertEnter * call plug#load('ultisnips') | autocmd! load_slow_plugins
 augroup END

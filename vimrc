@@ -14,7 +14,7 @@ scriptencoding utf8
 " `has('python')`.
 if has('nvim')
   " Use Homebrew Python on Macs
-  if has('mac')
+  if has('macunix')
     let g:python_host_prog='/usr/local/bin/python2'
     let g:python3_host_prog='/usr/local/bin/python3'
   endif
@@ -49,13 +49,11 @@ else
 endif
 
 " Store undo history across sessions
-if v:version >= 703
-  let &undodir=$VIMDATA . '/undodir'
-  if !isdirectory(&undodir)
-    call mkdir(&undodir, 'p')
-  endif
-  set undofile
+let &undodir=$VIMDATA . '/undodir'
+if !isdirectory(&undodir)
+  call mkdir(&undodir, 'p')
 endif
+set undofile
 
 " Store netrw history in cache
 let g:netrw_home=$VIMDATA
@@ -92,18 +90,10 @@ set textwidth=80 colorcolumn=+1
 set nowrap
 
 " Make tabs into spaces and indent with 4 spaces
-if has('patch-7.3.629')
-    set expandtab tabstop=4 shiftwidth=0 softtabstop=0
-else
-    set expandtab tabstop=4 shiftwidth=4 softtabstop=4
-endif
+set expandtab tabstop=4 shiftwidth=0 softtabstop=0
 
-" Autoformat comments into paragraphs when modifying text
-set formatoptions=cqr
-if has('patch-7.3.541')
-    " Join comment leaders automatically
-    set formatoptions+=j
-endif
+" Format comments into paragraphs and join comment leaders automatically
+set formatoptions=cqrj
 
 " Assume that .tex files are LaTeX
 let g:tex_flavor='latex'
