@@ -302,6 +302,9 @@ augroup close_ll_qf
         \ endif
 augroup END
 
+" Use global replace in `:substitute` by default
+set gdefault
+
 " =============================================================================
 " Plugins & Local Configuration
 " =============================================================================
