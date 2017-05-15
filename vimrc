@@ -72,10 +72,6 @@ if executable('/usr/local/bin/zsh')
   set shell=/usr/local/bin/zsh
 endif
 
-" Install plugins
-source $VIMHOME/plugins.vim
-nnoremap <silent> <leader>pu :PlugUpdate<cr>
-
 " Set filetype specific indentation
 filetype plugin indent on
 
@@ -307,8 +303,24 @@ augroup close_ll_qf
 augroup END
 
 " =============================================================================
+" Plugins & Local Configuration
+" =============================================================================
+
+" Install plugins
+source $VIMHOME/plugins.vim
+nnoremap <silent> <leader>pu :PlugUpdate<cr>
+
+" Allow local configuration to override this configuration
+set runtimepath+=',~/.local/vim'
+source ~/.local/vim/vimrc
+
+" =============================================================================
 " Colorscheme
 " =============================================================================
+
+" NOTE: The colorscheme is set *after* plugins are installed, because the
+" colorscheme might be a plugin.
+
 " Use a dark colorscheme
 set background=dark
 if &t_Co >= 88
@@ -347,7 +359,3 @@ endif
 if has('nvim')
   set guicursor=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
 endif
-
-" Allow local configuration to override this configuration
-set runtimepath+=',~/.local/vim'
-source ~/.local/vim/vimrc
