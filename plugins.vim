@@ -148,6 +148,14 @@ let g:signify_sign_change = '~'
 " Provides command to rename the current buffer.
 Plug 'danro/rename.vim'
 
+Plug 'osyo-manga/vim-anzu'
+nmap n <Plug>(anzu-n)
+nmap N <Plug>(anzu-N)
+nmap * <Plug>(anzu-star)
+nmap # <Plug>(anzu-sharp)
+let g:anzu_status_format = '%p(%i/%l) '
+exe 'map <silent> <leader><leader> :AnzuClearSearchStatus \|' . maparg('<leader><leader>')
+
 " =============================================================================
 " Features
 " =============================================================================
