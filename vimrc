@@ -309,13 +309,47 @@ set gdefault
 " Plugins & Local Configuration
 " =============================================================================
 
-" Install plugins
-source $VIMHOME/plugins.vim
+" Plugin Manager Installation {{{
+let g:plugins=$VIMDATA . '/bundle'
+let s:plugin_manager=$VIMHOME . '/autoload/plug.vim'
+let s:plugin_url='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+if empty(glob(s:plugin_manager))
+  echom 'vim-plug not found. Installing...'
+  if executable('curl')
+    silent exec '!curl -fLo ' . s:plugin_manager . ' --create-dirs ' .
+        \ s:plugin_url
+  elseif executable('wget')
+    call mkdir(fnamemodify(s:plugin_manager, ':h'), 'p')
+    silent exec '!wget --force-directories --no-check-certificate -O ' .
+        \ expand(s:plugin_manager) . ' ' . s:plugin_url
+  else
+    echom 'Could not download plugin manager. No plugins were installed.'
+    finish
+  endif
+  augroup vimplug
+    autocmd!
+    autocmd VimEnter * PlugInstall
+  augroup END
+endif
+" }}}
+
+" Create a horizontal split at the bottom when installing plugins
+let g:plug_window = 'botright new'
+
+" Shortcut for updating plugins
 nnoremap <silent> <leader>pu :PlugUpdate<cr>
 
-" Allow local configuration to override this configuration
+" Install plugins
+call plug#begin(g:plugins)
+
+source $VIMHOME/plugins.vim
+
+" Allow local configuration and plugins to override this configuration.
 set runtimepath+=',~/.local/vim'
 source ~/.local/vim/vimrc
+
+call plug#end()
 
 " =============================================================================
 " Colorscheme

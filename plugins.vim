@@ -1,36 +1,5 @@
 scriptencoding utf-8
 
-" =============================================================================
-" Plugin Manager Setup {{{
-" =============================================================================
-"
-" Install the plugin manager if it doesn't exist
-let s:plugins=$VIMDATA . '/bundle'
-let s:plugin_manager=$VIMHOME . '/autoload/plug.vim'
-let s:plugin_url='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-if empty(glob(s:plugin_manager))
-  echom 'vim-plug not found. Installing...'
-  if executable('curl')
-    silent exec '!curl -fLo ' . s:plugin_manager . ' --create-dirs ' .
-        \ s:plugin_url
-  elseif executable('wget')
-    call mkdir(fnamemodify(s:plugin_manager, ':h'), 'p')
-    silent exec '!wget --force-directories --no-check-certificate -O ' .
-        \ expand(s:plugin_manager) . ' ' . s:plugin_url
-  else
-    echom 'Could not download plugin manager. No plugins were installed.'
-    finish
-  endif
-  augroup vimplug
-    autocmd!
-    autocmd VimEnter * PlugInstall
-  augroup END
-endif
-
-" Create a horizontal split at the bottom when installing plugins
-let g:plug_window = 'botright new'
-
 " Additional operating system detection
 let s:has_mac = 0
 let s:has_arch = 0
@@ -48,9 +17,6 @@ if has('unix')
     endif
   endif
 endif
-" }}}
-
-call plug#begin(s:plugins)
 
 " =============================================================================
 " Interface
@@ -281,7 +247,7 @@ endif
 
 " Perl omnifunc
 Plug 'c9s/perlomni.vim', { 'for': 'perl' }
-let $PATH.=':' . s:plugins . 'perlomni.vim/bin'
+let $PATH.=':' . g:plugins . 'perlomni.vim/bin'
 
 " Markdown automatic HTML preview
 if executable('cargo')
@@ -317,8 +283,6 @@ let g:rustfmt_fail_silently=1                   " Don't report rustfmt errors
 "
 " My personal colorscheme
 Plug 'euclio/vim-nocturne'
-
-call plug#end()
 
 augroup load_slow_plugins
   autocmd!
