@@ -336,8 +336,10 @@ call plug#begin(g:plugins)
 source $VIMHOME/plugins.vim
 
 " Allow local configuration and plugins to override this configuration.
-set runtimepath+=',~/.local/vim'
-source ~/.local/vim/vimrc
+set runtimepath+=',$HOME/.local/vim'
+if filereadable($HOME . '/.local/vim/vimrc')
+  source $HOME/.local/vim/vimrc
+endif
 
 call plug#end()
 
