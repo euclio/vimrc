@@ -251,12 +251,11 @@ nnoremap <leader>tt :set expandtab! list!<CR>
 
 " Remove all trailing whitespace in the file, while preserving cursor position
 function! RemoveTrailingSpaces()
-  let l:l = line('.')
-  let l:c = col('.')
+  let l:view = winsaveview()
   " vint: -ProhibitCommandWithUnintendedSideEffect -ProhibitCommandRelyOnUser
   %s/\s\+$//e
   " vint: +ProhibitCommandWithUnintendedSideEffect +ProhibitCommandRelyOnUser
-  call cursor(l:l, l:c)
+  call winrestview(l:view)
 endfunction
 
 " Enable mouse in all modes (don't overuse it)
