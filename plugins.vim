@@ -138,11 +138,14 @@ Plug 'gerw/vim-HiLinkTrace'
 " On save, create directories if they don't exist
 Plug 'dockyard/vim-easydir'
 
-" On Arch Linux, the exuberant-ctags executable is named 'ctags'. Elsewhere, it
-" is 'ctags-exuberant'. On Macs, the ctags executable provided is NOT exuberant
-" ctags.
-if executable('ctags') && !has('macunix') || executable('ctags-exuberant')
-  Plug 'xolox/vim-easytags' | Plug 'xolox/vim-misc'
+" These plugins require exuberant-ctags or a compatible substitute such as
+" universal-ctags. On MacOS, the included ctags is *not* compatible, unless it's
+" from homebrew.
+if (executable('ctags') && !has('macunix'))
+      \ || executable('/usr/local/bin/ctags')
+  " This fork of easytags allows us to use universal ctags.
+  Plug 'Wraul/vim-easytags', { 'branch': 'fix-universal-detection' }
+  Plug 'xolox/vim-misc'
   let g:easytags_file=$VIMDATA . '/tags'
   if !has('win32')
     let g:easytags_async=1
@@ -151,6 +154,22 @@ if executable('ctags') && !has('macunix') || executable('ctags-exuberant')
   " Class outline viewer
   Plug 'majutsushi/tagbar'
   nnoremap <leader>tb :TagbarToggle<cr>
+  let g:tagbar_type_rust = {
+    \ 'ctagstype': 'rust',
+    \ 'kinds': [
+        \ 'n:modules',
+        \ 's:structs',
+        \ 'i:traits',
+        \ 'c:impls',
+        \ 'f:functions',
+        \ 'g:enums',
+        \ 't:typedefs',
+        \ 'v:variables',
+        \ 'M:macros',
+        \ 'm:fields',
+        \ 'e:variants',
+        \ 'F:methods',
+    \ ]}
 endif
 
 " Fuzzy file finder
