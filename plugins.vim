@@ -92,6 +92,7 @@ runtime macros/matchit.vim
 Plug 'mhinz/vim-signify'
 let g:signify_vcs_list = ['git', 'svn', 'hg', 'perforce']
 let g:signify_sign_change = '~'
+let g:signify_update_on_focusgained = 1
 
 " Provides command to rename the current buffer.
 Plug 'danro/rename.vim'
