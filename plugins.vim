@@ -171,10 +171,6 @@ if (executable('ctags') && !has('macunix'))
         \ 'e:variants',
         \ 'F:methods',
     \ ]}
-  augroup tagbar_open
-    autocmd!
-    autocmd BufEnter * nested :call tagbar#autoopen(0)
-  augroup END
 endif
 
 " Fuzzy file finder
