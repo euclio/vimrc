@@ -369,15 +369,24 @@ if &t_Co >= 88
     hi SpecialKey guifg=#303030 guibg=NONE gui=NONE
   endif
 
+  function s:WhitespaceHighlight()
+    " Don't highlight trailing spaces in certain filetypes.
+    if &filetype ==# 'help' || &filetype ==# 'vim-plug'
+      hi! ExtraWhitespace NONE
+    else
+      hi! ExtraWhitespace guifg=red guibg=red
+    endif
+  endfunction
+
   " Highlight trailing whitespace when not in insert mode
   hi ExtraWhitespace guifg=red guibg=red
-  match ExtraWhitespace /\s\+$/
   augroup whitespace
     autocmd!
     autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
     autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave * call clearmatches()
+    autocmd BufEnter * call s:WhitespaceHighlight()
   augroup END
 else
   colorscheme default
