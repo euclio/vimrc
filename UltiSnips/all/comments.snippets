@@ -65,7 +65,7 @@ endglobal
 snippet dbox "A nice box around a documentation comment" b
 `!p
 if not snip.c:
-    width = int(vim.eval("&textwidth - (virtcol('.') == 1 ? 0 : virtcol('.'))")) or 71
+    width = 80
 (top, mid_left, mid_right, bot) = make_box(len(t[1]), width)
 snip.rv = top
 snip += mid_left
