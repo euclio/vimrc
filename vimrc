@@ -230,9 +230,6 @@ set autoread
 " Don't show the scratch buffer during completions
 set completeopt-=preview
 
-" Show mode changes faster
-set ttimeoutlen=50
-
 " Jump to the last known cursor position when opening a file
 augroup last_cursor_position
   autocmd!
