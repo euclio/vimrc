@@ -97,7 +97,7 @@ let g:signify_update_on_focusgained = 1
 " Provides command to rename the current buffer.
 Plug 'danro/rename.vim'
 
-Plug 'osyo-manga/vim-anzu'
+Plug 'chrisbra/vim-anzu', { 'branch': 'airline_improvements' }
 nmap n <Plug>(anzu-n)
 nmap N <Plug>(anzu-N)
 nmap * <Plug>(anzu-star)
