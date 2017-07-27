@@ -145,7 +145,7 @@ set wildignore=*.o,*.pyc,*.class,*.bak,*~
 
 " Show command results as you type
 if exists('&inccommand')
-  set inccommand=nosplit
+  set inccommand=split
 end
 
 " =============================================================================
