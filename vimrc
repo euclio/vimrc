@@ -320,9 +320,6 @@ if empty(glob(s:plugin_manager))
 endif
 " }}}
 
-" Create a horizontal split at the bottom when installing plugins
-let g:plug_window = 'botright new'
-
 " Shortcut for updating plugins
 nnoremap <silent> <leader>pu :PlugUpdate<cr>
 
