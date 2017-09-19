@@ -267,7 +267,12 @@ let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
 
 " Rust
-let g:rustfmt_autosave=0                        " Don't rustfmt on save
+
+" Enable formatting on save.
+"
+" To disable this behavior, create a `rustfmt.toml` file at the root of the
+" project, and add `disable_all_formatting = true`.
+let g:rustfmt_autosave=1
 let g:rustfmt_fail_silently=1                   " Don't report rustfmt errors
 
 " =============================================================================
