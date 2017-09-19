@@ -336,6 +336,9 @@ endif
 
 call plug#end()
 
+" Trigger neomake when reading, writing, and idling (for 500ms)
+call neomake#configure#automake('nrw')
+
 " =============================================================================
 " Colorscheme
 " =============================================================================

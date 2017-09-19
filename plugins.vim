@@ -16,10 +16,6 @@ let s:info_hl = 'Normal'
 
 " Syntax checking on save
 Plug 'neomake/neomake'
-augroup run_neomake
-  autocmd!
-  autocmd BufReadPost,BufWritePost * Neomake
-augroup END
 let g:neomake_open_list = 2
 let g:neomake_verbose = 1
 let g:neomake_rust_enabled_makers=[]
