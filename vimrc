@@ -234,8 +234,9 @@ set completeopt-=preview
 augroup last_cursor_position
   autocmd!
   autocmd BufReadPost *
-        \ if line("'\"") > 1 && line("'\"") <= line("$") |
-        \     execute "normal! g`\"" |
+        \ if &filetype !=# 'gitcommit'
+        \     && line("'\"") > 1 && line("'\"") <= line("$") |
+        \   execute "normal! g`\"" |
         \ endif
 augroup END
 
