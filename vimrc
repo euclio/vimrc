@@ -292,6 +292,14 @@ augroup END
 " Use global replace in `:substitute` by default
 set gdefault
 
+" Don't show line numbers in the terminal
+if has('nvim')
+  augroup term_open
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
+  augroup END
+endif
+
 " =============================================================================
 " Plugins & Local Configuration
 " =============================================================================
