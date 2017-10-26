@@ -134,6 +134,9 @@ set scrolloff=5
 " Show arrows when there are long lines
 set list listchars=tab:▸\ ,trail:\ ,precedes:←,extends:→
 
+" Set characters used to fill empty space
+set fillchars=vert:\ ,fold:-
+
 " Enable autocomplete menu
 set wildmenu
 
