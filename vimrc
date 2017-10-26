@@ -381,6 +381,7 @@ if &t_Co >= 88
   hi! SignColumn guibg=#262626
   hi! StatusLine guibg=#1c1c1c gui=NONE
   hi! VertSplit  guibg=#1c1c1c gui=NONE
+  hi! Directory  guifg=#2c5ee4
 
   function s:WhitespaceHighlight()
     " Don't highlight trailing spaces in certain filetypes.
