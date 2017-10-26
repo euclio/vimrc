@@ -53,7 +53,6 @@ let g:airline_powerline_fonts=1
 let g:airline_right_alt_sep='░'
 let g:airline_right_sep='░▒▓'
 let g:airline_skip_empty_sections = 1
-let g:airline_theme='badwolf'
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#neomake#enabled=1
 let g:airline#extensions#tabline#enabled=1
@@ -66,6 +65,17 @@ let g:airline#extensions#tabline#right_sep=''
 let g:airline#extensions#whitespace#enabled=1
 let g:airline#extensions#whitespace#symbol='µ'
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+
+let g:airline_theme='badwolf'
+let g:airline_theme_patch_func='AirlineThemePatch'
+function! AirlineThemePatch(palette)
+  if g:airline_theme ==# 'badwolf'
+    for l:colors in values(a:palette.inactive)
+      " Matches VertSplit foreground
+      let l:colors[1] = '#4e4e4e'
+    endfor
+  endif
+endfunction
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
