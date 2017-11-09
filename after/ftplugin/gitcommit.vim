@@ -5,4 +5,4 @@ setlocal spellcapcheck=
 setlocal listchars=tab:\ \ 
 
 " Set colorcolumn at maximum commit summary length
-setlocal colorcolumn+=-28
+setlocal colorcolumn+=51
