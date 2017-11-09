@@ -216,6 +216,7 @@ let g:LanguageClient_autoStart = 1
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <leader>r :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <leader>f :call LanguageClient_textDocument_formatting()<CR>
 
 let g:LanguageClient_diagnosticsDisplay = {
       \  1: {
@@ -285,13 +286,20 @@ let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
 let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
 
 " Rust
+let g:rustfmt_autosave=0                    " Assume that RLS handles formatting
+let g:rustfmt_fail_silently=1               " Don't report rustfmt errors
 
-" Enable formatting on save.
-"
-" To disable this behavior, create a `rustfmt.toml` file at the root of the
-" project, and add `disable_all_formatting = true`.
-let g:rustfmt_autosave=1
-let g:rustfmt_fail_silently=1                   " Don't report rustfmt errors
+" Language Client
+
+" Use the language server as the formatexpr for any language that has a language
+" client configured.
+augroup language_client_formatting
+  autocmd!
+  for ft in keys(g:LanguageClient_serverCommands)
+    exe 'autocmd FileType ' . ft .
+          \ ' setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()'
+  endfor
+augroup END
 
 " =============================================================================
 " Cosmetic
