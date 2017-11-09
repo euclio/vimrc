@@ -224,7 +224,7 @@ set nobackup noswapfile
 set magic
 
 " Custom Terminal title
-let &titlestring=hostname() . ' : %F %r: VIM %m'
+let &titlestring= $USER . '@' . hostname() . ' : %F %r: VIM %m'
 set title
 
 " Let vim reload files after shelling out
