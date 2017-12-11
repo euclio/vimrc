@@ -340,10 +340,9 @@ call plug#begin(g:plugins)
 
 source $VIMHOME/plugins.vim
 
-" Allow local configuration and plugins to override this configuration.
-set runtimepath+=',$HOME/.local/vim'
-if filereadable($HOME . '/.local/vim/vimrc')
-  source $HOME/.local/vim/vimrc
+" Add local plugins (work, etc.).
+if filereadable($HOME . './local/vim/plugins.vim')
+  source $HOME/.local/vim/plugins.vim
 endif
 
 call plug#end()
@@ -409,4 +408,10 @@ endif
 " Enable cursor shape switching on mode change
 if has('nvim')
   set guicursor=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
+endif
+
+" Allow local configuration and plugins to override this configuration.
+set runtimepath+=',$HOME/.local/vim'
+if filereadable($HOME . '/.local/vim/vimrc')
+  source $HOME/.local/vim/vimrc
 endif
