@@ -324,6 +324,19 @@ if has('nvim')
   augroup END
 endif
 
+" Check if files have changed outside of vim and reload them if necessary.
+augroup auto_refresh
+  autocmd!
+  autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+        \ if mode() != 'c' |
+        \   checktime |
+        \ endif
+  autocmd FileChangedShellPost *
+        \ echohl WarningMsg |
+        \ echo "File changed on disk. Buffer reloaded." |
+        \ echohl None
+augroup END
+
 " =============================================================================
 " Plugins & Local Configuration
 " =============================================================================
