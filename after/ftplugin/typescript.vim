@@ -1,3 +1,5 @@
+setlocal textwidth=120
+
 " Typescript's highlighting plugin gets a little too cute for my taste. This
 " makes its highlighting look more like other filetypes.
 hi! link typescriptBraces     foldBraces
