@@ -20,6 +20,7 @@ let g:neomake_open_list = 2
 let g:neomake_verbose = 1
 let g:neomake_rust_enabled_makers=[]
 let g:neomake_java_enabled_makers=['checkstyle']
+let g:neomake_typescript_enabled_makers=['tslint']
 let g:neomake_error_sign = {
       \ 'text': s:error_sign,
       \ 'texthl': s:error_hl,
