@@ -285,7 +285,6 @@ if executable('cargo')
   endfunction
 
   Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-  let g:markdown_composer_syntax_theme='hybrid'
 endif
 
 " 100+ common filetype plugins
