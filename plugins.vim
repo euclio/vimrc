@@ -306,8 +306,8 @@ let g:rustfmt_command='rustfmt +nightly'
 " client configured.
 augroup language_client_formatting
   autocmd!
-  for ft in keys(g:LanguageClient_serverCommands)
-    exe 'autocmd FileType ' . ft .
+  for s:ft in keys(g:LanguageClient_serverCommands)
+    exe 'autocmd FileType ' . s:ft .
           \ ' setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()'
   endfor
 augroup END
