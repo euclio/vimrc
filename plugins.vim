@@ -299,6 +299,7 @@ let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
 " Rust
 let g:rustfmt_autosave=0                    " Assume that RLS handles formatting
 let g:rustfmt_fail_silently=1               " Don't report rustfmt errors
+let g:rustfmt_command='rustfmt +nightly'
 
 " Language Client
 
