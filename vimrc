@@ -304,13 +304,16 @@ set lazyredraw
 " When scrolling sideways, move the screen in smaller increments
 set sidescroll=1
 
-" Close loclist and quickfix windows automatically if they're the last window
+" Location and quickfix list management
 augroup close_ll_qf
   autocmd!
+  " Close loclist and quickfix windows automatically if they're the last window
   autocmd BufEnter *
         \ if &buftype == "quickfix" && winbufnr(2) == -1 |
         \   quit! |
         \ endif
+  " Close corresponding quickfix window when a window closes
+  autocmd QuitPre * if &filetype != 'qf' | silent! lclose | endif
 augroup END
 
 " Use global replace in `:substitute` by default
