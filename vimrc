@@ -378,7 +378,7 @@ call plug#begin(g:plugins)
 source $VIMHOME/plugins.vim
 
 " Add local plugins (work, etc.).
-if filereadable($HOME . './local/vim/plugins.vim')
+if filereadable($HOME . '/.local/vim/plugins.vim')
   source $HOME/.local/vim/plugins.vim
 endif
 
