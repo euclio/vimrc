@@ -70,27 +70,7 @@ let g:airline#extensions#whitespace#enabled=1
 let g:airline#extensions#whitespace#symbol='µ'
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
-let g:airline_theme='badwolf'
-let g:airline_theme_patch_func='AirlineThemePatch'
-function! AirlineThemePatch(palette)
-  " TODO: I probably should just make my own theme...
-  if g:airline_theme ==# 'badwolf'
-    for l:colors in values(a:palette.inactive)
-      let l:colors[0] = '#767676'
-
-      " Matches VertSplit foreground
-      let l:colors[1] = '#1c1c1c'
-    endfor
-
-    for l:palette_unmodified in [
-          \ a:palette.normal,
-          \ a:palette.insert,
-          \ a:palette.visual,
-          \ a:palette.replace ]
-      let l:palette_unmodified['airline_c'][1] = '#1c1c1c'
-    endfor
-  endif
-endfunction
+let g:airline_theme='nocturne'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
