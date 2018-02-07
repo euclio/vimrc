@@ -289,7 +289,7 @@ endif
 
 " 100+ common filetype plugins
 Plug 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['markdown']
+let g:polyglot_disabled = ['haskell', 'markdown']
 
 " LaTeX
 let g:LatexBox_latexmk_preview_continuously=1   " Auto-compile TeX on save
