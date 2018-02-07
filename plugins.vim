@@ -93,6 +93,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.linenr = ''
+let g:airline_symbols.notexists = ' ▼'
 
 function! AirlineInit()
   call airline#parts#define_raw('colnr', '%2c')
