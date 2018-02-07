@@ -340,6 +340,9 @@ augroup auto_refresh
         \ echohl None
 augroup END
 
+" Always show the sign column
+set signcolumn=yes
+
 " =============================================================================
 " Plugins & Local Configuration
 " =============================================================================
@@ -406,6 +409,9 @@ if &t_Co >= 88
 
   " Make vertical splits distinguished only by the fillchar.
   hi! VertSplit             guibg=NONE    gui=NONE
+
+  " Darken sign column
+  hi! SignColumn            guifg=NONE    guibg=#121212
 
   " Mute Highlight listchar highlighting
   if has('nvim')
