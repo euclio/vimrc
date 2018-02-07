@@ -70,6 +70,7 @@ let g:airline_mode_map = {
     \ 's'  : 'S',
     \ 'S'  : 'S',
     \ '' : 'S',
+    \ 't'  : 'T',
     \ }
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#neomake#enabled=1
