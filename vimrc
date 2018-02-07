@@ -135,7 +135,7 @@ set scrolloff=5
 set list listchars=tab:▸\ ,trail:\ ,precedes:←,extends:→
 
 " Set characters used to fill empty space
-set fillchars=vert:\ ,fold:-
+set fillchars=vert:\│,fold:-
 
 " Enable autocomplete menu
 set wildmenu
@@ -404,6 +404,9 @@ if &t_Co >= 88
 
   silent! colorscheme nocturne
 
+  " Make vertical splits distinguished only by the fillchar.
+  hi! VertSplit             guibg=NONE    gui=NONE
+
   " Mute Highlight listchar highlighting
   if has('nvim')
     hi Whitespace guifg=#303030 guibg=NONE gui=NONE
@@ -415,7 +418,6 @@ if &t_Co >= 88
   endif
 
   hi! StatusLine guibg=#1c1c1c gui=NONE
-  hi! VertSplit  guibg=#1c1c1c gui=NONE
 
   function s:WhitespaceHighlight()
     " Don't highlight trailing spaces in certain filetypes.
