@@ -6,13 +6,17 @@ scriptencoding utf-8
 
 " Signs and highlighting for errors, etc.
 let s:error_sign = '✘'
-let s:error_hl = 'ErrorMsg'
+let s:error_sign_hl = 'DiagnosticErrorSign'
+let s:error_hl = 'DiagnosticError'
 let s:warning_sign = '♦'
-let s:warning_hl = 'WarningMsg'
+let s:warning_sign_hl = 'DiagnosticWarningSign'
+let s:warning_hl = 'DiagnosticWarning'
 let s:message_sign = '→'
-let s:message_hl = 'Normal'
+let s:message_sign_hl = 'DiagnosticMessageSign'
+let s:message_hl = 'DiagnosticMessage'
 let s:info_sign = '…'
-let s:info_hl = 'Normal'
+let s:info_sign_hl = s:message_sign_hl
+let s:info_hl = s:message_hl
 
 " Syntax checking on save
 Plug 'neomake/neomake'
@@ -23,19 +27,19 @@ let g:neomake_java_enabled_makers=['checkstyle']
 let g:neomake_typescript_enabled_makers=['tslint']
 let g:neomake_error_sign = {
       \ 'text': s:error_sign,
-      \ 'texthl': s:error_hl,
+      \ 'texthl': s:error_sign_hl,
       \ }
 let g:neomake_warning_sign = {
       \ 'text': s:warning_sign,
-      \ 'texthl': s:warning_hl,
+      \ 'texthl': s:warning_sign_hl,
       \ }
 let g:neomake_message_sign = {
       \ 'text': s:message_sign,
-      \ 'texthl': s:message_hl,
+      \ 'texthl': s:message_sign_hl,
       \ }
 let g:neomake_info_sign = {
       \ 'text': s:info_sign,
-      \ 'texthl': s:info_hl,
+      \ 'texthl': s:info_sign_hl,
       \ }
 
 " Git wrapper
@@ -217,31 +221,32 @@ nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <leader>r :call LanguageClient_textDocument_rename()<CR>
 nnoremap <silent> <leader>f :call LanguageClient_textDocument_formatting()<CR>
+command! Symbols call LanguageClient_workspace_symbol()
 
 let g:LanguageClient_diagnosticsDisplay = {
       \  1: {
       \    'name': 'Error',
       \    'texthl': s:error_hl,
       \    'signText': s:error_sign,
-      \    'signTexthl': s:error_hl,
+      \    'signTexthl': s:error_sign_hl,
       \  },
       \  2: {
       \    'name': 'Warning',
       \    'texthl': s:warning_hl,
       \    'signText': s:warning_sign,
-      \    'signTexthl': s:warning_hl,
+      \    'signTexthl': s:warning_sign_hl,
       \  },
       \  3: {
       \    'name': 'Information',
       \    'texthl': s:info_hl,
       \    'signText': s:info_sign,
-      \    'signTexthl': s:info_hl,
+      \    'signTexthl': s:info_sign_hl,
       \  },
       \  4: {
       \    'name': 'Hint',
       \    'texthl': s:message_hl,
       \    'signText': s:message_sign,
-      \    'signTexthl': s:message_hl,
+      \    'signTexthl': s:message_sign_hl,
       \  },
       \ }
 let g:LanguageClient_serverCommands = {}

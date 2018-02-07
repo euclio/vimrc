@@ -413,7 +413,17 @@ if &t_Co >= 88
   " Darken sign column
   hi! SignColumn            guifg=NONE    guibg=#121212
 
-  " Mute Highlight listchar highlighting
+  " Error diagnostic highlight groups (used by LSP, neomake, etc.)
+  "
+  " These background colors should match the sign column background.
+  hi! DiagnosticError       guifg=#ff0000 guibg=#121212 gui=undercurl
+  hi! DiagnosticErrorSign   guifg=#ff0000 guibg=#121212
+  hi! DiagnosticWarning     guifg=#ff8700 guibg=#121212 gui=undercurl
+  hi! DiagnosticWarningSign guifg=#ff8700 guibg=#121212
+  hi! DiagnosticMessage     guifg=#f5f5f5 guibg=#121212 gui=undercurl
+  hi! DiagnosticMessageSign guifg=#f5f5f5 guibg=#121212
+
+  " Mute listchar highlighting
   if has('nvim')
     hi Whitespace guifg=#303030 guibg=NONE gui=NONE
 
