@@ -420,8 +420,8 @@ if &t_Co >= 88
   hi! DiagnosticErrorSign   guifg=#ff0000 guibg=#121212
   hi! DiagnosticWarning     guifg=#ff8700 guibg=#121212 gui=undercurl
   hi! DiagnosticWarningSign guifg=#ff8700 guibg=#121212
-  hi! DiagnosticMessage     guifg=#f5f5f5 guibg=#121212 gui=undercurl
-  hi! DiagnosticMessageSign guifg=#f5f5f5 guibg=#121212
+  hi! DiagnosticInfo        guifg=#f5f5f5 guibg=#121212 gui=undercurl
+  hi! DiagnosticInfoSign    guifg=#f5f5f5 guibg=#121212
 
   " Mute listchar highlighting
   if has('nvim')

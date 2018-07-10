@@ -11,12 +11,12 @@ let s:error_hl = 'DiagnosticError'
 let s:warning_sign = '♦'
 let s:warning_sign_hl = 'DiagnosticWarningSign'
 let s:warning_hl = 'DiagnosticWarning'
-let s:message_sign = '→'
-let s:message_sign_hl = 'DiagnosticMessageSign'
-let s:message_hl = 'DiagnosticMessage'
-let s:info_sign = '…'
-let s:info_sign_hl = s:message_sign_hl
-let s:info_hl = s:message_hl
+let s:info_sign = '→'
+let s:info_sign_hl = 'DiagnosticInfoSign'
+let s:info_hl = 'DiagnosticInfo'
+let s:hint_sign = '…'
+let s:hint_sign_hl = s:info_sign_hl
+let s:hint_hl = s:info_sign
 
 " Syntax checking on save
 Plug 'neomake/neomake'
@@ -33,13 +33,13 @@ let g:neomake_warning_sign = {
       \ 'text': s:warning_sign,
       \ 'texthl': s:warning_sign_hl,
       \ }
-let g:neomake_message_sign = {
-      \ 'text': s:message_sign,
-      \ 'texthl': s:message_sign_hl,
-      \ }
 let g:neomake_info_sign = {
       \ 'text': s:info_sign,
       \ 'texthl': s:info_sign_hl,
+      \ }
+let g:neomake_message_sign = {
+      \ 'text': s:hint_sign,
+      \ 'texthl': s:hint_sign_hl,
       \ }
 
 " Git wrapper
@@ -246,9 +246,9 @@ let g:LanguageClient_diagnosticsDisplay = {
       \  },
       \  4: {
       \    'name': 'Hint',
-      \    'texthl': s:message_hl,
-      \    'signText': s:message_sign,
-      \    'signTexthl': s:message_sign_hl,
+      \    'texthl': s:hint_hl,
+      \    'signText': s:hint_sign,
+      \    'signTexthl': s:hint_sign_hl,
       \  },
       \ }
 let g:LanguageClient_serverCommands = {}
