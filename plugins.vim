@@ -99,6 +99,8 @@ let g:airline_symbols.notexists = ' ▼'
 function! AirlineInit()
   call airline#parts#define_raw('colnr', '%2c')
   call airline#parts#define_accent('colnr', 'bold')
+  call airline#parts#define_raw('lsp', '%{LanguageClient#statusLine()}')
+  let g:airline_section_x = airline#section#create_left(['tagbar', 'filetype', 'lsp'])
   let g:airline_section_z = airline#section#create(['colnr', ':%l'])
 endfunction
 augroup airline_config
