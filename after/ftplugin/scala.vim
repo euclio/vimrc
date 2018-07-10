@@ -1,2 +1,2 @@
-autocmd FileType scala let b:delimitMate_nesting_quotes = ['"']
-autocmd FileType scala let b:delimitMate_quotes = "\" '"
+let b:delimitMate_nesting_quotes = ['"']
+let b:delimitMate_quotes = "\" '"
