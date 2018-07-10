@@ -260,8 +260,8 @@ if executable('rls')
   let g:LanguageClient_serverCommands['rust'] = ['rls', '+nightly']
 endif
 
-if executable('javascript-typescript-stdio')
-  let g:LanguageClient_serverCommands['typescript'] = ['javascript-typescript-stdio']
+if executable('typescript-language-server')
+  let g:LanguageClient_serverCommands['typescript'] = ['typescript-language-server', '--stdio']
 endif
 
 " Haskell omnifunc
