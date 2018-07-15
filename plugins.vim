@@ -227,6 +227,7 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ 'do': 'bash install.sh',
       \ }
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_settingsPath=$VIMHOME . '/lsp-settings.json'
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
