@@ -113,8 +113,11 @@ augroup END
 " =============================================================================
 " Editing Window Improvements
 " =============================================================================
-" Show line numbers
-set number relativenumber
+" Don't show line numbers
+set nonumber norelativenumber
+
+" ...but provide a command to show them temporarily
+nnoremap <leader>ll :set number! relativenumber!<CR>
 
 " Hide line numbers when entering diff mode
 augroup hide_lines
@@ -422,6 +425,13 @@ if &t_Co >= 88
   hi! DiagnosticWarningSign guifg=#ff8700 guibg=#121212
   hi! DiagnosticInfo        guifg=#f5f5f5 guibg=#121212 gui=undercurl
   hi! DiagnosticInfoSign    guifg=#f5f5f5 guibg=#121212
+
+  " Signify diff markers
+  "
+  " These background colors should match the sign column background.
+  hi! SignifySignAdd        guifg=#0fb50f guibg=#121212 gui=bold
+  hi! SignifySignDelete     guifg=#e0002c guibg=#121212 gui=bold
+  hi! SignifySignChange     guifg=#adada9 guibg=#121212
 
   " Mute listchar highlighting
   if has('nvim')
