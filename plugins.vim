@@ -61,8 +61,13 @@ let g:airline_skip_empty_sections = 1
 let g:airline_mode_map = {
     \ '__' : '-',
     \ 'n'  : 'N',
+    \ 'ni' : 'Ni',
+    \ 'no' : 'P',
     \ 'i'  : 'I',
+    \ 'ic' : 'I',
+    \ 'ix' : 'I',
     \ 'R'  : 'R',
+    \ 'Rv' : 'Rv',
     \ 'c'  : 'C',
     \ 'v'  : 'V',
     \ 'V'  : 'V',
