@@ -8,15 +8,19 @@ scriptencoding utf-8
 let s:error_sign = '✘'
 let s:error_sign_hl = 'DiagnosticErrorSign'
 let s:error_hl = 'DiagnosticError'
+let s:error_text_hl = 'DiagnosticErrorText'
 let s:warning_sign = '♦'
 let s:warning_sign_hl = 'DiagnosticWarningSign'
 let s:warning_hl = 'DiagnosticWarning'
+let s:warning_text_hl = 'DiagnosticWarningText'
 let s:info_sign = '→'
 let s:info_sign_hl = 'DiagnosticInfoSign'
 let s:info_hl = 'DiagnosticInfo'
+let s:info_text_hl = 'DiagnosticInfoText'
 let s:hint_sign = '…'
 let s:hint_sign_hl = s:info_sign_hl
 let s:hint_hl = s:info_sign
+let s:hint_text_hl = s:info_text_hl
 
 " Syntax checking on save
 Plug 'neomake/neomake'
@@ -247,24 +251,28 @@ let g:LanguageClient_diagnosticsDisplay = {
       \    'texthl': s:error_hl,
       \    'signText': s:error_sign,
       \    'signTexthl': s:error_sign_hl,
+      \    'virtualTexthl': s:error_text_hl,
       \  },
       \  2: {
       \    'name': 'Warning',
       \    'texthl': s:warning_hl,
       \    'signText': s:warning_sign,
       \    'signTexthl': s:warning_sign_hl,
+      \    'virtualTexthl': s:warning_text_hl,
       \  },
       \  3: {
       \    'name': 'Information',
       \    'texthl': s:info_hl,
       \    'signText': s:info_sign,
       \    'signTexthl': s:info_sign_hl,
+      \    'virtualTexthl': s:info_text_hl,
       \  },
       \  4: {
       \    'name': 'Hint',
       \    'texthl': s:hint_hl,
       \    'signText': s:hint_sign,
       \    'signTexthl': s:hint_sign_hl,
+      \    'virtualTexthl': s:hint_text_hl,
       \  },
       \ }
 let g:LanguageClient_serverCommands = {}

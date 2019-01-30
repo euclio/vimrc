@@ -420,10 +420,13 @@ if &t_Co >= 88
   "
   " These background colors should match the sign column background.
   hi! DiagnosticError       guifg=#ff0000 guibg=#121212 gui=undercurl
+  hi! DiagnosticErrorText   guifg=#ff0000 guibg=#121212
   hi! DiagnosticErrorSign   guifg=#ff0000 guibg=#121212
   hi! DiagnosticWarning     guifg=#ff8700 guibg=#121212 gui=undercurl
+  hi! DiagnosticWarningText guifg=#ff8700 guibg=#121212
   hi! DiagnosticWarningSign guifg=#ff8700 guibg=#121212
   hi! DiagnosticInfo        guifg=#f5f5f5 guibg=#121212 gui=undercurl
+  hi! DiagnosticInfoText    guifg=#f5f5f5 guibg=#121212
   hi! DiagnosticInfoSign    guifg=#f5f5f5 guibg=#121212
 
   " Signify diff markers
