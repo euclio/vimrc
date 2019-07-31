@@ -346,6 +346,11 @@ augroup END
 " Always show the sign column
 set signcolumn=yes
 
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
 " =============================================================================
 " Plugins & Local Configuration
 " =============================================================================
