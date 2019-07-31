@@ -351,6 +351,11 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+augroup qfopen
+  autocmd!
+  autocmd QuickfixCmdPost grep cwindow
+augroup END
+
 " =============================================================================
 " Plugins & Local Configuration
 " =============================================================================
