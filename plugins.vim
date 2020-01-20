@@ -291,10 +291,6 @@ if executable('ghc-mod')
   let g:necoghc_enable_detailed_browse=1          " Show types of symbols
 endif
 
-" Perl omnifunc
-Plug 'c9s/perlomni.vim', { 'for': 'perl' }
-let $PATH.=':' . g:plugins . 'perlomni.vim/bin'
-
 " Markdown automatic HTML preview
 if executable('cargo')
   function! g:BuildComposer(info)
