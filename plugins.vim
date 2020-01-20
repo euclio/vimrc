@@ -136,6 +136,8 @@ nmap * <Plug>(anzu-star)
 nmap # <Plug>(anzu-sharp)
 let g:anzu_status_format = '%p(%i/%l) '
 exe 'map <silent> <leader><leader> :AnzuClearSearchStatus \|' . maparg('<leader><leader>')
+" Disable built-in search counter (it only goes up to 99, anzu goes to 1000).
+set shortmess+=S
 
 " =============================================================================
 " Features
