@@ -50,9 +50,6 @@ let g:neomake_message_sign = {
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
-" Perforce wrapper
-Plug 'nfvs/vim-perforce'
-
 " Statusline improvements
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -124,7 +121,7 @@ runtime macros/matchit.vim
 
 " Place signs to indicate current version control diff
 Plug 'mhinz/vim-signify'
-let g:signify_vcs_list = ['git', 'svn', 'hg', 'perforce']
+let g:signify_vcs_list = ['git', 'svn', 'hg']
 let g:signify_sign_change = '~'
 let g:signify_sign_delete = '-'
 let g:signify_update_on_focusgained = 1
