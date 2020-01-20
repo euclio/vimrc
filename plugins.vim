@@ -155,14 +155,6 @@ if has('nvim') && has('python3')
   inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
 endif
 
-" Snippets
-if has('python')
-  Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
-  let g:UltiSnipsExpandTrigger='<c-j>'
-  let g:UltiSnipsJumpForwardTrigger='<c-j>'
-  let g:UltiSnipsJumpBackwardTrigger='<c-k>'
-endif
-
 " Automatic completion of parenthesis, brackets, etc.
 Plug 'Raimondi/delimitMate'
 let g:delimitMate_expand_cr=1                 " Put new brace on newline after CR
@@ -339,8 +331,3 @@ augroup END
 "
 " My personal colorscheme
 Plug 'euclio/vim-nocturne'
-
-augroup load_slow_plugins
-  autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips') | autocmd! load_slow_plugins
-augroup END
