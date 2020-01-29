@@ -104,15 +104,21 @@ let g:airline_symbols.dirty = ''
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.notexists = ' ▼'
 
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
 function! AirlineInit()
   call airline#parts#define_raw('colnr', '%2c')
   call airline#parts#define_accent('colnr', 'bold')
   call airline#parts#define_raw('lsp', '%{LanguageClient#statusLine()}')
-  let g:airline_section_x = airline#section#create_left(['tagbar', 'filetype', 'lsp'])
+  call airline#parts#define_raw('nearest_fn', '%{NearestMethodOrFunction()}')
+  let g:airline_section_x = airline#section#create_left(['nearest_fn', 'filetype', 'lsp'])
   let g:airline_section_z = airline#section#create(['colnr', ':%l'])
 endfunction
 augroup airline_config
   autocmd!
+  autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
   autocmd User AirlineAfterInit call AirlineInit()
 augroup END
 
@@ -164,40 +170,6 @@ Plug 'gerw/vim-HiLinkTrace'
 
 " On save, create directories if they don't exist
 Plug 'dockyard/vim-easydir'
-
-" These plugins require exuberant-ctags or a compatible substitute such as
-" universal-ctags. On MacOS, the included ctags is *not* compatible, unless it's
-" from homebrew.
-if (executable('ctags') && !has('macunix'))
-      \ || executable('/usr/local/bin/ctags')
-  " This fork of easytags allows us to use universal ctags.
-  Plug 'Wraul/vim-easytags', { 'branch': 'fix-universal-detection' }
-  Plug 'xolox/vim-misc'
-  let g:easytags_file=$VIMDATA . '/tags'
-  if !has('win32')
-    let g:easytags_async=1
-  endif
-
-  " Class outline viewer
-  Plug 'majutsushi/tagbar'
-  nnoremap <leader>tb :TagbarToggle<cr>
-  let g:tagbar_type_rust = {
-    \ 'ctagstype': 'rust',
-    \ 'kinds': [
-        \ 'n:modules',
-        \ 's:structs',
-        \ 'i:traits',
-        \ 'c:impls',
-        \ 'f:functions',
-        \ 'g:enums',
-        \ 't:typedefs',
-        \ 'v:variables',
-        \ 'M:macros',
-        \ 'm:fields',
-        \ 'e:variants',
-        \ 'F:methods',
-    \ ]}
-endif
 
 " Fuzzy file finder
 Plug 'junegunn/fzf', { 'dir': $XDG_DATA_HOME . '/fzf', 'do': './install --bin' }
@@ -324,6 +296,16 @@ augroup language_client_formatting
           \ ' setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()'
   endfor
 augroup END
+
+" View file outline in a sidebar via LSP and ctags.
+Plug 'liuchengxu/vista.vim'
+let g:vista#renderer#enable_icon = 0
+nnoremap <leader>s :Vista!!<cr>
+
+let g:vista_executive_for = {}
+for ft in keys(g:LanguageClient_serverCommands)
+  let g:vista_executive_for[ft] = 'lcn'
+endfor
 
 " =============================================================================
 " Cosmetic
