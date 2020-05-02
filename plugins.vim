@@ -199,7 +199,8 @@ Plug 'junegunn/vader.vim'
 " Language server support
 Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
+      \ 'do': has('win32') ?
+      \   'powershell -executionpolicy bypass -File install.ps1' : 'bash install.sh',
       \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_settingsPath=$VIMHOME . '/lsp-settings.json'
