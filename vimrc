@@ -257,6 +257,9 @@ set autoread
 " Don't show the scratch buffer during completions
 set completeopt-=preview
 
+" deoplete#1013
+set completeopt+=noselect
+
 " Jump to the last known cursor position when opening a file
 augroup last_cursor_position
   autocmd!
