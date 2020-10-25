@@ -250,8 +250,9 @@ if executable('haskell-language-server-wrapper')
 endif
 
 " Rust language server
-if executable('rls')
-  let g:LanguageClient_serverCommands['rust'] = ['rls', '+nightly']
+let components = system('rustup +nightly component list --installed')
+if !v:shell_error && components =~ 'rust-analyzer'
+  let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'nightly', 'rust-analyzer']
 endif
 
 if executable('typescript-language-server')
