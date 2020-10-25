@@ -244,6 +244,11 @@ let g:LanguageClient_diagnosticsDisplay = {
       \ }
 let g:LanguageClient_serverCommands = {}
 
+" Haskell language server
+if executable('haskell-language-server-wrapper')
+  let g:LanguageClient_serverCommands['haskell'] = ['haskell-language-server-wrapper', '--lsp']
+endif
+
 " Rust language server
 if executable('rls')
   let g:LanguageClient_serverCommands['rust'] = ['rls', '+nightly']
@@ -251,12 +256,6 @@ endif
 
 if executable('typescript-language-server')
   let g:LanguageClient_serverCommands['typescript'] = ['typescript-language-server', '--stdio']
-endif
-
-" Haskell omnifunc
-if executable('ghc-mod')
-  Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-  let g:necoghc_enable_detailed_browse=1          " Show types of symbols
 endif
 
 " Markdown automatic HTML preview
