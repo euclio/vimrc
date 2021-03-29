@@ -359,6 +359,9 @@ augroup qfopen
   autocmd QuickfixCmdPost grep cwindow
 augroup END
 
+" Disable safe write. This breaks certain tools that watch the filesystem.
+set backupcopy=yes
+
 " =============================================================================
 " Plugins & Local Configuration
 " =============================================================================
