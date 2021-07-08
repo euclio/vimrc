@@ -406,6 +406,96 @@ endif
 
 call plug#end()
 
+" Built-in language server configuration
+if has('nvim')
+
+lua << EOF
+  local lspconfig = require('lspconfig')
+  local lsp_status = require('lsp-status');
+
+  lsp_status.config({
+    current_function = false,
+    diagnostics = false,
+    spinner_frames = {''},
+    status_symbol = '',
+    update_interval = 1000,
+  })
+
+  lsp_status.register_progress()
+
+  local on_attach = function(client, bufnr)
+    lsp_status.on_attach(client, bufnr)
+
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    lsp_formatexpr = function()
+      local opts = {}
+      local start_line = vim.v.lnum
+      local end_line = start_line + vim.v.count
+
+      if start_line >= 0 and end_line >= 0 then
+        vim.lsp.buf.range_formatting(opts, { start_line, 0 }, { end_line, 0 })
+      end
+
+      return 0
+    end
+
+    if client.resolved_capabilities.document_range_formatting then
+      buf_set_option('formatexpr', 'v:lua.lsp_formatexpr()')
+    end
+
+    local opts = { noremap=true, silent=true }
+
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = {
+          prefix = '',
+        }
+      }
+    )
+  end
+
+  local servers = {
+    'hls',
+    'tsserver',
+  }
+  for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup {
+      capabilities = lsp_status.capabilities,
+      on_attach = on_attach,
+    }
+  end
+
+  lspconfig['rust_analyzer'].setup {
+    on_attach = on_attach,
+    cmd = { 'rustup', 'run', 'nightly', 'rust-analyzer' },
+    capabilities = lsp_status.capabilities,
+    init_options = {
+      rustfmt = {
+        enableRangeFormatting = true,
+        extraArgs = { '+nightly' },
+      }
+    },
+    settings = {
+      ['rust-analyzer'] = {
+        rustfmt = {
+          enableRangeFormatting = true,
+          extraArgs = { '+nightly' },
+        }
+      }
+    }
+  }
+EOF
+
+  autocmd CursorHold * silent! lua vim.lsp.diagnostic.show_line_diagnostics()
+end
+
 " Trigger neomake when reading, writing, and idling (for 500ms)
 call neomake#configure#automake('nrw')
 

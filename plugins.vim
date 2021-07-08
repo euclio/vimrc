@@ -108,12 +108,20 @@ function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
+function! LspStatus() abort
+  if has('nvim') && luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
+endfunction
+
 function! AirlineInit()
   call airline#parts#define_raw('colnr', '%2c')
   call airline#parts#define_accent('colnr', 'bold')
-  call airline#parts#define_raw('lsp', '%{LanguageClient#statusLine()}')
   call airline#parts#define_raw('nearest_fn', '%{NearestMethodOrFunction()}')
-  let g:airline_section_x = airline#section#create_left(['nearest_fn', 'filetype', 'lsp'])
+  call airline#parts#define_raw('lsp', '%{LspStatus()}')
+  let g:airline_section_x = airline#section#create_left(['lsp', 'nearest_fn', 'filetype'])
   let g:airline_section_z = airline#section#create(['colnr', ':%l'])
 endfunction
 augroup airline_config
@@ -159,6 +167,8 @@ if has('nvim') && has('python3')
   let g:deoplete#enable_at_startup = 1
   inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
   inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+  Plug 'deoplete-plugins/deoplete-lsp'
 endif
 
 " Automatic completion of parenthesis, brackets, etc.
@@ -198,66 +208,23 @@ Plug 'junegunn/vader.vim'
 " =============================================================================
 
 " Language server support
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': has('win32') ?
-      \   'powershell -executionpolicy bypass -File install.ps1' : 'bash install.sh',
-      \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_settingsPath=$VIMHOME . '/lsp-settings.json'
+if has('nvim')
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/lsp-status.nvim'
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <leader>r :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> <leader>f :call LanguageClient_textDocument_formatting()<CR>
-command! Symbols call LanguageClient_workspace_symbol()
-
-let g:LanguageClient_diagnosticsDisplay = {
-      \  1: {
-      \    'name': 'Error',
-      \    'texthl': s:error_hl,
-      \    'signText': s:error_sign,
-      \    'signTexthl': s:error_sign_hl,
-      \    'virtualTexthl': s:error_text_hl,
-      \  },
-      \  2: {
-      \    'name': 'Warning',
-      \    'texthl': s:warning_hl,
-      \    'signText': s:warning_sign,
-      \    'signTexthl': s:warning_sign_hl,
-      \    'virtualTexthl': s:warning_text_hl,
-      \  },
-      \  3: {
-      \    'name': 'Information',
-      \    'texthl': s:info_hl,
-      \    'signText': s:info_sign,
-      \    'signTexthl': s:info_sign_hl,
-      \    'virtualTexthl': s:info_text_hl,
-      \  },
-      \  4: {
-      \    'name': 'Hint',
-      \    'texthl': s:hint_hl,
-      \    'signText': s:hint_sign,
-      \    'signTexthl': s:hint_sign_hl,
-      \    'virtualTexthl': s:hint_text_hl,
-      \  },
-      \ }
-let g:LanguageClient_serverCommands = {}
-
-" Haskell language server
-if executable('haskell-language-server-wrapper')
-  let g:LanguageClient_serverCommands['haskell'] = ['haskell-language-server-wrapper', '--lsp']
-endif
-
-" Rust language server
-let components = system('rustup +nightly component list --installed')
-if !v:shell_error && components =~ 'rust-analyzer'
-  let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'nightly', 'rust-analyzer']
-endif
-
-if executable('typescript-language-server')
-  let g:LanguageClient_serverCommands['typescript'] = ['typescript-language-server', '--stdio']
-endif
+  execute printf(
+        \ 'sign define LspDiagnosticsSignError text=%s texthl=%s linehl=%s numhl=',
+        \ s:error_sign, s:error_sign_hl, s:error_text_hl)
+  execute printf(
+        \ 'sign define LspDiagnosticsSignWarning text=%s texthl=%s linehl=%s numhl=',
+        \ s:warning_sign, s:warning_sign_hl, s:warning_text_hl)
+  execute printf(
+        \ 'sign define LspDiagnosticsSignInformation text=%s texthl=%s linehl=%s numhl=',
+        \ s:info_sign, s:info_sign_hl, s:info_text_hl)
+  execute printf(
+        \ 'sign define LspDiagnosticsSignHint text=%s texthl=%s linehl=%s numhl=',
+        \ s:hint_sign, s:hint_sign_hl, s:hint_text_hl)
+end
 
 " Markdown automatic HTML preview
 if executable('cargo')
@@ -287,27 +254,10 @@ let g:rustfmt_autosave=0                    " Assume that RLS handles formatting
 let g:rustfmt_fail_silently=1               " Don't report rustfmt errors
 let g:rustfmt_command='rustfmt +nightly'
 
-" Language Client
-
-" Use the language server as the formatexpr for any language that has a language
-" client configured.
-augroup language_client_formatting
-  autocmd!
-  for s:ft in keys(g:LanguageClient_serverCommands)
-    exe 'autocmd FileType ' . s:ft .
-          \ ' setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()'
-  endfor
-augroup END
-
 " View file outline in a sidebar via LSP and ctags.
 Plug 'liuchengxu/vista.vim'
 let g:vista#renderer#enable_icon = 0
 nnoremap <leader>s :Vista!!<cr>
-
-let g:vista_executive_for = {}
-for ft in keys(g:LanguageClient_serverCommands)
-  let g:vista_executive_for[ft] = 'lcn'
-endfor
 
 " =============================================================================
 " Cosmetic
