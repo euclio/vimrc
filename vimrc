@@ -49,7 +49,10 @@ else
 endif
 
 " Store undo history across sessions
-let &undodir=$VIMDATA . '/undodir'
+if !has('nvim')
+  let &undodir=$VIMDATA . '/undodir'
+endif
+
 if !isdirectory(&undodir)
   call mkdir(&undodir, 'p')
 endif
