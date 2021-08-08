@@ -475,6 +475,49 @@ lua << EOF
     }
   end
 
+  require 'diagnosticls-nvim'.init {
+    on_attach = on_attach,
+    default_config = true,
+    format = false,
+  }
+
+  local eslint = require 'diagnosticls-nvim.linters.eslint'
+  local shellcheck = {
+    sourceName = 'shellcheck',
+    command = 'shellcheck',
+    debounce = 100,
+    args = { '--format', 'json', '-' },
+    parseJson = {
+      sourceName = 'file',
+      line = 'line',
+      column = 'column',
+      endLine = 'endLine',
+      endColumn = 'endColumn',
+      security = 'level',
+      message = '${message} [SC${code}]',
+    },
+    securities = {
+      error = 'error',
+      warning = 'warning',
+      info = 'info',
+      style = 'hint',
+    },
+  }
+  require 'diagnosticls-nvim'.setup {
+    ['sh'] = {
+      linter = shellcheck
+    },
+    ['javascript'] = {
+      linter = eslint,
+    },
+    ['typescript'] = {
+      linter = eslint,
+    },
+    ['vim'] = {
+      linter = require 'diagnosticls-nvim.linters.vint',
+    },
+  }
+
   lspconfig['rust_analyzer'].setup {
     on_attach = on_attach,
     cmd = { 'rustup', 'run', 'nightly', 'rust-analyzer' },
@@ -499,9 +542,6 @@ EOF
   autocmd CursorHold * silent! lua vim.lsp.diagnostic.show_line_diagnostics()
 end
 
-" Trigger neomake when reading, writing, and idling (for 500ms)
-call neomake#configure#automake('nrw')
-
 " =============================================================================
 " Colorscheme
 " =============================================================================
@@ -525,7 +565,7 @@ if &t_Co >= 88
   " Darken sign column
   hi! SignColumn            guifg=NONE    guibg=#121212
 
-  " Error diagnostic highlight groups (used by LSP, neomake, etc.)
+  " Error diagnostic highlight groups.
   "
   " These background colors should match the sign column background.
   hi! DiagnosticError       guifg=#ff0000 guibg=#121212 gui=undercurl

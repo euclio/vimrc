@@ -22,31 +22,6 @@ let s:hint_sign_hl = s:info_sign_hl
 let s:hint_hl = s:info_sign
 let s:hint_text_hl = s:info_text_hl
 
-" Syntax checking on save
-Plug 'neomake/neomake'
-let g:neomake_open_list = 2
-let g:neomake_verbose = 1
-let g:neomake_rust_enabled_makers=[]
-let g:neomake_java_enabled_makers=['checkstyle']
-let g:neomake_python_enabled_makers=['python', 'pylint']
-let g:neomake_typescript_enabled_makers=['tslint']
-let g:neomake_error_sign = {
-      \ 'text': s:error_sign,
-      \ 'texthl': s:error_sign_hl,
-      \ }
-let g:neomake_warning_sign = {
-      \ 'text': s:warning_sign,
-      \ 'texthl': s:warning_sign_hl,
-      \ }
-let g:neomake_info_sign = {
-      \ 'text': s:info_sign,
-      \ 'texthl': s:info_sign_hl,
-      \ }
-let g:neomake_message_sign = {
-      \ 'text': s:hint_sign,
-      \ 'texthl': s:hint_sign_hl,
-      \ }
-
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
@@ -80,7 +55,6 @@ let g:airline_mode_map = {
     \ 't'  : 'T',
     \ }
 let g:airline#extensions#hunks#enabled=0
-let g:airline#extensions#neomake#enabled=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_min_count=2
 let g:airline#extensions#tabline#buffer_nr_format='%s '
@@ -211,6 +185,7 @@ Plug 'junegunn/vader.vim'
 if has('nvim')
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/lsp-status.nvim'
+  Plug 'creativenull/diagnosticls-nvim'
 
   execute printf(
         \ 'sign define LspDiagnosticsSignError text=%s texthl=%s linehl=%s numhl=',
