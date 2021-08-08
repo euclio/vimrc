@@ -188,17 +188,17 @@ if has('nvim')
   Plug 'creativenull/diagnosticls-nvim'
 
   execute printf(
-        \ 'sign define LspDiagnosticsSignError text=%s texthl=%s linehl=%s numhl=',
-        \ s:error_sign, s:error_sign_hl, s:error_text_hl)
+        \ 'sign define LspDiagnosticsSignError text=%s texthl=%s numhl=',
+        \ s:error_sign, s:error_sign_hl)
   execute printf(
-        \ 'sign define LspDiagnosticsSignWarning text=%s texthl=%s linehl=%s numhl=',
-        \ s:warning_sign, s:warning_sign_hl, s:warning_text_hl)
+        \ 'sign define LspDiagnosticsSignWarning text=%s texthl=%s numhl=',
+        \ s:warning_sign, s:warning_sign_hl)
   execute printf(
-        \ 'sign define LspDiagnosticsSignInformation text=%s texthl=%s linehl=%s numhl=',
-        \ s:info_sign, s:info_sign_hl, s:info_text_hl)
+        \ 'sign define LspDiagnosticsSignInformation text=%s texthl=%s numhl=',
+        \ s:info_sign, s:info_sign_hl)
   execute printf(
-        \ 'sign define LspDiagnosticsSignHint text=%s texthl=%s linehl=%s numhl=',
-        \ s:hint_sign, s:hint_sign_hl, s:hint_text_hl)
+        \ 'sign define LspDiagnosticsSignHint text=%s texthl=%s numhl=',
+        \ s:hint_sign, s:hint_sign_hl)
 end
 
 " Markdown automatic HTML preview

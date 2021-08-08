@@ -457,6 +457,7 @@ lua << EOF
 
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = true,
         virtual_text = {
           prefix = '',
         }
@@ -577,6 +578,10 @@ if &t_Co >= 88
   hi! DiagnosticInfo        guifg=#f5f5f5 guibg=#121212 gui=undercurl
   hi! DiagnosticInfoText    guifg=#f5f5f5 guibg=#121212
   hi! DiagnosticInfoSign    guifg=#f5f5f5 guibg=#121212
+  hi! link LspDiagnosticsUnderlineError DiagnosticError
+  hi! link LspDiagnosticsUnderlineWarning DiagnosticWarning
+  hi! link LspDiagnosticsUnderlineInformation DiagnosticInfo
+  hi! link LspDiagnosticsUnderlineHint DiagnosticInfo
 
   " Signify diff markers
   "
