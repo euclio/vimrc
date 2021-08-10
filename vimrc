@@ -578,6 +578,10 @@ if &t_Co >= 88
   hi! DiagnosticInfo        guifg=#f5f5f5 guibg=#121212 gui=undercurl
   hi! DiagnosticInfoText    guifg=#f5f5f5 guibg=#121212
   hi! DiagnosticInfoSign    guifg=#f5f5f5 guibg=#121212
+  hi! link LspDiagnosticsVirtualTextError DiagnosticErrorText
+  hi! link LspDiagnosticsVirtualTextWarning DiagnosticWarningText
+  hi! link LspDiagnosticsVirtualTextInformation DiagnosticInfoText
+  hi! link LspDiagnosticsVirtualTextHint DiagnosticInfoText
   hi! link LspDiagnosticsUnderlineError DiagnosticError
   hi! link LspDiagnosticsUnderlineWarning DiagnosticWarning
   hi! link LspDiagnosticsUnderlineInformation DiagnosticInfo
