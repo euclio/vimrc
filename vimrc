@@ -476,13 +476,13 @@ lua << EOF
     }
   end
 
-  require 'diagnosticls-nvim'.init {
+  require 'diagnosticls-configs'.init {
     on_attach = on_attach,
     default_config = true,
     format = false,
   }
 
-  local eslint = require 'diagnosticls-nvim.linters.eslint'
+  local eslint = require 'diagnosticls-configs.linters.eslint'
   local shellcheck = {
     sourceName = 'shellcheck',
     command = 'shellcheck',
@@ -504,7 +504,7 @@ lua << EOF
       style = 'hint',
     },
   }
-  require 'diagnosticls-nvim'.setup {
+  require 'diagnosticls-configs'.setup {
     ['sh'] = {
       linter = shellcheck
     },
@@ -515,7 +515,7 @@ lua << EOF
       linter = eslint,
     },
     ['vim'] = {
-      linter = require 'diagnosticls-nvim.linters.vint',
+      linter = require 'diagnosticls-configs.linters.vint',
     },
   }
 

@@ -185,7 +185,7 @@ Plug 'junegunn/vader.vim'
 if has('nvim')
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/lsp-status.nvim'
-  Plug 'creativenull/diagnosticls-nvim'
+  Plug 'creativenull/diagnosticls-configs-nvim'
 
   execute printf(
         \ 'sign define LspDiagnosticsSignError text=%s texthl=%s numhl=',
