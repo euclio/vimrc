@@ -483,6 +483,7 @@ lua << EOF
 
   require 'diagnosticls-configs'.init {
     on_attach = on_attach,
+    root_dir = lspconfig.util.path.dirname,
     default_config = true,
     format = false,
   }
