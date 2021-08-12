@@ -489,30 +489,9 @@ lua << EOF
   }
 
   local eslint = require 'diagnosticls-configs.linters.eslint'
-  local shellcheck = {
-    sourceName = 'shellcheck',
-    command = 'shellcheck',
-    debounce = 100,
-    args = { '--format', 'json', '-' },
-    parseJson = {
-      sourceName = 'file',
-      line = 'line',
-      column = 'column',
-      endLine = 'endLine',
-      endColumn = 'endColumn',
-      security = 'level',
-      message = '${message} [SC${code}]',
-    },
-    securities = {
-      error = 'error',
-      warning = 'warning',
-      info = 'info',
-      style = 'hint',
-    },
-  }
   require 'diagnosticls-configs'.setup {
     ['sh'] = {
-      linter = shellcheck
+      linter = require 'diagnosticls-configs.linters.shellcheck',
     },
     ['javascript'] = {
       linter = eslint,
