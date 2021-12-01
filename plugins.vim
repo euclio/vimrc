@@ -4,23 +4,11 @@ scriptencoding utf-8
 " Interface
 " =============================================================================
 
-" Signs and highlighting for errors, etc.
+" Diagnostic signs
 let s:error_sign = '✘'
-let s:error_sign_hl = 'DiagnosticErrorSign'
-let s:error_hl = 'DiagnosticError'
-let s:error_text_hl = 'DiagnosticErrorText'
 let s:warning_sign = '♦'
-let s:warning_sign_hl = 'DiagnosticWarningSign'
-let s:warning_hl = 'DiagnosticWarning'
-let s:warning_text_hl = 'DiagnosticWarningText'
 let s:info_sign = '→'
-let s:info_sign_hl = 'DiagnosticInfoSign'
-let s:info_hl = 'DiagnosticInfo'
-let s:info_text_hl = 'DiagnosticInfoText'
 let s:hint_sign = '…'
-let s:hint_sign_hl = s:info_sign_hl
-let s:hint_hl = s:info_sign
-let s:hint_text_hl = s:info_text_hl
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
@@ -187,18 +175,28 @@ if has('nvim')
   Plug 'nvim-lua/lsp-status.nvim'
   Plug 'creativenull/diagnosticls-configs-nvim'
 
-  execute printf(
-        \ 'sign define LspDiagnosticsSignError text=%s texthl=%s numhl=',
-        \ s:error_sign, s:error_sign_hl)
-  execute printf(
-        \ 'sign define LspDiagnosticsSignWarning text=%s texthl=%s numhl=',
-        \ s:warning_sign, s:warning_sign_hl)
-  execute printf(
-        \ 'sign define LspDiagnosticsSignInformation text=%s texthl=%s numhl=',
-        \ s:info_sign, s:info_sign_hl)
-  execute printf(
-        \ 'sign define LspDiagnosticsSignHint text=%s texthl=%s numhl=',
-        \ s:hint_sign, s:hint_sign_hl)
+  call sign_define([
+        \ {
+        \   'name': 'DiagnosticSignError',
+        \   'text': s:error_sign,
+        \   'texthl': 'DiagnosticSignError'
+        \ },
+        \ {
+        \   'name': 'DiagnosticSignWarn',
+        \   'text': s:warning_sign,
+        \   'texthl': 'DiagnosticSignWarn'
+        \ },
+        \ {
+        \   'name': 'DiagnosticSignInfo',
+        \   'text': s:info_sign,
+        \   'texthl': 'DiagnosticSignInfo'
+        \ },
+        \ {
+        \   'name': 'DiagnosticSignHint',
+        \   'text': s:hint_sign,
+        \   'texthl': 'DiagnosticSignHint'
+        \ },
+        \ ])
 end
 
 " Markdown automatic HTML preview
