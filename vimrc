@@ -432,20 +432,8 @@ lua << EOF
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-    lsp_formatexpr = function()
-      local opts = {}
-      local start_line = vim.v.lnum
-      local end_line = start_line + vim.v.count
-
-      if start_line >= 0 and end_line >= 0 then
-        vim.lsp.buf.range_formatting(opts, { start_line, 0 }, { end_line, 0 })
-      end
-
-      return 0
-    end
-
     if client.resolved_capabilities.document_range_formatting then
-      buf_set_option('formatexpr', 'v:lua.lsp_formatexpr()')
+      buf_set_option('formatexpr', 'v:lua.vim.lsp.formatexpr()')
     end
 
     local opts = { noremap=true, silent=true }
