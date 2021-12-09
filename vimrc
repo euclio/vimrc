@@ -412,6 +412,9 @@ call plug#end()
 " Built-in language server configuration
 if has('nvim')
 
+" Request tags from attached language servers
+set tagfunc=v:lua.vim.lsp.tagfunc
+
 lua << EOF
   local lspconfig = require('lspconfig')
   local lsp_status = require('lsp-status');
