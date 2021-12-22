@@ -497,7 +497,6 @@ lua << EOF
 
   lspconfig['rust_analyzer'].setup {
     on_attach = on_attach,
-    cmd = { 'rustup', 'run', 'nightly', 'rust-analyzer' },
     capabilities = lsp_status.capabilities,
     init_options = {
       rustfmt = {
