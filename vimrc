@@ -509,6 +509,9 @@ lua << EOF
         checkOnSave = {
           command = 'clippy',
         },
+        experimental = {
+          procAttrMacros = false,
+        },
         rustfmt = {
           enableRangeFormatting = true,
           extraArgs = { '+nightly' },
