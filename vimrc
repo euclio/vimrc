@@ -506,6 +506,9 @@ lua << EOF
     },
     settings = {
       ['rust-analyzer'] = {
+        checkOnSave = {
+          command = 'clippy',
+        },
         rustfmt = {
           enableRangeFormatting = true,
           extraArgs = { '+nightly' },
