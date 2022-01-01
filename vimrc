@@ -449,7 +449,13 @@ lua << EOF
     'tsserver',
   }
   for _, lsp in ipairs(servers) do
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities, {
+      snippetSupport = false,
+    })
+
     lspconfig[lsp].setup {
+      capabilities = capabilities,
       on_attach = on_attach,
     }
   end
@@ -490,16 +496,64 @@ lua << EOF
         checkOnSave = {
           command = 'clippy',
         },
+        diagnostics = {
+          disabled = { 'inactive-code' }
+        },
         experimental = {
           procAttrMacros = false,
         },
         rustfmt = {
           enableRangeFormatting = true,
           extraArgs = { '+nightly' },
-        }
+        },
       }
     }
   }
+
+  local cmp = require'cmp'
+
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+  end
+
+  cmp.setup({
+    preselect = cmp.PreselectMode.None,
+    mapping = {
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+      ['<S-Tab>'] = cmp.mapping(function()
+        if cmp.visible() then
+          cmp.select_prev_item()
+        end
+      end, { 'i', 's' }),
+      ['<CR>'] = cmp.mapping.confirm({ select = false })
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+    }, {
+      { name = 'path' },
+    }, {
+      { name = 'buffer' },
+    }),
+    formatting = {
+      format = function(entry, vim_item)
+        vim_item.menu = ({
+          buffer = '[Buffer]',
+          nvim_lsp = '[LSP]',
+          path = '[Path]',
+        })[entry.source.name]
+        return vim_item
+      end
+    },
+  })
 EOF
 
   autocmd CursorHold * silent! lua vim.lsp.diagnostic.show_line_diagnostics()

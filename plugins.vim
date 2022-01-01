@@ -116,12 +116,10 @@ if has('nvim') && has('python3')
     UpdateRemotePlugins
   endfunction
 
-  Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-  let g:deoplete#enable_at_startup = 1
-  inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-  inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-  Plug 'deoplete-plugins/deoplete-lsp'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
 endif
 
 " Automatic completion of parenthesis, brackets, etc.
