@@ -446,13 +446,8 @@ lua << EOF
     buf_set_keymap('n', '<Leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-    local function on_publish_diagnostics(err, result, context, config)
-      vim.lsp.diagnostic.on_publish_diagnostics(err, result, context, config)
-      vim.lsp.diagnostic.set_qflist({ open = false })
-    end
-
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-      on_publish_diagnostics, {
+      vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = true,
         virtual_text = {
           prefix = '',
