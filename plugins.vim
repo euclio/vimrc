@@ -14,8 +14,108 @@ let s:hint_sign = '…'
 Plug 'tpope/vim-fugitive'
 
 " Statusline improvements
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+    \ 'active': {
+    \   'left': [
+    \     [ 'mode', 'paste' ],
+    \     [ 'gitbranch', 'filename' ],
+    \   ],
+    \   'right': [
+    \     ['lineinfo'],
+    \     ['search', 'filetype', 'encoding'],
+    \     ['nearest_fn'],
+    \   ],
+    \ },
+    \ 'inactive': {
+    \   'left': [[ 'filename' ]],
+    \   'right': [[ 'lineinfo' ]],
+    \ },
+    \ 'component': {
+    \   'filetype': '%{&ft}',
+    \   'nearest_fn': '%{NearestMethodOrFunction()}',
+    \   'search': '%{anzu#search_status()}',
+    \ },
+    \ 'component_function': {
+    \   'encoding': 'LightlineEncoding',
+    \   'filename': 'LightlineFilename',
+    \   'gitbranch': 'LightlineGitBranch',
+    \ },
+    \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
+    \ 'subseparator': { 'left': '', 'right': '' },
+    \ 'mode_map': {
+    \   '__' : '-',
+    \   'n'  : 'N',
+    \   'ni' : 'Ni',
+    \   'no' : 'P',
+    \   'i'  : 'I',
+    \   'ic' : 'I',
+    \   'ix' : 'I',
+    \   'R'  : 'R',
+    \   'Rv' : 'Rv',
+    \   'c'  : 'C',
+    \   'v'  : 'V',
+    \   'V'  : 'V',
+    \   '' : 'V',
+    \   's'  : 'S',
+    \   'S'  : 'S',
+    \   '' : 'S',
+    \   't'  : 'T',
+    \ }
+    \ }
+
+function! LightlineEncoding()
+  let encoding = ''
+
+  if &fenc !=# '' && &fenc !=# 'utf-8'
+    let encoding .= &fenc
+  endif
+
+  if &ff !=# 'unix'
+    let encoding .= printf('[%s]', &ff)
+  endif
+
+  return encoding
+endfunction
+
+function! LightlineFilename()
+  let filename = expand('%:t')
+
+  if filename ==# ''
+    let filename = '[No Name]'
+  endif
+
+  if &modified
+    let filename .= '[+]'
+  endif
+
+  if &readonly && empty(&buftype)
+    let filename .= ' '
+  endif
+
+  return filename
+endfunction
+
+function! LightlineGitBranch()
+    let branch = FugitiveHead()
+    if empty(branch)
+      return ''
+    endif
+
+    let file = expand('%:p')
+
+    let branch = ' ' . branch
+
+    if !(empty(file) || isdirectory(file) || !empty(&buftype))
+      call system(['git', 'ls-files', '--error-unmatch', expand('%')])
+      if v:shell_error
+        let branch .= ' ▼'
+      endif
+    endif
+
+    return branch
+endfunction
+
 let g:airline_detect_spell=0
 let g:airline_left_alt_sep=''
 let g:airline_left_sep='▓▒░'
