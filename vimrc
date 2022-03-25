@@ -417,21 +417,9 @@ set tagfunc=v:lua.vim.lsp.tagfunc
 
 lua << EOF
   local lspconfig = require('lspconfig')
-  local lsp_status = require('lsp-status');
-
-  lsp_status.config({
-    current_function = false,
-    diagnostics = false,
-    spinner_frames = {''},
-    status_symbol = '',
-    update_interval = 1000,
-  })
-
-  lsp_status.register_progress()
+  require'fidget'.setup{}
 
   local on_attach = function(client, bufnr)
-    lsp_status.on_attach(client, bufnr)
-
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -462,7 +450,6 @@ lua << EOF
   }
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
-      capabilities = lsp_status.capabilities,
       on_attach = on_attach,
     }
   end
@@ -492,7 +479,6 @@ lua << EOF
 
   lspconfig['rust_analyzer'].setup {
     on_attach = on_attach,
-    capabilities = lsp_status.capabilities,
     init_options = {
       rustfmt = {
         enableRangeFormatting = true,

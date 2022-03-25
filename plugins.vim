@@ -70,20 +70,11 @@ function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
-function! LspStatus() abort
-  if has('nvim') && luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-
-  return ''
-endfunction
-
 function! AirlineInit()
   call airline#parts#define_raw('colnr', '%2c')
   call airline#parts#define_accent('colnr', 'bold')
   call airline#parts#define_raw('nearest_fn', '%{NearestMethodOrFunction()}')
-  call airline#parts#define_raw('lsp', '%{LspStatus()}')
-  let g:airline_section_x = airline#section#create_left(['lsp', 'nearest_fn', 'filetype'])
+  let g:airline_section_x = airline#section#create_left(['nearest_fn', 'filetype'])
   let g:airline_section_z = airline#section#create(['colnr', ':%l'])
 endfunction
 augroup airline_config
@@ -172,8 +163,8 @@ Plug 'junegunn/vader.vim'
 " Language server support
 if has('nvim')
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/lsp-status.nvim'
   Plug 'creativenull/diagnosticls-configs-nvim'
+  Plug 'j-hui/fidget.nvim'
 
   call sign_define([
         \ {
