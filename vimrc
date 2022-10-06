@@ -499,9 +499,6 @@ lua << EOF
         diagnostics = {
           disabled = { 'inactive-code' }
         },
-        experimental = {
-          procAttrMacros = false,
-        },
         rustfmt = {
           enableRangeFormatting = true,
           extraArgs = { '+nightly' },
