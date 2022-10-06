@@ -423,7 +423,7 @@ lua << EOF
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-    if client.resolved_capabilities.document_range_formatting then
+    if client.server_capabilities.documentFormattingProvider then
       buf_set_option('formatexpr', 'v:lua.vim.lsp.formatexpr()')
     end
 
