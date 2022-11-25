@@ -444,15 +444,15 @@ lua << EOF
     )
   end
 
+  local capabilities = require('cmp_nvim_lsp').default_capabilities({
+    snippetSupport = false,
+  })
+
   local servers = {
     'hls',
     'tsserver',
   }
   for _, lsp in ipairs(servers) do
-    local capabilities = require('cmp_nvim_lsp').default_capabilities({
-      snippetSupport = false,
-    })
-
     lspconfig[lsp].setup {
       capabilities = capabilities,
       on_attach = on_attach,
@@ -460,6 +460,7 @@ lua << EOF
   end
 
   require 'diagnosticls-configs'.init {
+    capabilities = capabilities,
     on_attach = on_attach,
     root_dir = lspconfig.util.path.dirname,
     default_config = true,
@@ -483,6 +484,7 @@ lua << EOF
   }
 
   lspconfig['rust_analyzer'].setup {
+    capabilities = capabilities,
     on_attach = on_attach,
     init_options = {
       rustfmt = {
