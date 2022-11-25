@@ -514,7 +514,7 @@ lua << EOF
   end
 
   cmp.setup({
-    preselect = cmp.PreselectMode.None,
+    preselect = cmp.PreselectMode.Item,
     mapping = {
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -530,13 +530,11 @@ lua << EOF
           cmp.select_prev_item()
         end
       end, { 'i', 's' }),
-      ['<CR>'] = cmp.mapping.confirm({ select = false })
+      ['<CR>'] = cmp.mapping.confirm({ select = true })
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-    }, {
       { name = 'path' },
-    }, {
       { name = 'buffer' },
     }),
     formatting = {
