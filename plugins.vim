@@ -186,6 +186,9 @@ if has('nvim')
         \   'texthl': 'DiagnosticSignHint'
         \ },
         \ ])
+
+  " Snippets
+  Plug 'dcampos/nvim-snippy'
 end
 
 " Markdown automatic HTML preview

@@ -444,9 +444,7 @@ lua << EOF
     )
   end
 
-  local capabilities = require('cmp_nvim_lsp').default_capabilities({
-    snippetSupport = false,
-  })
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   local servers = {
     'hls',
@@ -509,6 +507,7 @@ lua << EOF
   }
 
   local cmp = require'cmp'
+  local snippy = require'snippy'
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -521,15 +520,21 @@ lua << EOF
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
+        elseif snippy.can_expand_or_advance() then
+          snippy.expand_or_advance()
         elseif has_words_before() then
           cmp.complete()
         else
           fallback()
         end
       end, { 'i', 's' }),
-      ['<S-Tab>'] = cmp.mapping(function()
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
+        elseif snippy.can_jump(-1) then
+          snippy.previous()
+        else
+          fallback()
         end
       end, { 'i', 's' }),
       ['<CR>'] = cmp.mapping.confirm({ select = true })
@@ -548,6 +553,11 @@ lua << EOF
         })[entry.source.name]
         return vim_item
       end
+    },
+    snippet = {
+      expand = function(args)
+        require('snippy').expand_snippet(args.body)
+      end,
     },
   })
 EOF
