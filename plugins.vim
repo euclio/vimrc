@@ -111,7 +111,7 @@ set shortmess+=S
 " =============================================================================
 
 " Autocompletion
-if has('nvim') && has('python3')
+if has('nvim')
   function! DoRemote(arg)
     UpdateRemotePlugins
   endfunction
