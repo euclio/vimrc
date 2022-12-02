@@ -15,8 +15,13 @@ scriptencoding utf8
 if has('nvim')
   " Use Homebrew Python on Macs
   if has('macunix')
-    let g:python_host_prog='/usr/local/bin/python2'
-    let g:python3_host_prog='/usr/local/bin/python3'
+    if system('arch') == 'arm64'
+      let g:python_host_prog='/opt/homebrew/bin/python2'
+      let g:python3_host_prog='/opt/homebrew/bin/python3'
+    else
+      let g:python_host_prog='/usr/local/bin/python2'
+      let g:python3_host_prog='/usr/local/bin/python3'
+    endif
   endif
 
   let g:python_host_prog = get(g:, 'python_host_prog', '/usr/bin/python2')
