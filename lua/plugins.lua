@@ -10,7 +10,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<Leader>f', vim.lsp.buf.formatting, opts)
+  vim.keymap.set('n', '<Leader>f', function() vim.lsp.buf.format { async = true } end, opts)
 
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
