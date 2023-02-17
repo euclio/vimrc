@@ -5,10 +5,6 @@ local lspconfig = require('lspconfig')
 require'fidget'.setup{}
 
 local on_attach = function(client, bufnr)
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
-  end
-
   local opts = { noremap=true, silent=true, buffer=bufnr }
 
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
