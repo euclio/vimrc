@@ -162,7 +162,7 @@ Plug 'junegunn/vader.vim'
 if has('nvim')
   Plug 'neovim/nvim-lspconfig'
   Plug 'creativenull/diagnosticls-configs-nvim'
-  Plug 'j-hui/fidget.nvim'
+  Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
 
   call sign_define([
         \ {
