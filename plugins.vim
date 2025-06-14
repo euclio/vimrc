@@ -4,6 +4,11 @@ scriptencoding utf-8
 " Interface
 " =============================================================================
 
+" Diagnostics
+if has('nvim')
+  Plug 'folke/trouble.nvim'
+endif
+
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 

@@ -21,6 +21,16 @@ vim.diagnostic.config({
   },
 })
 
+require('trouble').setup {
+  modes = {
+    diagnostics = {
+      auto_close = true,
+      auto_open = true,
+      auto_preview = false,
+    },
+  },
+}
+
 -- Built-in language server configuration
 require'fidget'.setup{}
 
