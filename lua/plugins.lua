@@ -16,29 +16,21 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
     },
   },
+  virtual_text = {
+    prefix = '',
+  },
 })
 
 -- Built-in language server configuration
-local lspconfig = require('lspconfig')
 require'fidget'.setup{}
 
 local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true, buffer=bufnr }
 
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<Leader>f', function() vim.lsp.buf.format { async = true } end, opts)
-
-  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = true,
-      virtual_text = {
-        prefix = '',
-      }
-    }
-  )
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -47,17 +39,19 @@ local servers = {
   'hls',
   'ts_ls',
 }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  }
-end
+vim.lsp.enable({
+  'hls',
+  'rust_analyzer',
+  'ts_ls',
+})
+vim.lsp.config('*', {
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
 
 require 'diagnosticls-configs'.init {
   capabilities = capabilities,
   on_attach = on_attach,
-  root_dir = lspconfig.util.path.dirname,
   default_config = true,
   format = false,
 }
@@ -78,7 +72,7 @@ require 'diagnosticls-configs'.setup {
   },
 }
 
-lspconfig['rust_analyzer'].setup {
+vim.lsp.config('rust_analyzer',  {
   capabilities = capabilities,
   on_attach = on_attach,
   init_options = {
@@ -101,7 +95,7 @@ lspconfig['rust_analyzer'].setup {
       },
     }
   }
-}
+})
 
 autocmd('CursorHold', {
   pattern = '',
