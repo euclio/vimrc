@@ -4,12 +4,6 @@ scriptencoding utf-8
 " Interface
 " =============================================================================
 
-" Diagnostic signs
-let s:error_sign = '✘'
-let s:warning_sign = '♦'
-let s:info_sign = '→'
-let s:hint_sign = '…'
-
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 
@@ -163,29 +157,6 @@ if has('nvim')
   Plug 'neovim/nvim-lspconfig'
   Plug 'creativenull/diagnosticls-configs-nvim'
   Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
-
-  call sign_define([
-        \ {
-        \   'name': 'DiagnosticSignError',
-        \   'text': s:error_sign,
-        \   'texthl': 'DiagnosticSignError'
-        \ },
-        \ {
-        \   'name': 'DiagnosticSignWarn',
-        \   'text': s:warning_sign,
-        \   'texthl': 'DiagnosticSignWarn'
-        \ },
-        \ {
-        \   'name': 'DiagnosticSignInfo',
-        \   'text': s:info_sign,
-        \   'texthl': 'DiagnosticSignInfo'
-        \ },
-        \ {
-        \   'name': 'DiagnosticSignHint',
-        \   'text': s:hint_sign,
-        \   'texthl': 'DiagnosticSignHint'
-        \ },
-        \ ])
 
   " Snippets
   Plug 'dcampos/nvim-snippy'
