@@ -1,5 +1,5 @@
-" Ensure 79 column width (PEP-8)
-setlocal textwidth=79
+" Ensure 88 column width (ruff default)
+setlocal textwidth=88
 
 let b:delimitMate_nesting_quotes = ['"']
 
