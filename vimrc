@@ -473,6 +473,12 @@ if &t_Co >= 88
 
   hi! StatusLine guibg=#1c1c1c gui=NONE
 
+  " Use colorscheme for floating windows.
+  if has('nvim')
+    hi! link NormalFloat Normal
+    hi! link FloatBorder Whitespace
+  endif
+
   function s:WhitespaceHighlight()
     " Don't highlight trailing spaces in certain filetypes.
     if &filetype ==# 'help' || &filetype ==# 'vim-plug'
