@@ -496,6 +496,11 @@ else
   colorscheme default
 endif
 
+" Draw a single-line border around floating windows.
+if has('nvim')
+  set winborder=single
+endif
+
 " Enable cursor shape switching on mode change
 if has('nvim')
   set guicursor=i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150
