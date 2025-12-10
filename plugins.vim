@@ -110,10 +110,7 @@ if has('nvim')
     UpdateRemotePlugins
   endfunction
 
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-path'
+  Plug 'saghen/blink.cmp', { 'tag': 'v1.*' }
 endif
 
 " Automatic completion of parenthesis, brackets, etc.
@@ -157,9 +154,6 @@ if has('nvim')
   Plug 'neovim/nvim-lspconfig'
   Plug 'creativenull/diagnosticls-configs-nvim'
   Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
-
-  " Snippets
-  Plug 'dcampos/nvim-snippy'
 end
 
 " Markdown automatic HTML preview

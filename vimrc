@@ -497,6 +497,7 @@ if &t_Co >= 88
   hi ExtraWhitespace guifg=red guibg=red
   augroup whitespace
     autocmd!
+    " FIXME: cmp window
     autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
     autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
