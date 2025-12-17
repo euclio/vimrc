@@ -484,25 +484,32 @@ if &t_Co >= 88
     hi! link FloatBorder Whitespace
   endif
 
-  function s:WhitespaceHighlight()
-    " Don't highlight trailing spaces in certain filetypes.
-    if &filetype ==# 'help' || &filetype ==# 'vim-plug'
-      hi! ExtraWhitespace NONE
-    else
-      hi! ExtraWhitespace guifg=red guibg=red
+  function s:MatchWhitespace(pat)
+    let s:id = get(w:, 'ws_match_id', -1)
+
+    if s:id > 0
+      call matchdelete(s:id)
+    endif
+
+    let w:ws_match_id = matchadd('ExtraWhitespace', a:pat, 10, s:id)
+  endfunction
+
+  function s:ClearWhitespaceMatch()
+    if exists(w:ws_match_id)
+      call matchdelete(s:id)
+      unlet w:ws_match_id
     endif
   endfunction
 
   " Highlight trailing whitespace when not in insert mode
-  hi ExtraWhitespace guifg=red guibg=red
+  hi! ExtraWhitespace guifg=red guibg=red
   augroup whitespace
     autocmd!
-    " FIXME: cmp window
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
-    autocmd BufEnter * call s:WhitespaceHighlight()
+    autocmd BufWinEnter * call s:MatchWhitespace('\s\+$')
+    autocmd InsertEnter * call s:MatchWhitespace('\s\+\%#\@<!$')
+    autocmd InsertLeave * call s:MatchWhitespace('\s\+$')
+    autocmd BufWinLeave * call s:ClearWhitespaceMatch()
+    autocmd FileType help,vim-plug call s:ClearWhitespaceMatch()
   augroup END
 else
   colorscheme default

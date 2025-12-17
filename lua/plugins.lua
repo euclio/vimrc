@@ -134,6 +134,14 @@ vim.lsp.config('rust_analyzer',  {
       diagnostics = {
         disabled = { 'inactive-code' }
       },
+      hover = {
+        dropGlue = {
+          enable = false,
+        },
+        memoryLayout = {
+          enable = false,
+        },
+      },
       rustfmt = {
         enableRangeFormatting = true,
         extraArgs = { '+nightly' },
@@ -174,4 +182,30 @@ blink.setup {
     ['<S-Tab>'] = { 'select_prev', 'fallback' },
   },
   signature = { enabled = true },
+  snippet = {
+    expand = function(args)
+      require('snippy').expand_snippet(args.body)
+    end,
+  },
+})
+
+-- Diagnostics display
+require('trouble').setup {
+  icons = {},
+  fold_open = 'v',
+  fold_closed = '>',
+  auto_close = true,
+  padding = false,
+  indent_lines = false,
+  use_diagnostic_signs = true,
+  auto_preview = false,
+  signs = {
+    error = 'error',
+    warning = 'warn',
+    hint = 'hint',
+    information = 'into',
+  },
+  modes = {
+    diagnostics = { auto_open = true },
+  }
 }
