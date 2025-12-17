@@ -145,6 +145,11 @@ Plug 'sjl/gundo.vim'
 " Unit-testing framework
 Plug 'junegunn/vader.vim'
 
+if has('nvim')
+  " Diagnostic Preview
+  Plug 'folke/trouble.nvim'
+end
+
 " =============================================================================
 " Language Plugins
 " =============================================================================
