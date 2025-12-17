@@ -155,6 +155,27 @@ autocmd('CursorHold', {
   command = 'silent! lua vim.lsp.diagnostic.show_line_diagnostics()',
 })
 
+-- Diagnostics display
+require('trouble').setup {
+  icons = {},
+  fold_open = 'v',
+  fold_closed = '>',
+  auto_close = true,
+  padding = false,
+  indent_lines = false,
+  use_diagnostic_signs = true,
+  auto_preview = false,
+  signs = {
+    error = 'error',
+    warning = 'warn',
+    hint = 'hint',
+    information = 'into',
+  },
+  modes = {
+    diagnostics = { auto_open = true },
+  }
+}
+
 -- Completion
 local cmp = require'cmp'
 local snippy = require'snippy'
