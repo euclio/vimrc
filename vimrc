@@ -370,6 +370,11 @@ augroup END
 " Disable safe write. This breaks certain tools that watch the filesystem.
 set backupcopy=yes
 
+" linematch causes git diffs to be too granular in diff mode.
+if has('nvim')
+  set diffopt-=linematch:40
+endif
+
 " =============================================================================
 " Plugins & Local Configuration
 " =============================================================================
