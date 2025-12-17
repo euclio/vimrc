@@ -487,7 +487,7 @@ if &t_Co >= 88
   function s:MatchWhitespace(pat)
     let s:id = get(w:, 'ws_match_id', -1)
 
-    if s:id > 0
+    if s:id >= 0
       call matchdelete(s:id)
     endif
 
@@ -495,8 +495,8 @@ if &t_Co >= 88
   endfunction
 
   function s:ClearWhitespaceMatch()
-    if exists(w:ws_match_id)
-      call matchdelete(s:id)
+    if exists('w:ws_match_id')
+      call matchdelete(w:ws_match_id)
       unlet w:ws_match_id
     endif
   endfunction
@@ -509,7 +509,7 @@ if &t_Co >= 88
     autocmd InsertEnter * call s:MatchWhitespace('\s\+\%#\@<!$')
     autocmd InsertLeave * call s:MatchWhitespace('\s\+$')
     autocmd BufWinLeave * call s:ClearWhitespaceMatch()
-    autocmd FileType help,vim-plug call s:ClearWhitespaceMatch()
+    autocmd FileType help,vim-plug,blink-cmp* call s:ClearWhitespaceMatch()
   augroup END
 else
   colorscheme default

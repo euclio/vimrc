@@ -182,12 +182,7 @@ blink.setup {
     ['<S-Tab>'] = { 'select_prev', 'fallback' },
   },
   signature = { enabled = true },
-  snippet = {
-    expand = function(args)
-      require('snippy').expand_snippet(args.body)
-    end,
-  },
-})
+}
 
 -- Diagnostics display
 require('trouble').setup {
