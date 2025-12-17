@@ -48,6 +48,18 @@ vim.lsp.config('*', {
   on_attach = on_attach,
 })
 
+vim.lsp.config('basedpyright', {
+  settings = {
+    basedpyright = {
+      analysis = {
+        diagnosticSeverityOverrides = {
+          reportUnusedCallResult = false,
+        },
+      },
+    },
+  },
+})
+
 vim.lsp.config('lua_ls', {
   on_init = function(client)
     if client.workspace_folders then
