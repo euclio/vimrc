@@ -204,3 +204,28 @@ blink.setup {
   },
   signature = { enabled = true },
 }
+
+-- Symbol navigation
+local aerial = require("aerial")
+aerial.setup({
+})
+
+_G.NearestMethodOrFunction = function()
+  local location = aerial.get_location(true)
+
+  if location == nil then
+    return ''
+  end
+
+  local name = ''
+
+  for i, symbol in pairs(location) do
+    if i == 1 then
+      name = symbol.name
+    else
+      name = name .. '.' .. symbol.name
+    end
+  end
+
+  return name
+end

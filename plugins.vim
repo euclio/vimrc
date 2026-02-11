@@ -60,20 +60,17 @@ let g:airline_symbols.dirty = ''
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.notexists = ' ▼'
 
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
 function! AirlineInit()
   call airline#parts#define_raw('colnr', '%2c')
   call airline#parts#define_accent('colnr', 'bold')
-  call airline#parts#define_raw('nearest_fn', '%{NearestMethodOrFunction()}')
+  if has('nvim')
+    call airline#parts#define_raw('nearest_fn', '%{v:lua.NearestMethodOrFunction()}')
+  end
   let g:airline_section_x = airline#section#create_left(['nearest_fn', 'filetype'])
   let g:airline_section_z = airline#section#create(['colnr', ':%l'])
 endfunction
 augroup airline_config
   autocmd!
-  autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
   autocmd User AirlineAfterInit call AirlineInit()
 augroup END
 
@@ -189,10 +186,10 @@ let g:rustfmt_autosave=0                    " Assume that RLS handles formatting
 let g:rustfmt_fail_silently=1               " Don't report rustfmt errors
 let g:rustfmt_command='rustfmt +nightly'
 
-" View file outline in a sidebar via LSP and ctags.
-Plug 'liuchengxu/vista.vim'
-let g:vista#renderer#enable_icon = 0
-nnoremap <leader>s :Vista!!<cr>
+if has('nvim')
+  " View file outline in a sidebar via LSP.
+  Plug 'stevearc/aerial.nvim'
+end
 
 " =============================================================================
 " Cosmetic
