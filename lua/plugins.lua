@@ -134,6 +134,14 @@ vim.lsp.config('rust_analyzer',  {
       diagnostics = {
         disabled = { 'inactive-code' }
       },
+      hover = {
+        dropGlue = {
+          enable = false,
+        },
+        memoryLayout = {
+          enable = false,
+        },
+      },
       rustfmt = {
         enableRangeFormatting = true,
         extraArgs = { '+nightly' },
