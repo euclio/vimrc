@@ -1,5 +1,33 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+local gh = function(p) return 'https://github.com/' .. p end
+
+vim.pack.add({
+  -- Autocompletion
+  { src = gh('saghen/blink.cmp'), version = vim.version.range('1.x') },
+
+  -- Diagnostic Preview
+  gh('folke/trouble.nvim'),
+
+  -- Language Server Support
+  gh('neovim/nvim-lspconfig'),
+
+  -- Run linters as an LSP server
+  gh('creativenull/diagnosticls-configs-nvim'),
+
+  -- LSP status indicators
+  { src = gh('j-hui/fidget.nvim'), version = 'legacy' },
+
+  -- LSP navigation
+  gh('stevearc/aerial.nvim'),
+})
+
+autocmd("PackChanged", {
+  callback = function()
+    vim.cmd("UpdateRemotePlugins")
+  end
+})
+
 -- Diagnostics
 vim.diagnostic.config({
   signs = {

@@ -101,15 +101,6 @@ set shortmess+=S
 " Features
 " =============================================================================
 
-" Autocompletion
-if has('nvim')
-  function! DoRemote(arg)
-    UpdateRemotePlugins
-  endfunction
-
-  Plug 'saghen/blink.cmp', { 'tag': 'v1.*' }
-endif
-
 " Automatic completion of parenthesis, brackets, etc.
 Plug 'Raimondi/delimitMate'
 let g:delimitMate_expand_cr=1                 " Put new brace on newline after CR
@@ -142,21 +133,9 @@ Plug 'sjl/gundo.vim'
 " Unit-testing framework
 Plug 'junegunn/vader.vim'
 
-if has('nvim')
-  " Diagnostic Preview
-  Plug 'folke/trouble.nvim'
-end
-
 " =============================================================================
 " Language Plugins
 " =============================================================================
-
-" Language server support
-if has('nvim')
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'creativenull/diagnosticls-configs-nvim'
-  Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
-end
 
 " Markdown automatic HTML preview
 if executable('cargo')
@@ -185,11 +164,6 @@ let g:LatexBox_build_dir='latexmk'              " Build files are in 'latexmk'
 let g:rustfmt_autosave=0                    " Assume that RLS handles formatting
 let g:rustfmt_fail_silently=1               " Don't report rustfmt errors
 let g:rustfmt_command='rustfmt +nightly'
-
-if has('nvim')
-  " View file outline in a sidebar via LSP.
-  Plug 'stevearc/aerial.nvim'
-end
 
 " =============================================================================
 " Cosmetic
